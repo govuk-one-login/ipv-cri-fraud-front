@@ -12,6 +12,15 @@ Clone this repository and then run
 
 ```bash
 yarn install
+
+### Code Owners
+
+# Installation
+
+Clone this repository and then run
+
+```bash
+yarn install
 ```
 
 ## Environment Variables
