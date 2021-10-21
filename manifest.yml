@@ -1,0 +1,8 @@
+---
+applications:
+  - name: ((environment))-di-ipv-cri-fraud-front
+    services:
+      - session-cache
+    memory: 256M
+    buildpack: nodejs_buildpack
+    command: yarn start
