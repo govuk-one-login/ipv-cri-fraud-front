@@ -3,6 +3,9 @@ const {
   API: {
     PATHS: { AUTHORIZE },
   },
+  APP: {
+    PATHS: { FRAUD },
+  },
 } = require("../../lib/config");
 
 describe("oauth middleware", () => {
@@ -102,10 +105,16 @@ describe("oauth middleware", () => {
       });
     });
 
-    context("with missing authorization code", () => {
-      beforeEach(() => {
-        delete authResponse.data.code;
-      });
+      req.session = {
+        authParams: {
+          redirect_uri: redirect,
+          state,
+          client_id: clientId,
+        },
+        "hmpo-wizard-fraud": {
+          authorization_code: code,
+        },
+      };
 
       it("should send a 500 error when code is missing", async function () {
         await middleware.retrieveAuthorizationCode(req, res);
@@ -120,13 +129,16 @@ describe("oauth middleware", () => {
       });
     });
 
-    context("with axios error", () => {
-      let errorMessage;
+    it("should redirects with error when error present", async () => {
+      delete req.session["hmpo-wizard-fraud"].authorization_code;
 
-      beforeEach(() => {
-        errorMessage = "server error";
-        req.axios.get = sinon.fake.throws(new Error(errorMessage));
-      });
+      const errorCode = "123";
+      const description = "myDescription";
+
+      req.session["hmpo-wizard-fraud"].error = {
+        code: errorCode,
+        description: description,
+      };
 
       it("should send call next with error when code is missing", async () => {
         await middleware.retrieveAuthorizationCode(req, res, next);
@@ -140,7 +152,7 @@ describe("oauth middleware", () => {
     });
   });
 
-  describe("redirectToCallback", () => {
+  describe("redirectToFraud", () => {
     beforeEach(() => {
       req.session = {
         authParams: {
@@ -152,12 +164,10 @@ describe("oauth middleware", () => {
       req.axios.get = sinon.fake.returns({});
     });
 
-    it("should successfully redirects when code is valid", async function () {
-      await middleware.redirectToCallback(req, res);
+    it("should successfully redirect back to fraud", async function () {
+      await middleware.redirectToFraud(req, res);
 
-      expect(res.redirect).to.have.been.calledWith(
-        `https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb?code=1234`
-      );
+      expect(res.redirect).to.have.been.calledWith(FRAUD);
     });
   });
 });

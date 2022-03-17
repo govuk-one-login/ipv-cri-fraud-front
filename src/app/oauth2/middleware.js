@@ -1,6 +1,9 @@
 const {
   API: {
-    PATHS: { AUTHORIZE },
+    PATHS: { AUTHORIZE, AUTHORIZATION_CODE },
+  },
+  APP: {
+    PATHS: { FRAUD },
   },
 } = require("../../lib/config");
 
@@ -18,22 +21,57 @@ module.exports = {
     next();
   },
 
+  addJWTToRequest: (req, res, next) => {
+    req.jwt = req.query?.request;
+    next();
+  },
+
+  initSessionWithJWT: async (req, res, next) => {
+    const requestJWT = req.jwt;
+    const headers = { client_id: req.query?.client_id };
+
+    try {
+      if (requestJWT) {
+        const apiResponse = await req.axios.post(
+          AUTHORIZE,
+          {
+            request: req.jwt,
+            ...req.session.authParams,
+          },
+          {
+            headers: headers,
+          }
+        );
+
+        req.session.tokenId = apiResponse?.data["session-id"];
+      }
+    } catch (error) {
+      next(error);
+    }
+    next();
+  },
+
   retrieveAuthorizationCode: async (req, res, next) => {
     try {
-      const oauthParams = {
-        ...req.session.authParams,
-        scope: "openid",
-      };
+      const authCode = req.session["hmpo-wizard-fraud"].authorization_code;
+      const url = req.session["hmpo-wizard-fraud"].redirect_url;
+      const state = req.session["hmpo-wizard-fraud"].state;
+      const redirectUrl = new URL(url);
 
-      const apiResponse = await req.axios.get(AUTHORIZE, {
-        params: oauthParams,
-      });
+      if (!authCode) {
+        const error = req.session["hmpo-wizard-fraud"].error;
+        const errorCode = error?.code;
+        const errorDescription = error?.description ?? error?.message;
 
-      const code = apiResponse?.data?.code?.value;
-
-      if (!code) {
-        res.status(500);
-        return res.send("Missing authorization code");
+        redirectUrl.searchParams.append("error", errorCode);
+        redirectUrl.searchParams.append("error_description", errorDescription);
+      } else {
+        redirectUrl.searchParams.append(
+          "client_id",
+          req.session.authParams.client_id
+        );
+        redirectUrl.searchParams.append("state", state);
+        redirectUrl.searchParams.append("code", authCode);
       }
 
       req.authorization_code = code;
@@ -44,9 +82,7 @@ module.exports = {
     }
   },
 
-  redirectToCallback: async (req, res) => {
-    const redirectURL = `${req.session.authParams.redirect_uri}?code=${req.authorization_code}`;
-
-    res.redirect(redirectURL);
+  redirectToFraud: async (req, res) => {
+    res.redirect(FRAUD);
   },
 };
