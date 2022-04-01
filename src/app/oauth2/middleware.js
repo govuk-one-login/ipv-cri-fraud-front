@@ -1,6 +1,6 @@
 const {
   API: {
-    PATHS: { AUTHORIZE, AUTHORIZATION_CODE },
+    PATHS: { AUTHORIZE },
   },
   APP: {
     PATHS: { FRAUD },
@@ -50,7 +50,7 @@ module.exports = {
     next();
   },
 
-  retrieveAuthorizationCode: async (req, res, next) => {
+  redirectToCallback: async (req, res, next) => {
     try {
       const authCode = req.session["hmpo-wizard-fraud"].authorization_code;
       const url = req.session["hmpo-wizard-fraud"].redirect_url;
@@ -62,20 +62,14 @@ module.exports = {
         const errorCode = error?.code;
         const errorDescription = error?.description ?? error?.message;
 
-        redirectUrl.searchParams.append("error", errorCode);
-        redirectUrl.searchParams.append("error_description", errorDescription);
+        url.searchParams.append("error", errorCode);
+        url.searchParams.append("error_description", errorDescription);
       } else {
-        redirectUrl.searchParams.append(
-          "client_id",
-          req.session.authParams.client_id
-        );
-        redirectUrl.searchParams.append("state", state);
-        redirectUrl.searchParams.append("code", authCode);
+        url.searchParams.append("client_id", req.session.authParams.client_id);
+        url.searchParams.append("state", req.session.authParams.state);
+        url.searchParams.append("code", authCode);
       }
-
-      req.authorization_code = code;
-
-      next();
+      res.redirect(url.toString());
     } catch (e) {
       next(e);
     }
