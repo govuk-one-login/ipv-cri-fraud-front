@@ -54,7 +54,7 @@ module.exports = {
           "client_id",
           req.session.authParams.client_id
         );
-        redirectUrl.searchParams.append("state", req.session.authParams.state);
+        redirectUrl.searchParams.append("state", state);
         redirectUrl.searchParams.append("code", authCode);
       }
       res.redirect(redirectUrl.toString());
