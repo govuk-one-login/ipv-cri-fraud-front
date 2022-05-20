@@ -54,6 +54,9 @@ router.use(setAxiosDefaults);
 
 router.use("/oauth2", commonExpress.routes.oauth2);
 
+router.use("/fraud", (req, res) => {
+  res.render("fraud");
+});
 
 router.use("^/$", (req, res) => {
   res.render("index");
