@@ -1,0 +1,35 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "fraud-success",
+      "newScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "url": "/__reset/fraud-success"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "fraud-success",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "FraudCheck",
+      "request": {
+        "method": "POST",
+        "urlPath": "/session",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-success"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "session_id": "ABADCAFE"
+        }
+      }
+    }
+  ]
+}
