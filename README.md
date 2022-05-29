@@ -12,6 +12,7 @@ Clone this repository and then run
 
 ```bash
 yarn install
+```
 
 ## Environment Variables
 

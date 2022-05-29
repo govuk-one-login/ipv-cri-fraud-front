@@ -1,5 +1,11 @@
-require("dotenv").config();
+const commonExpress = require("di-ipv-cri-common-express");
 
+const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
+const setAxiosDefaults = commonExpress.lib.axios;
+
+const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
+
+const { API, APP, PORT, REDIS, SESSION_SECRET } = require("./lib/config");
 const { setup } = require("hmpo-app");
 
 const loggerConfig = {
@@ -8,16 +14,19 @@ const loggerConfig = {
   app: false,
 };
 
+const redisConfig = commonExpress.lib.redis(REDIS);
+
 const sessionConfig = {
   cookieName: "service_session",
-  secret: process.env.SESSION_SECRET,
+  secret: SESSION_SECRET,
 };
 
-const { router } = setup({
+const { app, router } = setup({
   config: { APP_ROOT: __dirname },
-  port: process.env.PORT || 5040,
+  port: PORT,
   logs: loggerConfig,
   session: sessionConfig,
+  redis: redisConfig,
   urls: {
     public: "/public",
   },
@@ -25,6 +34,30 @@ const { router } = setup({
   dev: true,
 });
 
-router.get("/", (req, res) => {
+app.get("nunjucks").addGlobal("getContext", function () {
+  return {
+    keys: Object.keys(this.ctx),
+    ctx: this.ctx.ctx,
+  };
+});
+
+setAPIConfig({
+  app,
+  baseUrl: API.BASE_URL,
+  authorizePath: API.PATHS.AUTHORIZE,
+});
+
+setOAuthPaths({ app, entryPointPath: APP.PATHS.FRAUD });
+
+router.use(setScenarioHeaders);
+router.use(setAxiosDefaults);
+
+router.use("/oauth2", commonExpress.routes.oauth2);
+
+router.use("/fraud", (req, res) => {
+  res.render("fraud");
+});
+
+router.use("^/$", (req, res) => {
   res.render("index");
 });
