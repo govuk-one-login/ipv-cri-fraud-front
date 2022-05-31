@@ -1,0 +1,30 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{% extends "form-template.njk" %}
+{% set hmpoPageKey = "fraud" %}
+
+{% block mainContent %}
+
+<h1 id="header">{{translate("pages.check.title")}} </h1>
+{% call hmpoForm(ctx) %}
+
+<p>We need to check your details against information held by another company.</p>
+
+<p>This will help us protect you against online identity theft.</p>
+
+<details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Who we check your details with</span>
+    </summary>
+    <div class="govuk-details__text">
+        <p>We'll check your details with <a href="https://www.experian.co.uk/" class="govuk-link" rel="noreferrer noopener" target="_blank">Experian (opens in new tab)</a>. This is because companies like Experian have access to information about interactions you've previously had with other organisations.</p>
+
+        <p><a href="#">Read our privacy notice</a> if you'd like to know more about how your details will be used to prove your identity.</p>
+    </div>
+</details>
+
+{{ hmpoSubmit(ctx, {text: translate("buttons.next")}) }}
+
+{% endcall %}
+{% endblock %}

@@ -27,7 +27,28 @@
       "response": {
         "status": 200,
         "jsonBody": {
-          "session_id": "ABADCAFE"
+          "session_id": "ABADCAFE",
+          "state": "sT@t3",
+          "redirect_uri": "http://example.net/return"
+        }
+      }
+    },
+    {
+      "scenarioName": "fraud-success",
+      "requiredScenarioState": "FraudCheck",
+      "request": {
+        "method": "GET",
+        "urlPath": "/check",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-success"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "authorization_code": "FACEFEED"
         }
       }
     }

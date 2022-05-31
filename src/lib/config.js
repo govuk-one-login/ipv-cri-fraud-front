@@ -5,13 +5,13 @@ module.exports = {
     BASE_URL: process.env.API_BASE_URL || "http://localhost:5007/",
     PATHS: {
       AUTHORIZE: "session",
-      AUTHORIZATION_CODE: "authorization-code",
+      CHECK: "check",
     },
   },
   APP: {
     BASE_URL: process.env.EXTERNAL_WEBSITE_HOST || "http://localhost:5040",
     PATHS: {
-      FRAUD: "/fraud",
+      FRAUD: "/",
     },
   },
   PORT: process.env.PORT || 5040,
