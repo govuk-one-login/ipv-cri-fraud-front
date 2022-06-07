@@ -37,19 +37,26 @@
       "scenarioName": "fraud-success",
       "requiredScenarioState": "FraudCheck",
       "request": {
-        "method": "GET",
-        "urlPath": "/check",
+        "method": "POST",
+        "urlPath": "/identity-check",
         "headers": {
           "x-scenario-id": {
             "equalTo": "fraud-success"
+          },
+          "session_id": {
+            "equalTo": "ABADCAFE"
           }
         }
       },
       "response": {
         "status": 200,
-        "jsonBody": {
-          "authorization_code": "FACEFEED"
-        }
+        "jsonBody":
+          {
+            "success": true,
+            "validationErrors": null,
+            "error": null,
+            "contraIndicators": []
+          }
       }
     }
   ]
