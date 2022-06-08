@@ -1,6 +1,6 @@
 FROM node:16.14.2-alpine
 
-ENV PORT 5040
+ENV PORT 5030
 
 WORKDIR /app
 

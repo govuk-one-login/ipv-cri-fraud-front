@@ -17,22 +17,8 @@ yarn install
 ## Environment Variables
 
 - `BASE_URL`: Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows
-- `PORT` - Default port to run webserver on. (Default to `5040`)
+- `PORT` - Default port to run webserver on. (Default to `5030`)
 
-### Code Owners
-
-# Installation
-
-Clone this repository and then run
-
-```bash
-yarn install
-```
-
-## Environment Variables
-
-- `BASE_URL`: Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows
-- `PORT` - Default port to run webserver on. (Default to `5040`)
 
 # Testing
 
@@ -55,3 +41,7 @@ A browser extension that can modify headers can be used to set the value of the 
 ## Request properties
 
 In order to support consistent use of headers for API requests. [middleware](./src/lib/axios.js) is applied to add an instance of [axios](https://axios-http.com/) on each reqest onto `req.axios`. This is then reused in any code that uses the API.
+
+### Code Owners
+
+This repo has a `CODEOWNERS` file in the root and is configured to require PRs to reviewed by Code Owners.

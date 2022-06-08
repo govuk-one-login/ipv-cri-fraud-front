@@ -6,11 +6,18 @@ const {
   },
 } = require("../../../lib/config");
 
-class AddressSearchController extends BaseController {
+class FraudCheckController extends BaseController {
   async saveValues(req, res, callback) {
-    const fraudCheck = await req.axios.get(`${CHECK}`, {
-      session_id: req.session.tokenId,
-    });
+    const fraudCheck = await req.axios.post(
+      `${CHECK}`,
+      {},
+      {
+        headers: {
+          "Content-Type": "application/application-json",
+          session_id: req.session.tokenId,
+        },
+      }
+    );
 
     req.session.authParams.authorization_code =
       fraudCheck.data?.authorization_code;
@@ -19,4 +26,4 @@ class AddressSearchController extends BaseController {
   }
 }
 
-module.exports = AddressSearchController;
+module.exports = FraudCheckController;
