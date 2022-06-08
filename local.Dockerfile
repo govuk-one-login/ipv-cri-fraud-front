@@ -15,3 +15,4 @@ RUN yarn build
 CMD yarn run dev
 
 EXPOSE $PORT
+
