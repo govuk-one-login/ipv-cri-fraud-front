@@ -4,7 +4,7 @@ module.exports = class PlaywrightDevPage {
    */
   constructor(page) {
     this.page = page;
-    this.url = "http://localhost:5040/check";
+    this.url = "http://localhost:5030/check";
   }
 
   isCurrentPage() {
