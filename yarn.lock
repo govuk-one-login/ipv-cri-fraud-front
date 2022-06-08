@@ -793,7 +793,7 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
 
-body-parser@1.20.0, body-parser@^1.19.0, body-parser@^1.19.2:
+body-parser@1.20.0, body-parser@^1.19.2, body-parser@^1.20.0:
   version "1.20.0"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.0.tgz#3de69bd89011c11573d7bfee6a64f11b6bd27cc5"
   integrity sha512-DfJ+q6EPcGKZD1QWUjSpqp+Q7bDQTsQIF4zfUAtZ6qk+H/3/QRhg9CEp39ss+/T2vw0+HaidC0ecJj/DRLIaKg==
@@ -2353,19 +2353,19 @@ hmpo-config@2.2.0:
     js-yaml "^4.1.0"
     json5 "^2.2.0"
 
-hmpo-form-wizard@12.0.1:
-  version "12.0.1"
-  resolved "https://registry.yarnpkg.com/hmpo-form-wizard/-/hmpo-form-wizard-12.0.1.tgz#a601b8ae0d61cb665fe4a0656ecdc4ea9d7357c3"
-  integrity sha512-Aw2EoUJH/vBFs8C1YoKeHg+CNqwmvmgEBZ0TihRhzlaEk3MJhkDlvn6/fp/TJA6MLL54uCq0tCSO+COhA2wKfQ==
+hmpo-form-wizard@12.0.3:
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/hmpo-form-wizard/-/hmpo-form-wizard-12.0.3.tgz#a15faadcc853c2bf8eab677594e9d459f445460a"
+  integrity sha512-CkxHiEVZcTBJbAhTCsjAqklauZldYh6IB5lTqtKwBxUeE5F2HpCidyXkItXopWM155xIIQLz0RjZPMY2B3k5Ow==
   dependencies:
-    body-parser "^1.19.0"
+    body-parser "^1.20.0"
     csrf "^3.1.0"
-    debug "^4.3.3"
-    deep-clone-merge "^1.5.3"
-    hmpo-model "^4.0.2"
-    json5 "^2.2.0"
-    moment "^2.29.1"
-    underscore "^1.13.1"
+    debug "^4.3.4"
+    deep-clone-merge "^1.5.4"
+    hmpo-model "^4.1.1"
+    json5 "^2.2.1"
+    moment "^2.29.2"
+    underscore "^1.13.2"
 
 hmpo-i18n@5.0.1:
   version "5.0.1"
@@ -2395,7 +2395,7 @@ hmpo-logger@4.1.4:
     underscore "^1.13.1"
     winston "^2.4.5"
 
-hmpo-model@^4.0.2:
+hmpo-model@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/hmpo-model/-/hmpo-model-4.1.1.tgz#6b50a24a6029fac228a5deb942a87ae5d60822d6"
   integrity sha512-Jujz34BLjqsyTrv8APkUaagXx/2Wc57vf8wbs6mjAlBTvhtDM7rMWgxWoQbaAwi8B7z90qmlpfrDIKe2dBpK1Q==
@@ -2901,14 +2901,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
-json5@^2.1.2:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.0.tgz#2dfefe720c6ba525d9ebd909950f0515316c89a3"
-  integrity sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==
-  dependencies:
-    minimist "^1.2.5"
-
-json5@^2.2.0:
+json5@^2.1.2, json5@^2.2.0, json5@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
   integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
@@ -3311,7 +3304,7 @@ module-not-found-error@^1.0.1:
   resolved "https://registry.yarnpkg.com/module-not-found-error/-/module-not-found-error-1.0.1.tgz#cf8b4ff4f29640674d6cdd02b0e3bc523c2bbdc0"
   integrity sha1-z4tP9PKWQGdNbN0CsOO8UjwrvcA=
 
-moment@^2.29.1:
+moment@^2.29.1, moment@^2.29.2:
   version "2.29.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.3.tgz#edd47411c322413999f7a5940d526de183c031f3"
   integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==
