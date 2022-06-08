@@ -144,11 +144,9 @@ Resources:
       Scheme: internal
       SecurityGroups:
         - !GetAtt LoadBalancerSG.GroupId
-      Subnets:
-        - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdA"
-        - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdB"
+      Subnets: 
+        Fn::Split:
+          [ ",", Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnets" ]
       Type: application
       LoadBalancerAttributes: !If
         - IsNotDevelopment
