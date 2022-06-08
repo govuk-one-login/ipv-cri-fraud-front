@@ -38,8 +38,8 @@
       "requiredScenarioState": "FraudCheck",
       "newScenarioState": "AuthCode",
       "request": {
-        "method": "GET",
-        "urlPath": "/check",
+        "method": "POST",
+        "urlPath": "/identity-check",
         "headers": {
           "x-scenario-id": {
             "equalTo": "fraud-check-error"
