@@ -36,7 +36,12 @@ Before(async function ({ pickle } = {}) {
 
   const url = `http://localhost:8040/__reset/${header}`;
 
-  await axios.get(url);
+  try {
+    await axios.get(url);
+  } catch (e) {
+    console.log(`Error fetching ${url}`); // eslint-disable-line no-console
+    console.log(`${e.message}`); // eslint-disable-line no-console
+  }
 });
 
 // Create a new test context and page per scenario
