@@ -145,8 +145,13 @@ Resources:
       SecurityGroups:
         - !GetAtt LoadBalancerSG.GroupId
       Subnets: 
-        Fn::Split:
-          [ ",", Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnets" ]
+        - Fn::ImportValue:
+            !Sub "${VpcStackName}-PrivateSubnetIdA"
+        - Fn::ImportValue:
+            !Sub "${VpcStackName}-PrivateSubnetIdB"
+        # This is an alternative implementation if you want to split across all PrivateSubnets (but don't know how many there are)
+        # Fn::Split:
+        #   [ ",", Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnets" ]
       Type: application
       LoadBalancerAttributes: !If
         - IsNotDevelopment
@@ -226,8 +231,13 @@ Resources:
           SecurityGroups:
             - !GetAtt ECSSecurityGroup.GroupId
           Subnets:
-            Fn::Split:
-              [ ",", Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnets" ]
+            - Fn::ImportValue:
+                !Sub "${VpcStackName}-PrivateSubnetIdA"
+            - Fn::ImportValue:
+                !Sub "${VpcStackName}-PrivateSubnetIdB"
+        # This is an alternative implementation if you want to split across all PrivateSubnets (but don't know how many there are)
+        # Fn::Split:
+        #   [ ",", Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnets" ]
       TaskDefinition: !Ref ECSServiceTaskDefinition
       Tags:
         - Key: Name
