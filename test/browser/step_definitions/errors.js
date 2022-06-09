@@ -9,5 +9,5 @@ Then("they should see an error page", async function () {
 
   const errorTitle = await errorPage.getErrorTitle();
 
-  expect(errorTitle).to.equal(errorPage.getSomethingWentWrongMessage());
+  expect(errorTitle).to.equal("Sorry, there is a problem with the service");
 });
