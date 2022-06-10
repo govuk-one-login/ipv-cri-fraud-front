@@ -11,7 +11,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   getSomethingWentWrongMessage() {
-    return "Something went wrong!";
+    return "Sorry, there is a problem with the service";
   }
 
   isCurrentPage() {
