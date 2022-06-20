@@ -264,7 +264,7 @@ Resources:
           Environment:
             # TODO: add condition for dev and prod
             - Name: API_BASE_URL
-              Value: !Sub https://api.review-k.${Environment}.account.gov.uk
+              Value: !Sub https://api.review-f.${Environment}.account.gov.uk
             - Name: EXTERNAL_WEBSITE_HOST
               Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
           PortMappings:
