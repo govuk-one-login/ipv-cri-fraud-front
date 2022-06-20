@@ -262,12 +262,9 @@ Resources:
           Image: CONTAINER-IMAGE-PLACEHOLDER
           Name: app
           Environment:
+            # TODO: add condition for dev and prod
             - Name: API_BASE_URL
-              Value: !Sub
-                  - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
-                  - APIGatewayId:
-                      Fn::ImportValue: fraud-cri-api-FraudApiGatewayId
-                    Environment: !Ref Environment
+              Value: !Sub https://api.review-k.${Environment}.account.gov.uk
             - Name: EXTERNAL_WEBSITE_HOST
               Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
           PortMappings:
