@@ -58,6 +58,4 @@ router.use(setAxiosDefaults);
 
 router.use("/oauth2", commonExpress.routes.oauth2);
 
-router.use("/return-to-dbs", require("./app/return-to-dbs"));
-
 router.use("/", require("./app/fraud"));
