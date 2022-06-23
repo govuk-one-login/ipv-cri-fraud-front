@@ -1,6 +1,8 @@
 require("express");
 require("express-async-errors");
 
+const path = require("path");
+
 const commonExpress = require("di-ipv-cri-common-express");
 
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
@@ -34,6 +36,13 @@ const { app, router } = setup({
     public: "/public",
   },
   publicDirs: ["../dist/public"],
+  views: [
+    path.resolve(
+      path.dirname(require.resolve("di-ipv-cri-common-express")),
+      "components"
+    ),
+    "views",
+  ],
   dev: true,
 });
 
@@ -57,7 +66,5 @@ router.use(setScenarioHeaders);
 router.use(setAxiosDefaults);
 
 router.use("/oauth2", commonExpress.routes.oauth2);
-
-router.use("/return-to-dbs", require("./app/return-to-dbs"));
 
 router.use("/", require("./app/fraud"));

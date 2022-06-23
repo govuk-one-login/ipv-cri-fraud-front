@@ -1,3 +1,4 @@
+
 buttons:
   next: Continue
   cancel: Cancel
@@ -8,25 +9,20 @@ govuk:
   error: Error
   warning: Warning
   skipLink: Skip to main content
-
-general:
   phaseBanner:
     tag: beta
-    content: '<span class="govuk-phase-banner__text">This is a new service – your <a class="govuk-link" href="https://signin.account.gov.uk/contact-us">feedback</a> will help us to improve it.</span>'
-  footer:
-    accessibilityStatement:
-      pageTitle: "Accessibility statement"
-      linkText: "Accessibility statement"
-    "cookies":
-      "pageTitle": "Cookie Policy"
-      "linkText": "Cookies"
-    "terms":
-      "pageTitle": "Terms and conditions"
-      "linkText": "Terms and conditions"
-    "privacy":
-      "pageTitle": "Privacy notice"
-      "linkText": "Privacy notice"
-    "support":
-      "pageTitle": "Support"
-      "linkText": "Support"
+    content: This is a new service – your <a href="https://signin.account.gov.uk/contact-us" class="govuk-link" rel="noopener" target="_blank">feedback (opens in new tab)</a> will help us to improve it.
+  footerNavItems:
+    meta:
+      items:
+        - href: https://signin.account.gov.uk/accessibility-statement
+          text: Accessibility statement
+        - href: https://www.gov.uk/help/cookies
+          text: Cookies
+        - href: https://signin.account.gov.uk/terms-and-conditions
+          text: Terms and conditions
+        - href: https://signin.account.gov.uk/privacy-notice
+          text: Privacy notice
+        - href: https://signin.account.gov.uk/contact-us
+          text: Support
 
