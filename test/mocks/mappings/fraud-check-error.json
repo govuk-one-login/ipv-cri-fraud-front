@@ -1,18 +1,18 @@
 {
   "mappings": [
     {
-      "scenarioName": "fraud-session-error",
+      "scenarioName": "fraud-check-error",
       "newScenarioState": "Started",
       "request": {
         "method": "GET",
-        "url": "/__reset/fraud-session-error"
+        "url": "/__reset/fraud-check-error"
       },
       "response": {
         "status": 200
       }
     },
     {
-      "scenarioName": "fraud-session-error",
+      "scenarioName": "fraud-check-error",
       "requiredScenarioState": "Started",
       "newScenarioState": "FraudCheck",
       "request": {
@@ -20,7 +20,29 @@
         "urlPath": "/session",
         "headers": {
           "x-scenario-id": {
-            "equalTo": "fraud-session-error"
+            "equalTo": "fraud-check-error"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "session_id": "ABADCAFE",
+          "state": "sT@t3",
+          "redirect_uri": "http://example.net/return"
+        }
+      }
+    },
+    {
+      "scenarioName": "fraud-check-error",
+      "requiredScenarioState": "FraudCheck",
+      "newScenarioState": "AuthCode",
+      "request": {
+        "method": "POST",
+        "urlPath": "/identity-check",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-check-error"
           }
         }
       },

@@ -11,4 +11,4 @@ Feature: Happy path
     Given they have started the Fraud journey
     And they can see the check page
     When they continue to fraud check
-    Then they should be redirected
+    Then they should be redirected as a success

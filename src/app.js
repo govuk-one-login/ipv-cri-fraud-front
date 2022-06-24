@@ -68,3 +68,5 @@ router.use(setAxiosDefaults);
 router.use("/oauth2", commonExpress.routes.oauth2);
 
 router.use("/", require("./app/fraud"));
+
+router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
