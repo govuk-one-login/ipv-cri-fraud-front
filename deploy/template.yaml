@@ -351,8 +351,6 @@ Resources:
                   Environment: !Ref Environment
             - Name: EXTERNAL_WEBSITE_HOST
               Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
-            - Name: REDIS_SESSION_URL
-              Value: !GetAtt ElastiCacheReplicationGroup.ConfigurationEndPoint.Address
           PortMappings:
             - ContainerPort: 8080
               Protocol: tcp
