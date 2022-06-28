@@ -28,12 +28,15 @@ const sessionConfig = {
   secret: SESSION_SECRET,
 };
 
+const helmetConfig = require("di-ipv-cri-common-express/src/lib/helmet");
+
 const { app, router } = setup({
   config: { APP_ROOT: __dirname },
   port: PORT,
   logs: loggerConfig,
   session: sessionConfig,
   redis: redisConfig,
+  helmet: helmetConfig,
   urls: {
     public: "/public",
   },
