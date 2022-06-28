@@ -15,8 +15,8 @@ module.exports = {
       FRAUD: "/",
     },
     ANALYTICS: {
-      ID: process.env.ANALYTICS_ID,
-      COOKIE_DOMAIN: process.env.ANALYTICS_COOKIE_DOMAIN || "localhost",
+      ID: process.env.GTM_ID,
+      COOKIE_DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",
     },
   },
   PORT: process.env.PORT || 5030,
