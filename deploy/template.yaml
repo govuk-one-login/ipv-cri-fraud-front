@@ -188,47 +188,8 @@ Resources:
       Port: 80
       Protocol: HTTP
 
-  #
-  #  ElastiCache (for session caching)
-  #
-
-  ElastiCacheSubnetGroup:
-    Type: AWS::ElastiCache::SubnetGroup
-    Properties:
-      Description: SubnetGroup for ElastiCache
-      SubnetIds:
-        - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdA"
-        - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdB"
-      Tags:
-        - Key: Name
-          Value: !Sub "${AWS::StackName}-SubnetGroup"
-        - Key: Product
-          Value: "GOV.UK sign in"
-        - Key: System
-          Value: "Fraud CRI"
-        - Key: Environment
-          Value: !Sub "${Environment}"
-
-  ElastiCacheParameterGroup:
-    Type: AWS::ElastiCache::ParameterGroup
-    Properties:
-      CacheParameterGroupFamily: redis3.2
-      Properties:
-        cluster-enabled: "yes"
-      Description: Cache parameter group
-      Tags:
-        - Key: Name
-          Value: !Sub "${AWS::StackName}-CacheParameterGroup"
-        - Key: Product
-          Value: "GOV.UK sign in"
-        - Key: System
-          Value: "Fraud CRI"
-        - Key: Environment
-          Value: !Sub "${Environment}"
-
-  ElastiCacheSecurityGroup:
+  # Redis cache used for session caching
+  RedisSG:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       GroupDescription: >-
@@ -243,30 +204,45 @@ Resources:
         Fn::ImportValue:
           !Sub "${VpcStackName}-VpcId"
 
-  ElastiCacheReplicationGroup:
-    Type: AWS::ElastiCache::ReplicationGroup
+  RedisSubnetGroup:
+    Type: AWS::ElastiCache::SubnetGroup
     Properties:
-      AutomaticFailoverEnabled: true
-      CacheNodeType: cache.t2.micro
-      CacheSubnetGroupName: !Ref ElastiCacheSubnetGroup
-      CacheParameterGroupName: !Ref ElastiCacheParameterGroup
-      Engine: redis
-      EngineVersion: 3.2.10
-      MultiAZEnabled: true
-      NumNodeGroups: 1
-      ReplicasPerNodeGroup: 1
-      ReplicationGroupDescription: Replication group for Elastiache
-      SecurityGroupIds:
-        - !Ref ElastiCacheSecurityGroup
+      Description: SubnetGroup for redis cluster
+      SubnetIds:
+        - Fn::ImportValue:
+            !Sub "${VpcStackName}-PrivateSubnetIdA"
+        - Fn::ImportValue:
+            !Sub "${VpcStackName}-PrivateSubnetIdB"
       Tags:
         - Key: Name
-          Value: !Sub "${AWS::StackName}-ElastiCacheReplicationGroup"
+          Value: !Sub "${AWS::StackName}-RedisSubnetGroup"
         - Key: Product
           Value: "GOV.UK sign in"
         - Key: System
           Value: "Fraud CRI"
         - Key: Environment
           Value: !Sub "${Environment}"
+
+  RedisCache:
+    Type: AWS::ElastiCache::CacheCluster
+    Properties:
+      AutoMinorVersionUpgrade: true
+      CacheNodeType: cache.t2.micro
+      CacheSubnetGroupName: !Ref RedisSubnetGroup
+      Engine: redis
+      EngineVersion: 3.2.10
+      NumCacheNodes: 1
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-RedisCluster"
+        - Key: Product
+          Value: "GOV.UK sign in"
+        - Key: System
+          Value: "Fraud CRI"
+        - Key: Environment
+          Value: !Sub "${Environment}"
+      VpcSecurityGroupIds:
+        - !Ref RedisSG
 
   # ECS cluster, service and task definition
   FraudFrontEcsCluster:
@@ -355,6 +331,8 @@ Resources:
               Value: !If [IsProduction, "GTM-TT5HDKV", "GTM-TK92W68"]
             - Name: ANALYTICS_DOMAIN
               Value: !If [IsProduction, "account.gov.uk", !Sub "${Environment}.account.gov.uk"]
+            - Name: REDIS_SESSION_URL
+              Value: !GetAtt RedisCache.RedisEndpoint.Address
           PortMappings:
             - ContainerPort: 8080
               Protocol: tcp
