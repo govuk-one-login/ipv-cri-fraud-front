@@ -58,9 +58,11 @@ const { app, router } = setup({
   helmet: helmetConfig,
   redis: SESSION_TABLE_NAME ? false : commonExpress.lib.redis(),
   urls: {
+    publicImages: "/public/images",
     public: "/public",
   },
   publicDirs: ["../dist/public"],
+  publicImagesDirs: ["../dist/public/images"],
   views: [
     path.resolve(
       path.dirname(require.resolve("di-ipv-cri-common-express")),
