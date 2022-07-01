@@ -59,8 +59,10 @@ const { app, router } = setup({
   redis: SESSION_TABLE_NAME ? false : commonExpress.lib.redis(),
   urls: {
     public: "/public",
+    publicImages: "/public/images",
   },
   publicDirs: ["../dist/public"],
+  publicImagesDirs: ["../dist/public/images"],
   views: [
     path.resolve(
       path.dirname(require.resolve("di-ipv-cri-common-express")),
