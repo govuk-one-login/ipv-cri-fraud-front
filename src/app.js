@@ -65,6 +65,11 @@ const { app, router } = setup({
   },
   publicDirs: ["../dist/public"],
   publicImagesDirs: ["../dist/public/images"],
+  translation: {
+    allowedLangs: ["en", "cy"],
+    fallbackLang: ["en"],
+    cookie: { name: "lng" },
+  },
   views: [
     path.resolve(
       path.dirname(require.resolve("di-ipv-cri-common-express")),
