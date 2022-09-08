@@ -2,3 +2,23 @@
 . "$(dirname "$0")/_/husky.sh"
 
 yarn run lint
+
+if ! command -v detect-secrets-hook &> /dev/null
+then
+    echo "
+ERROR:
+    detect-secrets could not be found
+    Please install detect-secrets
+
+    For Mac users
+        brew install detect-secrets
+
+    For other users
+        pip install detect-secrets
+
+    https://github.com/Yelp/detect-secrets
+********"
+    exit
+fi
+
+git diff --staged --name-only -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
