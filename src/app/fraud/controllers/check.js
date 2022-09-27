@@ -15,6 +15,7 @@ class FraudCheckController extends BaseController {
         headers: {
           "Content-Type": "application/application-json",
           session_id: req.session.tokenId,
+          "session-id": req.session.tokenId,
         },
       }
     );
