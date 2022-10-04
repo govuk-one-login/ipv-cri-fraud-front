@@ -344,6 +344,14 @@ Resources:
       FilterPattern: ""
       LogGroupName: !Sub "/aws/ecs/${AWS::StackName}-FraudFront-ECS"
 
+  ECSAccessLogsGroupSubscriptionFilterCsls:
+    Type: AWS::Logs::SubscriptionFilter
+    Condition: IsNotDevelopment
+    Properties:
+      DestinationArn: "arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython"
+      FilterPattern: ""
+      LogGroupName: !Sub "/aws/ecs/${AWS::StackName}-FraudFront-ECS"
+
   ECSServiceTaskDefinition:
     Type: 'AWS::ECS::TaskDefinition'
     Properties:
@@ -520,6 +528,14 @@ Resources:
     Condition: IsNotDevelopment
     Properties:
       DestinationArn: "arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prod"
+      FilterPattern: ""
+      LogGroupName: !Sub "/aws/apigateway/${AWS::StackName}-FraudFront-API-GW-AccessLogs"
+
+  APIGWAccessLogsGroupSubscriptionFilterCsls:
+    Type: AWS::Logs::SubscriptionFilter
+    Condition: IsNotDevelopment
+    Properties:
+      DestinationArn: "arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython"
       FilterPattern: ""
       LogGroupName: !Sub "/aws/apigateway/${AWS::StackName}-FraudFront-API-GW-AccessLogs"
 
