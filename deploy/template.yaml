@@ -594,7 +594,8 @@ Resources:
       ActionsEnabled: true
       AlarmActions:
         - !Ref AlarmTopicFraud
-      OKActions: []
+      OKActions:
+        - !Ref AlarmTopicFraud
       InsufficientDataActions: []
       MetricName: TaskCount
       Namespace: ECS/ContainerInsights
@@ -616,7 +617,8 @@ Resources:
       ActionsEnabled: true
       AlarmActions:
         - !Ref AlarmTopicFraud
-      OKActions: []
+      OKActions:
+        - !Ref AlarmTopicFraud
       InsufficientDataActions: []
       MetricName: TaskCount
       Namespace: ECS/ContainerInsights
@@ -638,7 +640,8 @@ Resources:
       ActionsEnabled: true
       AlarmActions:
         - !Ref AlarmTopicFraud
-      OKActions: []
+      OKActions:
+        - !Ref AlarmTopicFraud
       InsufficientDataActions: []
       MetricName: HTTPCode_Target_5XX_Count
       Namespace: AWS/ApplicationELB
