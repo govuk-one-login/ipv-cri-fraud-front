@@ -296,7 +296,7 @@ Resources:
         DeploymentCircuitBreaker:
           Enable: TRUE
           Rollback: TRUE
-      DesiredCount: 1
+      DesiredCount: 2
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
       LaunchType: FARGATE
@@ -531,8 +531,8 @@ Resources:
     Condition: IsProduction
     Type: AWS::ApplicationAutoScaling::ScalableTarget
     Properties:
-      MaxCapacity: 3
-      MinCapacity: 1
+      MaxCapacity: 4
+      MinCapacity: 2
       ResourceId: !Join
         - '/'
         - - "service"
