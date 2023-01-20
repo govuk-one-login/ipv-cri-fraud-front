@@ -1,8 +1,9 @@
-name: Development Docker build, ECR push, template copy to S3 
+name: Development Docker build, ECR push, template copy to S3
 on:
   push:
     branches:
       - main
+  workflow_dispatch: # deploy manually
 
 jobs:
   dockerBuildAndPush:
