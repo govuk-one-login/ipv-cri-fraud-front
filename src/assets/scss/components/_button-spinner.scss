@@ -1,22 +1,26 @@
 // spinner button styling
 
-#continue.button--spinner {
-  position: relative;
-  transition: width ease 5s;
+button#continue {
+  text-align: left;
+}
+
+button#continue.button--spinner {
+  padding-right: 1rem;
+  padding-left: 40px;
+
   &::before {
     content: "";
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: -9px;
-    height: 25px;
-    width: 25px;
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    height: 24px;
+    width: 24px;
+    margin-right: 5px;
     background: transparent url("/public/images/mini-button-spinner.svg") no-repeat;
-    background-size: 25px 25px;
+    background-size: 24px 24px;
     animation-name: spin;
     animation-duration: 0.75s;
     animation-iteration-count: infinite;
-    transform-origin: 50% 50%;
     // spin the svg image
     @keyframes spin {
       0% {
@@ -27,11 +31,47 @@
       }
     }
   }
+
+  // reduce motion
+
+  @media (prefers-reduced-motion) {
+    padding-left: 1rem;
+    &::before {
+      display: none;
+    }
+  }
+
+  // smooth transition from hover to active to disabled
+  &:hover {
+    background-color: #255934;
+    border-color: #255934;
+    color: #fff;
+  }
+
+  &:focus {
+    background-color: #255934;
+    border-color: #255934;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #255934;
+    border-color: #255934;
+    color: #fff;
+  }
+
+  &:focus:not(:active):not(:hover) {
+    background-color: #255934;
+    border-color: #255934;
+    color: #fff;
+  }
+
   // override opacity of disabled button so spinner is more visible
   &[disabled],
   &[disabled]:hover {
     //background-color: #44834D;
-    opacity: 0.7;
-    box-shadow: 0 2px 0 #88988c
+    opacity: 1;
+    background-color: #255934; // the dark hover colour
+    box-shadow: 0 2px 0 #88988c;
   }
 }
