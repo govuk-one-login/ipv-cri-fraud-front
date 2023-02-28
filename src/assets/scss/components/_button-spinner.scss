@@ -1,25 +1,32 @@
 // spinner button styling
 
-button#continue {
-  text-align: left;
-}
+$spinner-icon-size: 24px;
+$spinner-icon-path: "/public/images/mini-button-spinner.svg";
+$spinner-animation-duration: 0.75s;
+$govuk-button-text-colour: govuk-colour("white");
+$govuk-button-colour: govuk-colour("green", $legacy: #00823b);
+$govuk-button-hover-colour: govuk-shade($govuk-button-colour, 20%); // from govuk-frontend/src/govuk/components/button/_index.scss
+$govuk-button-shadow-colour: govuk-shade($govuk-button-colour, 60%);
 
 button#continue.button--spinner {
+  text-align: left;
   padding-right: 1rem;
-  padding-left: 40px;
+  padding-left: calc($spinner-icon-size * 2);
 
   &::before {
     content: "";
     position: absolute;
     top: 5px;
     left: 8px;
-    height: 24px;
-    width: 24px;
-    margin-right: 5px;
-    background: transparent url("/public/images/mini-button-spinner.svg") no-repeat;
-    background-size: 24px 24px;
+    height: $spinner-icon-size;
+    width: $spinner-icon-size;
+    margin-right: calc($spinner-icon-size / 6);
+    background-image: url($spinner-icon-path);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: $spinner-icon-size $spinner-icon-size;
     animation-name: spin;
-    animation-duration: 0.75s;
+    animation-duration: $spinner-animation-duration;
     animation-iteration-count: infinite;
     // spin the svg image
     @keyframes spin {
@@ -32,7 +39,7 @@ button#continue.button--spinner {
     }
   }
 
-  // reduce motion
+  // respect the user’s prefers reduced motion settings
 
   @media (prefers-reduced-motion) {
     padding-left: 1rem;
@@ -43,35 +50,34 @@ button#continue.button--spinner {
 
   // smooth transition from hover to active to disabled
   &:hover {
-    background-color: #255934;
-    border-color: #255934;
-    color: #fff;
+    background-color: $govuk-button-hover-colour;
+    border-color: $govuk-button-hover-colour;
+    color: $govuk-button-text-colour;
   }
 
   &:focus {
-    background-color: #255934;
-    border-color: #255934;
-    color: #fff;
+    background-color: $govuk-button-hover-colour;
+    border-color: $govuk-button-hover-colour;
+    color: $govuk-button-text-colour;
   }
 
   &:active {
-    background-color: #255934;
-    border-color: #255934;
-    color: #fff;
+    background-color: $govuk-button-hover-colour;
+    border-color: $govuk-button-hover-colour;
+    color: $govuk-button-text-colour;
   }
 
   &:focus:not(:active):not(:hover) {
-    background-color: #255934;
-    border-color: #255934;
-    color: #fff;
+    background-color: $govuk-button-hover-colour;
+    border-color: $govuk-button-hover-colour;
+    color: $govuk-button-text-colour;
   }
 
   // override opacity of disabled button so spinner is more visible
   &[disabled],
   &[disabled]:hover {
-    //background-color: #44834D;
     opacity: 1;
-    background-color: #255934; // the dark hover colour
-    box-shadow: 0 2px 0 #88988c;
+    background-color: $govuk-button-hover-colour; // the dark hover colour
+    box-shadow: 0 2px 0 $govuk-button-shadow-colour;
   }
 }
