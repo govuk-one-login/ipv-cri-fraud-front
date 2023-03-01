@@ -1,5 +1,6 @@
 /* eslint no-var: off */
 /* eslint no-unused-vars: off */
+/* eslint no-undef: off */
 // ensure the button does not shrink when the content is changed
 var targetButtonOriginalWidth = document.getElementById('continue').getBoundingClientRect().width // eslint-no-var
 document.getElementById('continue').style.minWidth = Math.round(targetButtonOriginalWidth) + 'px' // no px decimal points
