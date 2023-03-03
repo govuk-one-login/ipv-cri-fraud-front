@@ -3,10 +3,16 @@
 $spinner-icon-size: 24px;
 $spinner-icon-path: "/public/images/mini-button-spinner.svg";
 $spinner-animation-duration: 0.75s;
-$govuk-button-text-colour: govuk-colour("white");
-$govuk-button-colour: govuk-colour("green", $legacy: #00823b);
-$govuk-button-hover-colour: govuk-shade($govuk-button-colour, 20%); // from govuk-frontend/src/govuk/components/button/_index.scss
-$govuk-button-shadow-colour: govuk-shade($govuk-button-colour, 60%);
+
+// Create variables that are in local scope for the design system version of the button
+// https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/components/button/_index.scss
+// IN GLOBAL SCOPE and reusable
+// $govuk-button-text-colour
+// $govuk-button-background-colour
+// RECREATED FROM VARIABLES IN LOCAL SCOPE from the scss file referenced above
+$govuk-button-colour: $govuk-button-background-colour; // Line 20
+$govuk-button-hover-colour: govuk-shade($govuk-button-colour, 20%);  // Line 21
+$govuk-button-shadow-colour: govuk-shade($govuk-button-colour, 60%); // Line 22
 
 button#continue.button--spinner {
   text-align: left;
