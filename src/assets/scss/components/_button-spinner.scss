@@ -11,13 +11,19 @@ $spinner-animation-duration: 0.75s;
 // $govuk-button-background-colour
 // RECREATED FROM VARIABLES IN LOCAL SCOPE from the scss file referenced above
 $govuk-button-colour: $govuk-button-background-colour; // Line 20
-$govuk-button-hover-colour: govuk-shade($govuk-button-colour, 20%);  // Line 21
+$govuk-button-hover-colour: govuk-shade($govuk-button-colour, 20%); // Line 21
 $govuk-button-shadow-colour: govuk-shade($govuk-button-colour, 60%); // Line 22
 
 button#continue.button--spinner {
-  text-align: left;
-  padding-right: 1rem;
+  text-align: center;
   padding-left: calc($spinner-icon-size * 2);
+  padding-right: calc($spinner-icon-size * 2);
+  @include govuk-media-query($from: tablet) {
+    text-align: left;
+    padding-right: 1rem;
+    padding-left: calc($spinner-icon-size * 2);
+  }
+
 
   &::before {
     content: "";
