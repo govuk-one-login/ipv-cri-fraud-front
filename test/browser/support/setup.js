@@ -4,14 +4,20 @@ const axios = require("axios");
 
 BeforeAll(async function () {
   // Browsers are expensive in Playwright so only create 1
-  global.browser = process.env.GITHUB_ACTIONS
-    ? await chromium.launch()
-    : await chromium.launch({
-        // Not headless so we can watch test runs
-        headless: false,
-        // Slow so we can see things happening
-        slowMo: 500,
-      });
+
+  if (process.env.BROWSER === "chrome-headless") {
+    global.browser = await chromium.launch({
+      // Not headless so we can watch test runs
+      headless: true,
+    });
+  } else {
+    global.browser = await chromium.launch({
+      // Not headless so we can watch test runs
+      headless: false,
+      // Slow so we can see things happening
+      slowMo: 500,
+    });
+  }
 });
 
 AfterAll(async function () {
@@ -34,7 +40,7 @@ Before(async function ({ pickle } = {}) {
 
   this.SCENARIO_ID_HEADER = header;
 
-  const url = `http://localhost:8030/__reset/${header}`;
+  const url = process.env.API_BASE_URL + `/__reset/${header}`;
 
   try {
     await axios.get(url);

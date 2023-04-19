@@ -9,5 +9,6 @@ module.exports = {
         varsIgnorePattern: "Given|And|When|Then",
       },
     ],
+    "no-console": 0,
   },
 };
