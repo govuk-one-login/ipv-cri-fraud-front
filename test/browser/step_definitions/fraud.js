@@ -17,5 +17,18 @@ Given(/^they (?:have )?continue(?:d)? to fraud check$/, async function () {
 
   expect(checkPage.isCurrentPage()).to.be.true;
 
-  await checkPage.continue();
+  await Promise.all([checkPage.continue(), checkPage.waitForSpinner()]);
+
+  expect(checkPage.isCurrentPage()).to.be.false;
 });
+
+Given(
+  /^they click (.*) and assert I have been directed correctly$/,
+  async function (linkName) {
+    const checkPage = new CheckPage(this.page);
+
+    expect(checkPage.isCurrentPage()).to.be.true;
+
+    await checkPage.assertPrivacyTabs(linkName);
+  }
+);

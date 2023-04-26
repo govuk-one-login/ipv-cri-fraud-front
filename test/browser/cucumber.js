@@ -6,5 +6,10 @@ module.exports = {
       "./test/browser/support/**/*.js",
       "./test/browser/step_definitions/**/*.js",
     ],
+    format: [
+      "progress-bar",
+      "json:reports/cucumber-report.json",
+      "html:reports/index.html",
+    ],
   },
 };
