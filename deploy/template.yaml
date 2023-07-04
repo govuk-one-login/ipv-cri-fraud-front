@@ -346,6 +346,7 @@ Resources:
       DestinationArn: "arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython"
       FilterPattern: ""
       LogGroupName: !Sub "/aws/ecs/${AWS::StackName}-FraudFront-ECS"
+    DependsOn: ECSAccessLogsGroup
 
   ECSServiceTaskDefinition:
     Type: 'AWS::ECS::TaskDefinition'
@@ -525,6 +526,7 @@ Resources:
       DestinationArn: "arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython"
       FilterPattern: ""
       LogGroupName: !Sub "/aws/apigateway/${AWS::StackName}-FraudFront-API-GW-AccessLogs"
+    DependsOn: APIGWAccessLogsGroup
 
 # ECS Autoscaling
 # The number of pods will increase when the configured CPU utilization is breached for more than 3 minutes.
