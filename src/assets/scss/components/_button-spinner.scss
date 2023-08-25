@@ -1,22 +1,45 @@
 // spinner button styling
 
-#continue.button--spinner {
-  position: relative;
-  transition: width ease 5s;
+$spinner-icon-size: 24px;
+$spinner-icon-path: "/public/images/mini-button-spinner.svg";
+$spinner-animation-duration: 0.75s;
+
+// Create variables that are in local scope for the design system version of the button
+// https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/components/button/_index.scss
+// IN GLOBAL SCOPE and reusable
+// $govuk-button-text-colour
+// $govuk-button-background-colour
+// RECREATED FROM VARIABLES IN LOCAL SCOPE from the scss file referenced above
+$govuk-button-colour: $govuk-button-background-colour; // Line 20
+$govuk-button-hover-colour: govuk-shade($govuk-button-colour, 20%); // Line 21
+$govuk-button-shadow-colour: govuk-shade($govuk-button-colour, 60%); // Line 22
+
+button#continue.button--spinner {
+  text-align: center;
+  padding-left: calc($spinner-icon-size * 2);
+  padding-right: calc($spinner-icon-size * 2);
+  @include govuk-media-query($from: tablet) {
+    text-align: left;
+    padding-right: 1rem;
+    padding-left: calc($spinner-icon-size * 2);
+  }
+
+
   &::before {
     content: "";
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: -9px;
-    height: 25px;
-    width: 25px;
-    background: transparent url("/public/images/mini-button-spinner.svg") no-repeat;
-    background-size: 25px 25px;
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    height: $spinner-icon-size;
+    width: $spinner-icon-size;
+    margin-right: calc($spinner-icon-size / 6);
+    background-image: url($spinner-icon-path);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: $spinner-icon-size $spinner-icon-size;
     animation-name: spin;
-    animation-duration: 0.75s;
+    animation-duration: $spinner-animation-duration;
     animation-iteration-count: infinite;
-    transform-origin: 50% 50%;
     // spin the svg image
     @keyframes spin {
       0% {
@@ -27,11 +50,46 @@
       }
     }
   }
+
+  // respect the user’s prefers reduced motion settings
+
+  @media (prefers-reduced-motion) {
+    padding-left: 1rem;
+    &::before {
+      display: none;
+    }
+  }
+
+  // smooth transition from hover to active to disabled
+  &:hover {
+    background-color: $govuk-button-hover-colour;
+    border-color: $govuk-button-hover-colour;
+    color: $govuk-button-text-colour;
+  }
+
+  &:focus {
+    background-color: $govuk-button-hover-colour;
+    border-color: $govuk-button-hover-colour;
+    color: $govuk-button-text-colour;
+  }
+
+  &:active {
+    background-color: $govuk-button-hover-colour;
+    border-color: $govuk-button-hover-colour;
+    color: $govuk-button-text-colour;
+  }
+
+  &:focus:not(:active):not(:hover) {
+    background-color: $govuk-button-hover-colour;
+    border-color: $govuk-button-hover-colour;
+    color: $govuk-button-text-colour;
+  }
+
   // override opacity of disabled button so spinner is more visible
   &[disabled],
   &[disabled]:hover {
-    //background-color: #44834D;
-    opacity: 0.7;
-    box-shadow: 0 2px 0 #88988c
+    opacity: 1;
+    background-color: $govuk-button-hover-colour; // the dark hover colour
+    box-shadow: 0 2px 0 $govuk-button-shadow-colour;
   }
 }
