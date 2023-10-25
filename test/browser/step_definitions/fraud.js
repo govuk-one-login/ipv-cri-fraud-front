@@ -32,3 +32,14 @@ Given(
     await checkPage.assertPrivacyTabs(linkName);
   }
 );
+
+Given(
+  /^they click Footer (.*) and assert I have been redirected correctly$/,
+  async function (linkName) {
+    const checkPage = new CheckPage(this.page);
+
+    expect(checkPage.isCurrentPage()).to.be.true;
+
+    await checkPage.assertFooterLink(linkName);
+  }
+);

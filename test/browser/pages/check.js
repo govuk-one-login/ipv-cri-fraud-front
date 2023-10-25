@@ -20,6 +20,9 @@ module.exports = class PlaywrightDevPage {
     this.continueButton = this.page.locator("button", {
       hasText: " Continue ",
     });
+    this.supportLink = this.page.locator(
+      "xpath=/html/body/footer/div/div/div[1]/ul/li[5]/a"
+    );
   }
 
   isCurrentPage() {
@@ -52,6 +55,13 @@ module.exports = class PlaywrightDevPage {
         "Privacy notice - GOV.UK One Login"
       );
     }
+  }
+  async assertFooterLink() {
+    await this.supportLink.click();
+    await this.page.waitForTimeout(2000); //waitForNavigation and waitForLoadState do not work in this case
+    expect(await this.page.title()).to.not.equal(
+      "Page not found - GOV.UK One Login"
+    );
   }
 
   async waitForSpinner() {

@@ -31,3 +31,13 @@ Feature: Happy path
       | page           |
       | ThirdParty     |
       | Privacy Policy |
+
+  @mock-api:fraud-success
+  Scenario Outline: Check support links
+    Given they have started the Fraud journey
+    And they can see the check page
+    And they click Footer <link> and assert I have been redirected correctly
+
+    Examples:
+      | link           |
+      | Support        |
