@@ -9,5 +9,27 @@ check:
     - We'll check your details with <a href="https://www.experian.co.uk/privacy/privacy-and-your-data?utm_medium=internalRef&utm_source=Consumer%20Services" class="govuk-link" rel="noreferrer noopener" target="_blank">Experian (opens in new tab)</a>. This is because companies like Experian have access to information about interactions you've previously had with other organisations.
     - <p><a href="https://signin.account.gov.uk/privacy-notice" class="govuk-link" rel="noreferrer noopener" target="_blank">Read our privacy notice (opens in new tab)</a> if you'd like to know more about how your details will be used to prove your identity.</p>
 error:
-  unrecoverable:
-    title: Sorry, there is a problem with the service
+  title: Sorry, there is a problem
+  serviceNameRequired: false
+  content:
+    - We cannot prove your identity right now.
+    - <h2 class="govuk-heading-m"> What you can do </h2>
+    - Go back to the service you were trying to use and start again. You can look for the service using your search engine or find it from the GOV.UK homepage.
+    - <a href="https://www.gov.uk/" class="govuk-button" data-module="govuk-button"> Go the GOV.UK homepage </a>
+    - <a href="https://home.account.gov.uk/contact-gov-uk-one-login" class="govuk-link" target="_blank">Contact the GOV.UK One Login team (opens in a new tab)</a>
+
+pageNotFound:
+  title: Page not found
+  serviceNameRequired: false
+  content:
+    - We cannot find the page you're looking for.
+    - <h2>What you can do</h2>
+    - If you typed the web address, check it’s correct.
+    - If you pasted the web address, check you copied the entire address.
+    - You can also go back to the service you were trying to use and start again. You can look for the service using your search engine or find it from the GOV.UK homepage.
+    - <a href="https://www.gov.uk/" class="govuk-button" data-module="govuk-button">Go to the GOV.UK homepage</a>
+    - <a href="https://home.account.gov.uk/contact-gov-uk-one-login" class="govuk-link" target="_blank">Contact the GOV.UK One Login team (opens in a new tab)</a>
+
+sessionEnded:
+  title: Session expired
+  serviceNameRequired: false
