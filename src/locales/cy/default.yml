@@ -2,35 +2,36 @@ buttons:
   next: "Parhau"
   cancel: "Canslo"
 govuk:
+  phaseBanner:
+    tag: beta
+    content: Mae hwn yn wasanaeth newydd – <a href="https://home.account.gov.uk/contact-gov-uk-one-login" class="govuk-link" rel="noopener" target="_blank">bydd eich adborth (agor mewn tab newydd)</a> yn ein helpu i'w wella.
   serviceName: "Profi pwy ydych chi"
   backLink: "Yn ôl"
   errorSummaryTitle: "Mae problem"
   error: "Gwall"
   warning: "Rhybudd"
   skipLink: "Neidio i'r prif gynnwys"
+  betaBannerRequired: true
+  betaBannerContent:
+    betaBannerContentLabel: beta
+    betaBannerContentHTML: Mae hwn yn wasanaeth newydd – bydd eich <a class="govuk-link" rel="noopener" target="_blank" href="https://home.account.gov.uk/contact-gov-uk-one-login">adborth (agor mewn tab newydd)</a>  yn ein helpu i''w wella.
   cookie:
     cookieBanner:
-      title: "Cwcis ar GOV.UK One Login"
-      heading: "Cwcis ar GOV.UK One Login"
-      paragraph1: "Rydym yn defnyddio rhai cwcis hanfodol i wneud i'r gwasanaeth hwn weithio."
-      paragraph2: "Hoffem hefyd ddefnyddio cwcis dadansoddi er mwyn i ni allu deall sut rydych yn defnyddio'r gwasanaeth a gwneud gwelliannau."
-      buttonAcceptText: "Derbyn cwcis dadansoddi"
-      buttonRejectText: "Gwrthod cwcis dadansoddi"
-      linkViewCookiesText: "Gweld cwcis"
-      cookieBannerHideLink: "Cuddio'r neges yma"
+      title: Cwcis ar GOV.UK One Login
+      heading: Cwcis ar GOV.UK One Login
+      paragraph1: Rydym yn defnyddio rhai cwcis hanfodol i wneud i'r gwasanaeth hwn weithio.
+      paragraph2: Hoffem osod cwcis ychwanegol er mwyn i ni allu cofio eich gosodiadau, deall sut rydych yn defnyddio'r gwasanaeth a gwneud gwelliannau.
+      changeCookiePreferencesLink: " newid eich gosodiadau cwcis"
       cookieBannerAccept:
-        paragraph1: "Rydych wedi derbyn cwcis ychwanegol. Gallwch "
-        paragraph2: " unrhyw bryd."
+        paragraph1: Rydych wedi derbyn cwcis ychwanegol. Gallwch
+        paragraph2: unrhyw bryd.
       cookieBannerReject:
-        paragraph1: "Rydych wedi gwrthod cwcis ychwanegol. Gallwch "
-        paragraph2: " unrhyw bryd."
-      changeCookiePreferencesLink: "newid eich gosodiadau cwcis"
-    cookieText: "Mae GOV.UK yn defnyddio cwcis i wneud y safle'n symlach."
-    cookieLink: "#"
-    cookieLinkText: "Darganfyddwch fwy am gwcis"
-  phaseBanner:
-    tag: "beta"
-    content: 'Mae hwn yn wasanaeth newydd – bydd eich <a href="https://home.account.gov.uk/contact-gov-uk-one-login" class="govuk-link" rel="noopener" target="_blank">adborth (agor mewn tab newydd)</a> yn ein helpu i''w wella.'
+        paragraph1: Rydych wedi gwrthod cwcis ychwanegol. Gallwch
+        paragraph2: unrhyw bryd.
+      buttonAcceptText: Derbyn cwcis dadansoddi
+      buttonRejectText: Gwrthod cwcis dadansoddi
+      linkViewCookiesText: Gweld cwcis
+      cookieBannerHideLink: Cuddio'r neges yma
   footerNavItems:
     meta:
       items:
@@ -48,12 +49,32 @@ govuk:
     text: "© Hawlfraint y goron"
   contentLicence:
     html: 'Mae’r holl gynnwys ar gael o dan <a class="govuk-footer__link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence-cymraeg/version/3/" rel="licence">Trwydded Llywodraeth Agored v3.0</a>, oni nodir yn wahanol'
+
+fraud:
+  serviceNameRequired: true
+
 error:
-  unrecoverable:
-    title: "Mae'n ddrwg gennym, mae problem"
-    subTitle: "Ni allwn brofi pwy ydych chi ar hyn o bryd."
-    subHeading: "Beth allwch chi ei wneud"
-    description: "Ewch yn ôl i'r gwasanaeth roeddech yn ceisio ei ddefnyddio a dechrau eto. Gallwch chwilio am y gwasanaeth gan ddefnyddio'ch peiriant chwilio neu ddod o hyd iddo o hafan GOV.UK."
-    contactMeLink: "Cysylltwch â'r tîm GOV.UK One Login (agor mewn tab newydd)"
-    buttonText: "Ewch i hafan GOV.UK"
-    buttonLink: "https://www.gov.uk/"
+  title: Mae'n ddrwg gennym, mae problem
+  serviceNameRequired: false
+  content:
+    - Ni allwn brofi pwy ydych chi ar hyn o bryd.
+    - <h2 class="govuk-heading-m"> Beth allwch chi ei wneud </h2>
+    - Ewch yn ôl i'r gwasanaeth roeddech yn ceisio ei ddefnyddio a dechrau eto. Gallwch chwilio am y gwasanaeth gan ddefnyddio'ch peiriant chwilio neu ddod o hyd iddo o hafan GOV.UK.
+    - <a href="https://www.gov.uk/" class="govuk-button" data-module="govuk-button"> Ewch i hafan GOV.UK </a>
+    - <a href="https://home.account.gov.uk/contact-gov-uk-one-login" class="govuk-link" target="_blank">Cysylltwch â'r tîm GOV.UK One Login (agor mewn tab newydd)</a>
+
+pageNotFound:
+  title: Tudalen heb ei darganfod
+  serviceNameRequired: false
+  content:
+    - Ni allwn ddod o hyd i'r dudalen rydych chi'n chwilio amdani.
+    - <h2>Beth allwch chi ei wneud</h2>
+    - Os ydych wedi teipio'r cyfeiriad gwe, edrychwch i weld ei fod yn gywir.
+    - Os ydych wedi gludo'r cyfeiriad gwe, edrychwch i weld eich bod wedi copïo'r cyfeiriad cyfan.
+    - Gallwch hefyd fynd yn ôl i'r gwasanaeth roeddech yn ceisio ei ddefnyddio a dechrau eto. Gallwch chwilio am y gwasanaeth gan ddefnyddio'ch peiriant chwilio neu dewch o hyd iddo o hafan GOV.UK.
+    - <a href="https://www.gov.uk/" class="govuk-button" data-module="govuk-button">Ewch i hafan GOV.UK</a>
+    - <a href="https://home.account.gov.uk/contact-gov-uk-one-login" class="govuk-link" target="_blank">Cysylltwch â'r tîm GOV.UK One Login (agor mewn tab newydd)</a>
+
+sessionEnded:
+  title: Sesiwn wedi dod i ben
+  serviceNameRequired: false

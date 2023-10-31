@@ -7,11 +7,11 @@ module.exports = class PlaywrightDevPage {
   }
 
   getSomethingWentWrongMessage() {
-    return "Sorry, there is a problem with the service";
+    return "Sorry, there is a problem – Prove your identity – GOV.UK";
   }
 
   getErrorTitle() {
-    return this.page.textContent('[data-id="error-title"]');
+    return this.page.title();
   }
 
   isCurrentPage() {
