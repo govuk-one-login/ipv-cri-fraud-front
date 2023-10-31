@@ -20,6 +20,7 @@ module.exports = {
     },
   },
   PORT: process.env.PORT || 5030,
+  LOG_LEVEL: process.env.LOG_LEVEL || "request",
   SESSION_SECRET: process.env.SESSION_SECRET,
   SESSION_TABLE_NAME: process.env.SESSION_TABLE_NAME,
   SESSION_TTL: process.env.SESSION_TTL || 7200000, // two hours in ms

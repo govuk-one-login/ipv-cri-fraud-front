@@ -47,6 +47,13 @@ Mappings:
   ElasticLoadBalancerAccountIds:
     eu-west-2:
       AccountId: 652711504416
+  LogLevel:
+    Environment:
+      dev: "debug"
+      build: "debug"
+      staging: "request"
+      integration: "request"
+      production: "request"
 
 Resources:
   # Security Groups for the ECS service and load balancer
@@ -372,6 +379,8 @@ Resources:
               Value: !If [IsProduction, "GTM-TT5HDKV", "GTM-TK92W68"]
             - Name: ANALYTICS_DOMAIN
               Value: !If [IsProduction, "account.gov.uk", !Sub "${Environment}.account.gov.uk"]
+            - Name: LOG_LEVEL
+              Value: !FindInMap [LogLevel, Environment, !Ref 'Environment']
           PortMappings:
             - ContainerPort: 8080
               Protocol: tcp
