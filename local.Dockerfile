@@ -1,4 +1,4 @@
-FROM node:18.16.0-alpine3.16
+FROM node:20.9.0-alpine3.18
 
 ENV PORT 5030
 
