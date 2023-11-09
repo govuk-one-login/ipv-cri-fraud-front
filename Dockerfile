@@ -1,4 +1,4 @@
-FROM node:18.16.0-alpine3.16@sha256:f47850733d8522489f57bfe86d790b1ee167a4b863d83d37572fb28cf10ec5e8 AS builder
+FROM node:20.9.0-alpine3.18@sha256:807e66e2bee193961c9642bb1157d77a61747bf76737ca786da45b10749dcb42 AS final
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ RUN yarn build
 RUN [ "rm", "-rf", "node_modules" ]
 RUN yarn install --production --frozen-lockfile
 
-FROM node:18.16.0-alpine3.16@sha256:f47850733d8522489f57bfe86d790b1ee167a4b863d83d37572fb28cf10ec5e8 AS final
+FROM node:20.9.0-alpine3.18@sha256:807e66e2bee193961c9642bb1157d77a61747bf76737ca786da45b10749dcb42 AS final
 
 RUN ["apk", "--no-cache", "upgrade"]
 RUN ["apk", "add", "--no-cache", "tini"]
