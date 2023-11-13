@@ -4,15 +4,15 @@ module.exports = function (wallaby) {
       "!src/**/*.test.js",
       "src/**/*.js",
       "test/utils/**/*.js",
-      ".mocharc.yaml",
+      ".mocharc.yaml"
     ],
 
     tests: [
-      "src/**/*.test.js", // adjust if required
+      "src/**/*.test.js" // adjust if required
     ],
 
     env: {
-      type: "node",
+      type: "node"
     },
 
     testFramework: "mocha",
@@ -25,6 +25,6 @@ module.exports = function (wallaby) {
       mocha.suite.afterEach(() => {
         sinon.restore();
       });
-    },
+    }
   };
 };

@@ -23,7 +23,7 @@ const {
   SESSION_SECRET,
   SESSION_TABLE_NAME,
   SESSION_TTL,
-  LOG_LEVEL,
+  LOG_LEVEL
 } = require("./lib/config");
 
 const { setup } = require("hmpo-app");
@@ -32,24 +32,24 @@ const loggerConfig = {
   consoleLevel: LOG_LEVEL,
   console: true,
   consoleJSON: true,
-  app: false,
+  app: false
 };
 
 AWS.config.update({
-  region: "eu-west-2",
+  region: "eu-west-2"
 });
 const dynamodb = new AWS.DynamoDB();
 
 const dynamoDBSessionStore = new DynamoDBStore({
   client: dynamodb,
-  table: SESSION_TABLE_NAME,
+  table: SESSION_TABLE_NAME
 });
 
 const sessionConfig = {
   cookieName: "service_session",
   secret: SESSION_SECRET,
   cookieOptions: { maxAge: SESSION_TTL },
-  ...(SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore }),
+  ...(SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore })
 };
 
 const helmetConfig = require("di-ipv-cri-common-express/src/lib/helmet");
@@ -63,32 +63,32 @@ const { app, router } = setup({
   redis: SESSION_TABLE_NAME ? false : commonExpress.lib.redis(),
   urls: {
     public: "/public",
-    publicImages: "/public/images",
+    publicImages: "/public/images"
   },
   publicDirs: ["../dist/public"],
   publicImagesDirs: ["../dist/public/images"],
   translation: {
     allowedLangs: ["en", "cy"],
     fallbackLang: ["en"],
-    cookie: { name: "lng" },
+    cookie: { name: "lng" }
   },
   views: [
     path.resolve(
       path.dirname(require.resolve("di-ipv-cri-common-express")),
       "components"
     ),
-    "views",
+    "views"
   ],
   middlewareSetupFn: (app) => {
     app.use(setHeaders);
   },
-  dev: true,
+  dev: true
 });
 
 app.get("nunjucks").addGlobal("getContext", function () {
   return {
     keys: Object.keys(this.ctx),
-    ctx: this.ctx.ctx,
+    ctx: this.ctx.ctx
   };
 });
 
@@ -96,15 +96,18 @@ setAPIConfig({
   app,
   baseUrl: API.BASE_URL,
   sessionPath: API.PATHS.SESSION,
-  authorizationPath: API.PATHS.AUTHORIZATION,
+  authorizationPath: API.PATHS.AUTHORIZATION
 });
 
 setOAuthPaths({ app, entryPointPath: APP.PATHS.FRAUD });
 
 setGTM({
   app,
-  id: APP.ANALYTICS.ID,
   analyticsCookieDomain: APP.ANALYTICS.COOKIE_DOMAIN,
+  uaContainerId: APP.ANALYTICS.UA_CONTAINER_ID,
+  isGa4Enabled: APP.ANALYTICS.GA4_ENABLED,
+  ga4ContainerId: APP.ANALYTICS.GA4_CONTAINER_ID,
+  gaTaxonomyLevel2: "fraud"
 });
 
 router.use(getGTM);

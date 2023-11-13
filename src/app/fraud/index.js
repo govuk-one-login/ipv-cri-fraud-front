@@ -8,7 +8,7 @@ router.use(
   require("hmpo-form-wizard")(steps, fields, {
     name: "fraud",
     journeyName: "fraud",
-    templatePath: "fraud",
+    templatePath: "fraud"
   })
 );
 

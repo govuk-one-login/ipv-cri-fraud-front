@@ -9,16 +9,16 @@ module.exports = class PlaywrightDevPage {
     this.page = page;
     this.url = "http://localhost:5030/check";
     this.whoAreWeSummaryLink = this.page.locator("span", {
-      hasText: "Who we check your details with",
+      hasText: "Who we check your details with"
     });
     this.experianLink = this.page.locator("a", {
-      hasText: "Experian (opens in new tab)",
+      hasText: "Experian (opens in new tab)"
     });
     this.privacyPolicyLink = this.page.locator("a", {
-      hasText: "Read our privacy notice (opens in new tab)",
+      hasText: "Read our privacy notice (opens in new tab)"
     });
     this.continueButton = this.page.locator("button", {
-      hasText: " Continue ",
+      hasText: " Continue "
     });
     this.supportLink = this.page.locator(
       "xpath=/html/body/footer/div/div/div[1]/ul/li[5]/a"

@@ -2,8 +2,8 @@ const BaseController = require("hmpo-form-wizard").Controller;
 
 const {
   API: {
-    PATHS: { CHECK },
-  },
+    PATHS: { CHECK }
+  }
 } = require("../../../lib/config");
 
 class FraudCheckController extends BaseController {
@@ -14,8 +14,8 @@ class FraudCheckController extends BaseController {
       {
         headers: {
           "Content-Type": "application/application-json",
-          session_id: req.session.tokenId,
-        },
+          session_id: req.session.tokenId
+        }
       }
     );
 

@@ -5,10 +5,10 @@ module.exports = {
     resetJourney: true,
     entryPoint: true,
     skip: true,
-    next: "check",
+    next: "check"
   },
   "/check": {
     controller: check,
-    next: "/oauth2/callback",
-  },
+    next: "/oauth2/callback"
+  }
 };

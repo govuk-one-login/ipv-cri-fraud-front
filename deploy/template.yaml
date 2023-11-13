@@ -28,14 +28,14 @@ Parameters:
 
 Conditions:
   IsNotDevelopment: !Or
-    - !Equals [ !Ref Environment, build ]
-    - !Equals [ !Ref Environment, staging ]
-    - !Equals [ !Ref Environment, integration ]
-    - !Equals [ !Ref Environment, production ]
-  IsProduction: !Equals [ !Ref Environment, production ]
+    - !Equals [!Ref Environment, build]
+    - !Equals [!Ref Environment, staging]
+    - !Equals [!Ref Environment, integration]
+    - !Equals [!Ref Environment, production]
+  IsProduction: !Equals [!Ref Environment, production]
   IsPerformance: !Or
-    - !Equals [ !Ref Environment, production ]
-    - !Equals [ !Ref Environment, build ]
+    - !Equals [!Ref Environment, production]
+    - !Equals [!Ref Environment, build]
   UsePermissionsBoundary:
     Fn::Not:
       - Fn::Equals:
@@ -65,11 +65,18 @@ Mappings:
       staging: "request"
       integration: "request"
       production: "request"
+  ga4Enabled:
+    Environment:
+      dev: "true"
+      build: "false"
+      staging: "false"
+      integration: "false"
+      production: "false"
 
 Resources:
   # Security Groups for the ECS service and load balancer
   LoadBalancerSG:
-    Type: 'AWS::EC2::SecurityGroup'
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
       GroupDescription: >-
         Fraud Front LoadBalancer Security Group
@@ -80,11 +87,10 @@ Resources:
           IpProtocol: tcp
           ToPort: 80
       VpcId:
-        Fn::ImportValue:
-          !Sub "${VpcStackName}-VpcId"
+        Fn::ImportValue: !Sub "${VpcStackName}-VpcId"
 
   LoadBalancerSGEgressToECSSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroupEgress'
+    Type: "AWS::EC2::SecurityGroupEgress"
     Properties:
       GroupId: !GetAtt LoadBalancerSG.GroupId
       IpProtocol: tcp
@@ -96,7 +102,7 @@ Resources:
       ToPort: 8080
 
   ECSSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
       GroupDescription: >-
         Fraud Front ECS Security Group permitting outbound
@@ -104,13 +110,12 @@ Resources:
       SecurityGroupEgress:
         - CidrIp: 0.0.0.0/0
           Description: Allow all outbound traffic by default
-          IpProtocol: '-1'
+          IpProtocol: "-1"
       VpcId:
-        Fn::ImportValue:
-          !Sub "${VpcStackName}-VpcId"
+        Fn::ImportValue: !Sub "${VpcStackName}-VpcId"
 
   ECSSecurityGroupIngressFromLoadBalancer:
-    Type: 'AWS::EC2::SecurityGroupIngress'
+    Type: "AWS::EC2::SecurityGroupIngress"
     Properties:
       IpProtocol: tcp
       Description: >-
@@ -150,7 +155,12 @@ Resources:
             Principal:
               AWS: !Sub
                 - "arn:aws:iam::${ElbAccountId}:root"
-                - ElbAccountId: !FindInMap [ ElasticLoadBalancerAccountIds, !Ref AWS::Region, AccountId ]
+                - ElbAccountId:
+                    !FindInMap [
+                      ElasticLoadBalancerAccountIds,
+                      !Ref AWS::Region,
+                      AccountId
+                    ]
             Action:
               - s3:PutObject
             Resource:
@@ -158,16 +168,14 @@ Resources:
 
   # Private Application Load Balancer
   LoadBalancer:
-    Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
+    Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
     Properties:
       Scheme: internal
       SecurityGroups:
         - !GetAtt LoadBalancerSG.GroupId
       Subnets:
-        - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdA"
-        - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdB"
+        - Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnetIdA"
+        - Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnetIdB"
         # This is an alternative implementation if you want to split across all PrivateSubnets (but don't know how many there are)
         # Fn::Split:
         #   [ ",", Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnets" ]
@@ -183,7 +191,7 @@ Resources:
         - !Ref AWS::NoValue
 
   LoadBalancerListenerTargetGroupECS:
-    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Type: "AWS::ElasticLoadBalancingV2::TargetGroup"
     Properties:
       HealthCheckEnabled: TRUE
       HealthCheckProtocol: HTTP
@@ -194,14 +202,13 @@ Resources:
       Protocol: HTTP
       TargetType: ip
       VpcId:
-        Fn::ImportValue:
-          !Sub "${VpcStackName}-VpcId"
+        Fn::ImportValue: !Sub "${VpcStackName}-VpcId"
       TargetGroupAttributes:
         - Key: deregistration_delay.timeout_seconds
           Value: 60
 
   LoadBalancerListener:
-    Type: 'AWS::ElasticLoadBalancingV2::Listener'
+    Type: "AWS::ElasticLoadBalancingV2::Listener"
     Properties:
       DefaultActions:
         - TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
@@ -219,10 +226,8 @@ Resources:
     Properties:
       Description: SubnetGroup for ElastiCache
       SubnetIds:
-        - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdA"
-        - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdB"
+        - Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnetIdA"
+        - Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnetIdB"
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-SubnetGroup"
@@ -251,7 +256,7 @@ Resources:
           Value: !Sub "${Environment}"
 
   ElastiCacheSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
       GroupDescription: >-
         Fraud Front Redis Security Group
@@ -262,8 +267,7 @@ Resources:
           IpProtocol: tcp
           ToPort: 6379
       VpcId:
-        Fn::ImportValue:
-          !Sub "${VpcStackName}-VpcId"
+        Fn::ImportValue: !Sub "${VpcStackName}-VpcId"
 
   ElastiCacheReplicationGroup:
     Type: AWS::ElastiCache::ReplicationGroup
@@ -292,7 +296,7 @@ Resources:
 
   # ECS cluster, service and task definition
   FraudFrontEcsCluster:
-    Type: 'AWS::ECS::Cluster'
+    Type: "AWS::ECS::Cluster"
     Properties:
       ClusterSettings:
         - Name: containerInsights
@@ -308,7 +312,7 @@ Resources:
           Value: !Sub "${Environment}"
 
   FraudFrontEcsService:
-    Type: 'AWS::ECS::Service'
+    Type: "AWS::ECS::Service"
     Properties:
       Cluster: !Ref FraudFrontEcsCluster
       DeploymentConfiguration:
@@ -331,10 +335,8 @@ Resources:
           SecurityGroups:
             - !GetAtt ECSSecurityGroup.GroupId
           Subnets:
-            - Fn::ImportValue:
-                !Sub "${VpcStackName}-PrivateSubnetIdA"
-            - Fn::ImportValue:
-                !Sub "${VpcStackName}-PrivateSubnetIdB"
+            - Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnetIdA"
+            - Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnetIdB"
         # This is an alternative implementation if you want to split across all PrivateSubnets (but don't know how many there are)
         # Fn::Split:
         #   [ ",", Fn::ImportValue: !Sub "${VpcStackName}-PrivateSubnets" ]
@@ -367,7 +369,7 @@ Resources:
     DependsOn: ECSAccessLogsGroup
 
   ECSServiceTaskDefinition:
-    Type: 'AWS::ECS::TaskDefinition'
+    Type: "AWS::ECS::TaskDefinition"
     Properties:
       ContainerDefinitions:
         - Essential: true
@@ -386,40 +388,61 @@ Resources:
               Value: !Sub
                 - "cri-fraud-front-sessions-${Environment}"
                 - Environment: !Ref Environment
-            - Name: GTM_ID
+            - Name: UA_CONTAINER_ID
               Value: !If [IsProduction, "GTM-TT5HDKV", "GTM-TK92W68"]
+            - Name: GA4_CONTAINER_ID
+              Value: !If [IsProduction, "GTM-K4PBJH3", "GTM-KD86CMZ"]
+            - Name: GA4_ENABLED
+              Value: !FindInMap [ga4Enabled, Environment, !Ref "Environment"]
             - Name: ANALYTICS_DOMAIN
-              Value: !If [IsProduction, "account.gov.uk", !Sub "${Environment}.account.gov.uk"]
+              Value:
+                !If [
+                  IsProduction,
+                  "account.gov.uk",
+                  !Sub "${Environment}.account.gov.uk"
+                ]
             - Name: LOG_LEVEL
-              Value: !FindInMap [LogLevel, Environment, !Ref 'Environment']
+              Value: !FindInMap [LogLevel, Environment, !Ref "Environment"]
           Secrets:
             - Name: DT_TENANT
               ValueFrom: !Join
-                - ''
-                - - !FindInMap [ EnvironmentConfiguration, !Ref Environment, dynatraceSecretArn ]
-                  - ':DT_TENANT::'
+                - ""
+                - - !FindInMap [
+                      EnvironmentConfiguration,
+                      !Ref Environment,
+                      dynatraceSecretArn
+                    ]
+                  - ":DT_TENANT::"
             - Name: DT_TENANTTOKEN
               ValueFrom: !Join
-                - ''
-                - - !FindInMap [ EnvironmentConfiguration, !Ref Environment, dynatraceSecretArn ]
-                  - ':DT_TENANTTOKEN::'
+                - ""
+                - - !FindInMap [
+                      EnvironmentConfiguration,
+                      !Ref Environment,
+                      dynatraceSecretArn
+                    ]
+                  - ":DT_TENANTTOKEN::"
             - Name: DT_CONNECTION_POINT
               ValueFrom: !Join
-              - ''
-              - - !FindInMap [ EnvironmentConfiguration, !Ref Environment, dynatraceSecretArn ]
-                - ':DT_CONNECTION_POINT::'
+                - ""
+                - - !FindInMap [
+                      EnvironmentConfiguration,
+                      !Ref Environment,
+                      dynatraceSecretArn
+                    ]
+                  - ":DT_CONNECTION_POINT::"
           PortMappings:
             - ContainerPort: 8080
               Protocol: tcp
           LogConfiguration:
             LogDriver: awslogs
             Options:
-              awslogs-group : !Ref ECSAccessLogsGroup
-              awslogs-region : !Sub ${AWS::Region}
-              awslogs-stream-prefix : !Sub fraud-front-${Environment}
-      Cpu: '256'
+              awslogs-group: !Ref ECSAccessLogsGroup
+              awslogs-region: !Sub ${AWS::Region}
+              awslogs-stream-prefix: !Sub fraud-front-${Environment}
+      Cpu: "256"
       ExecutionRoleArn: !GetAtt ECSTaskExecutionRole.Arn
-      Memory: '512'
+      Memory: "512"
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
@@ -435,11 +458,11 @@ Resources:
           Value: !Sub "${Environment}"
 
   ECSTaskExecutionRole:
-    Type: 'AWS::IAM::Role'
+    Type: "AWS::IAM::Role"
     Properties:
       AssumeRolePolicyDocument:
         Statement:
-          - Action: 'sts:AssumeRole'
+          - Action: "sts:AssumeRole"
             Effect: Allow
             Principal:
               Service: ecs-tasks.amazonaws.com
@@ -455,7 +478,7 @@ Resources:
                   - "ecr:GetDownloadUrlForLayer"
                   - "ecr:GetAuthorizationToken"
                 Resource:
-                  - '*'
+                  - "*"
               - Effect: Allow
                 Action:
                   - "logs:CreateLogStream"
@@ -482,11 +505,11 @@ Resources:
         - !Ref AWS::NoValue
 
   ECSTaskRole:
-    Type: 'AWS::IAM::Role'
+    Type: "AWS::IAM::Role"
     Properties:
       AssumeRolePolicyDocument:
         Statement:
-          - Action: 'sts:AssumeRole'
+          - Action: "sts:AssumeRole"
             Effect: Allow
             Principal:
               Service: ecs-tasks.amazonaws.com
@@ -528,36 +551,35 @@ Resources:
         - !Ref AWS::NoValue
 
   ApiGwHttpEndpoint:
-      Type: 'AWS::ApiGatewayV2::Api'
-      Properties:
-          Name: !Sub fraud-front-${Environment}
-          ProtocolType: HTTP
+    Type: "AWS::ApiGatewayV2::Api"
+    Properties:
+      Name: !Sub fraud-front-${Environment}
+      ProtocolType: HTTP
 
   ApiGwHttpEndpointIntegration:
-      Type: 'AWS::ApiGatewayV2::Integration'
-      Properties:
-        ApiId: !Ref ApiGwHttpEndpoint
-        IntegrationType: HTTP_PROXY
-        ConnectionId:
-          Fn::ImportValue:
-            !Sub "${VpcStackName}-VpcLinkId"
-        ConnectionType: VPC_LINK
-        IntegrationMethod: ANY
-        IntegrationUri: !Ref LoadBalancerListener
-        PayloadFormatVersion: '1.0'
-
-  APIGWRoute:
-    Type: 'AWS::ApiGatewayV2::Route'
+    Type: "AWS::ApiGatewayV2::Integration"
     Properties:
       ApiId: !Ref ApiGwHttpEndpoint
-      RouteKey: 'ANY /{proxy+}'
+      IntegrationType: HTTP_PROXY
+      ConnectionId:
+        Fn::ImportValue: !Sub "${VpcStackName}-VpcLinkId"
+      ConnectionType: VPC_LINK
+      IntegrationMethod: ANY
+      IntegrationUri: !Ref LoadBalancerListener
+      PayloadFormatVersion: "1.0"
+
+  APIGWRoute:
+    Type: "AWS::ApiGatewayV2::Route"
+    Properties:
+      ApiId: !Ref ApiGwHttpEndpoint
+      RouteKey: "ANY /{proxy+}"
       Target: !Join
         - /
         - - integrations
           - !Ref ApiGwHttpEndpointIntegration
 
   APIStageDefault:
-    Type: 'AWS::ApiGatewayV2::Stage'
+    Type: "AWS::ApiGatewayV2::Stage"
     Properties:
       ApiId: !Ref ApiGwHttpEndpoint
       StageName: $default
@@ -590,9 +612,9 @@ Resources:
       LogGroupName: !Sub "/aws/apigateway/${AWS::StackName}-FraudFront-API-GW-AccessLogs"
     DependsOn: APIGWAccessLogsGroup
 
-# ECS Autoscaling
-# The number of pods will increase when the configured CPU utilization is breached for more than 3 minutes.
-# Scaling down will occur after 15 minutes of 90% utilization of the configured CPU utilization.
+  # ECS Autoscaling
+  # The number of pods will increase when the configured CPU utilization is breached for more than 3 minutes.
+  # Scaling down will occur after 15 minutes of 90% utilization of the configured CPU utilization.
 
   ECSAutoScalingTarget:
     Condition: IsPerformance
@@ -601,9 +623,9 @@ Resources:
       MaxCapacity: 4
       MinCapacity: 2
       ResourceId: !Join
-        - '/'
+        - "/"
         - - "service"
-          - !Ref   FraudFrontEcsCluster
+          - !Ref FraudFrontEcsCluster
           - !GetAtt FraudFrontEcsService.Name
       RoleARN: !Sub "arn:aws:iam::${AWS::AccountId}:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService"
       ScalableDimension: ecs:service:DesiredCount
@@ -617,9 +639,9 @@ Resources:
       PolicyName: ECSAutoScalingPolicy
       PolicyType: TargetTrackingScaling
       ResourceId: !Join
-        - '/'
+        - "/"
         - - "service"
-          - !Ref   FraudFrontEcsCluster
+          - !Ref FraudFrontEcsCluster
           - !GetAtt FraudFrontEcsService.Name
       ScalableDimension: ecs:service:DesiredCount
       ServiceNamespace: ecs
@@ -648,11 +670,11 @@ Resources:
         SSEEnabled: true
         SSEType: KMS
 
-####################################################################
-#                                                                  #
-# Alerts                                                           #
-#                                                                  #
-####################################################################
+  ####################################################################
+  #                                                                  #
+  # Alerts                                                           #
+  #                                                                  #
+  ####################################################################
 
   FraudNoTaskCountAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -725,11 +747,11 @@ Resources:
       ComparisonOperator: GreaterThanThreshold
       TreatMissingData: notBreaching
 
-####################################################################
-#                                                                  #
-# Alarm setup                                                      #
-#                                                                  #
-####################################################################
+  ####################################################################
+  #                                                                  #
+  # Alarm setup                                                      #
+  #                                                                  #
+  ####################################################################
 
   AlarmTopicFraud:
     Type: AWS::SNS::Topic
@@ -741,7 +763,7 @@ Resources:
       TopicArn:
         Ref: AlarmTopicFraud
       Endpoint:
-        Fn::Sub: '{{resolve:ssm:/alerting/pagerduty-fraud/url}}'
+        Fn::Sub: "{{resolve:ssm:/alerting/pagerduty-fraud/url}}"
       Protocol: https
     Metadata:
       SamResourceId: AlarmTopicSubscriptionPagerDutyFraud
@@ -772,7 +794,7 @@ Outputs:
   FraudFrontUrl:
     Description: >-
       The API Gateway URL which Fraud Front can be invoked on.
-    Value: !GetAtt  ApiGwHttpEndpoint.ApiEndpoint
+    Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
   FraudFrontGatewayId:
     Description: Fraud Front API Gateway ID
     Export:

@@ -6,9 +6,9 @@ module.exports = {
       {
         vars: "all",
         args: "after-used",
-        varsIgnorePattern: "Given|And|When|Then",
-      },
+        varsIgnorePattern: "Given|And|When|Then"
+      }
     ],
-    "no-console": 0,
-  },
+    "no-console": 0
+  }
 };

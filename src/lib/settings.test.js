@@ -5,7 +5,7 @@ describe("settings", () => {
 
   beforeEach(() => {
     app = {
-      set: sinon.stub(),
+      set: sinon.stub()
     };
   });
 

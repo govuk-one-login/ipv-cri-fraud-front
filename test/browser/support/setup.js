@@ -8,14 +8,14 @@ BeforeAll(async function () {
   if (process.env.BROWSER === "chrome-headless") {
     global.browser = await chromium.launch({
       // Not headless so we can watch test runs
-      headless: true,
+      headless: true
     });
   } else {
     global.browser = await chromium.launch({
       // Not headless so we can watch test runs
       headless: false,
       // Slow so we can see things happening
-      slowMo: 500,
+      slowMo: 500
     });
   }
 });
@@ -56,7 +56,7 @@ Before(async function () {
 
   if (this.SCENARIO_ID_HEADER) {
     await this.context.setExtraHTTPHeaders({
-      "x-scenario-id": this.SCENARIO_ID_HEADER,
+      "x-scenario-id": this.SCENARIO_ID_HEADER
     });
   }
 
