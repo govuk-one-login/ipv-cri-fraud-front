@@ -1,9 +1,9 @@
 error:
   title: Sorry, there is a problem with the service
   content:
-    - '{{ error.message }}'
-    - '{{ error | dump }}'
-    - '{% if showStack %}<pre>{{error.stack | safe}}</pre>{% endif %}'
+    - "{{ error.message }}"
+    - "{{ error | dump }}"
+    - "{% if showStack %}<pre>{{error.stack | safe}}</pre>{% endif %}"
 
 pageNotFound:
   title: Page not found

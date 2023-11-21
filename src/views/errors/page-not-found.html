@@ -10,3 +10,8 @@
 {% from "hmpo-html/macro.njk" import hmpoHtml %}
 {{ hmpoHtml(translate("pageNotFound.content")) }}
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" nonce='{{cspNonce}}'>window.DI = window.DI || {};window.DI.httpStatusCode = 404</script>
+{{ super ()}}
+{% endblock %}

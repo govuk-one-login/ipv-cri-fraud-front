@@ -1,3 +1,7 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% extends "base-page.njk" %}
 {% set hmpoPageKey = "fraud" %}
+
+{% block scripts %}
+{{ super ()}}
+{% endblock %}
