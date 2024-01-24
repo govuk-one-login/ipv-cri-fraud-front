@@ -12,14 +12,9 @@ const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 const setHeaders = commonExpress.lib.headers;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
 const setAxiosDefaults = commonExpress.lib.axios;
-
+const { setGTM } = commonExpress.lib.settings;
+const { getGTM } = commonExpress.lib.locals;
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
-const {
-  setGTM
-} = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/settings");
-const {
-  getGTM
-} = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/locals");
 
 const {
   API,
@@ -57,7 +52,7 @@ const sessionConfig = {
   ...(SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore })
 };
 
-const helmetConfig = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/helmet");
+const helmetConfig = commonExpress.lib.helmet;
 
 const { app, router } = setup({
   config: { APP_ROOT: __dirname },
@@ -110,11 +105,11 @@ setOAuthPaths({ app, entryPointPath: APP.PATHS.FRAUD });
 
 setGTM({
   app,
-  analyticsCookieDomain: APP.ANALYTICS.COOKIE_DOMAIN,
-  uaContainerId: APP.ANALYTICS.UA_CONTAINER_ID,
-  isGa4Enabled: APP.ANALYTICS.GA4_ENABLED,
-  ga4ContainerId: APP.ANALYTICS.GA4_CONTAINER_ID,
-  gaTaxonomyLevel2: "fraud"
+  ga4ContainerId: APP.GTM.GA4_ID,
+  uaContainerId: APP.GTM.UA_ID,
+  analyticsCookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
+  ga4Disabled: APP.GTM.GA4_DISABLED,
+  uaDisabled: APP.GTM.UA_DISABLED
 });
 
 router.use(getGTM);

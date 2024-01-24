@@ -18,6 +18,10 @@ yarn install
 
 - `BASE_URL`: Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows
 - `PORT` - Default port to run webserver on. (Default to `5030`)
+- `GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID` - Container ID for GA4 tracking.
+- `UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID` - Container ID for UA tracking.
+- `GA4_DISABLED` - BOOLEAN
+- `UA_DISABLED` - BOOLEAN
 
 # Testing
 
