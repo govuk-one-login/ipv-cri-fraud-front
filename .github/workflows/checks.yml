@@ -9,6 +9,8 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: # deploy manually
+
 
 jobs:
   run-tests:
@@ -19,11 +21,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
       - name: Use Node.js 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.9.0
-          cache: "yarn"
+
       - name: Install dependencies
         run: yarn install
       - name: Run lint
@@ -31,12 +36,12 @@ jobs:
       - name: Run test and write coverage
         run: yarn test:coverage
       - name: Run browser tests
-        run: npm run test:browser:ci
+        run: yarn run test:browser:ci
         env:
           BROWSER: chrome-headless
       - name: Run sonarcloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # obtained from https://sonarcloud.io
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
