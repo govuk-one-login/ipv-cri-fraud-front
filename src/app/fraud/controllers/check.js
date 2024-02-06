@@ -8,15 +8,19 @@ const {
 
 class FraudCheckController extends BaseController {
   async saveValues(req, res, callback) {
+    const headers = {
+      "Content-Type": "application/application-json",
+      session_id: req.session.tokenId
+    };
+
+    if (req.session.featureSet === "crosscoreV2") {
+      headers["crosscore-version"] = "2";
+    }
+
     const fraudCheck = await req.axios.post(
       `${CHECK}`,
       {},
-      {
-        headers: {
-          "Content-Type": "application/application-json",
-          session_id: req.session.tokenId
-        }
-      }
+      { headers: headers }
     );
 
     req.session.authParams.authorization_code =

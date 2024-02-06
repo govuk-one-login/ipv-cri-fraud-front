@@ -5,6 +5,7 @@ const path = require("path");
 const session = require("express-session");
 const AWS = require("aws-sdk");
 const DynamoDBStore = require("connect-dynamodb")(session);
+const featureSets = require("./app/fraud/featureSets");
 
 const commonExpress = require("di-ipv-cri-common-express");
 
@@ -114,6 +115,7 @@ router.use(getGTM);
 
 router.use(setScenarioHeaders);
 router.use(setAxiosDefaults);
+router.use(featureSets);
 
 router.use("/oauth2", commonExpress.routes.oauth2);
 

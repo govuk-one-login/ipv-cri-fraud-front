@@ -5,6 +5,7 @@ const chaiAsPromised = require("chai-as-promised");
 const reqres = require("reqres");
 const JourneyModel = require("hmpo-form-wizard/lib/journey-model");
 const WizardModel = require("hmpo-form-wizard/lib/wizard-model.js");
+const axios = require("axios");
 
 chai.should();
 chai.use(sinonChai);
@@ -17,11 +18,7 @@ global.expect = expect;
 global.setupDefaultMocks = () => {
   const req = reqres.req({
     form: { values: {} },
-    axios: {
-      get: sinon.fake(),
-      post: sinon.fake(),
-      put: sinon.fake()
-    },
+    axios: axios,
     ordnanceAxios: {
       get: sinon.fake()
     }
