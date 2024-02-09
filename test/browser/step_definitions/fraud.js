@@ -43,3 +43,11 @@ Given(
     await checkPage.assertFooterLink(linkName);
   }
 );
+
+Then("they see the text to warn against reloading the page", async function () {
+  const checkPage = new CheckPage(this.page);
+
+  const warningtext = await checkPage.getDoNotRefreshPageText();
+
+  expect(warningtext).to.equal(checkPage.getDoNotRefreshPageMessage());
+});
