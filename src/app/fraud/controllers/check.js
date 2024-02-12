@@ -17,14 +17,7 @@ class FraudCheckController extends BaseController {
       headers["crosscore-version"] = "2";
     }
 
-    const fraudCheck = await req.axios.post(
-      `${CHECK}`,
-      {},
-      { headers: headers }
-    );
-
-    req.session.authParams.authorization_code =
-      fraudCheck.data?.authorization_code;
+    await req.axios.post(`${CHECK}`, {}, { headers: headers });
 
     return super.saveValues(req, res, callback);
   }

@@ -35,9 +35,7 @@ describe("check controller", () => {
       state: "A VALUE"
     };
 
-    const data = {
-      authorization_code: "1234"
-    };
+    const data = {};
 
     const resolvedPromise = new Promise((resolve) => resolve({ data }));
     let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
@@ -75,9 +73,7 @@ describe("check controller", () => {
     };
     req.session.featureSet = "crosscoreV2";
 
-    const data = {
-      authorization_code: "1234"
-    };
+    const data = {};
 
     const resolvedPromise = new Promise((resolve) => resolve({ data }));
     let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
@@ -96,7 +92,5 @@ describe("check controller", () => {
         }
       }
     );
-
-    expect(req.session.authParams.authorization_code).to.eq("1234");
   });
 });

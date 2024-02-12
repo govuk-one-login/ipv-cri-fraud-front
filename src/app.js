@@ -5,9 +5,13 @@ const path = require("path");
 const session = require("express-session");
 const AWS = require("aws-sdk");
 const DynamoDBStore = require("connect-dynamodb")(session);
-const featureSets = require("./app/fraud/featureSets");
 
+const wizard = require("hmpo-form-wizard");
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
+
+const steps = require("./app/fraud/steps");
+const fields = require("./app/fraud/fields");
+const featureSets = require("./app/fraud/featureSets");
 
 const setHeaders = commonExpress.lib.headers;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
@@ -125,6 +129,12 @@ router.use(featureSets);
 
 router.use("/oauth2", commonExpress.routes.oauth2);
 
-router.use("/", require("./app/fraud"));
+const wizardOptions = {
+  name: "fraud-cri-front",
+  journeyName: "fraud",
+  templatePath: "fraud"
+};
+
+router.use(wizard(steps, fields, wizardOptions));
 
 router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
