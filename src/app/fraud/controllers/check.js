@@ -13,10 +13,6 @@ class FraudCheckController extends BaseController {
       session_id: req.session.tokenId
     };
 
-    if (req.session.featureSet === "crosscoreV2") {
-      headers["crosscore-version"] = "2";
-    }
-
     const fraudCheck = await req.axios.post(
       `${CHECK}`,
       {},

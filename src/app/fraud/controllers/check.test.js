@@ -59,44 +59,4 @@ describe("check controller", () => {
 
     expect(req.sessionModel.get("redirect_url")).to.eq(data.redirectUrl);
   });
-
-  it("should add a crosscore version header if a feature set has been set", async () => {
-    const sessionId = "fraud123";
-
-    req.session.tokenId = sessionId;
-    req.session.authParams = {
-      redirect_uri: "https://client.example.com",
-      state: "A VALUE"
-    };
-
-    req.session.authParams = {
-      redirect_uri: "https://client.example.com",
-      state: "A VALUE"
-    };
-    req.session.featureSet = "crosscoreV2";
-
-    const data = {
-      authorization_code: "1234"
-    };
-
-    const resolvedPromise = new Promise((resolve) => resolve({ data }));
-    let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
-
-    await check.saveValues(req, res, next);
-
-    sandbox.assert.calledWith(
-      stub,
-      "identity-check",
-      {},
-      {
-        headers: {
-          "Content-Type": "application/application-json",
-          "crosscore-version": "2",
-          session_id: sessionId
-        }
-      }
-    );
-
-    expect(req.session.authParams.authorization_code).to.eq("1234");
-  });
 });
