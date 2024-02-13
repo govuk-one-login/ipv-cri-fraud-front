@@ -1,31 +1,30 @@
 name: Pre-merge checks
 on:
+  push:
+    branches:
+      - main
   pull_request:
     types:
       - opened
       - reopened
       - ready_for_review
       - synchronize
-  push:
-    branches:
-      - main
   workflow_dispatch: # deploy manually
 
-
 jobs:
-  run-tests:
+  run-premerge-checks:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Check out repository code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.9.0
 
@@ -47,7 +46,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get test results history
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
@@ -55,7 +54,7 @@ jobs:
           path: gh-pages
 
       - name: Cucumber HTML Report action
-        uses: PavanMudigonda/html-reporter-github-pages@v1.0
+        uses: PavanMudigonda/html-reporter-github-pages@v1.1
         id: test-report
         if: always()
         with:
@@ -65,7 +64,7 @@ jobs:
 
       - name: Publish Github Pages
         if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: peaceiris/actions-gh-pages@v3.8.0
+        uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
