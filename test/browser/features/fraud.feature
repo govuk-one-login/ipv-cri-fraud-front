@@ -11,6 +11,7 @@ Feature: Happy path
   Scenario: Run fraud check
     Given they have started the Fraud journey
     And they can see the check page
+    Then they see the text to warn against reloading the page
     When they continue to fraud check
     Then they should be redirected as a success
 

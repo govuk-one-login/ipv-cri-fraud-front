@@ -34,6 +34,16 @@ module.exports = class PlaywrightDevPage {
     return this.page.url().includes(urlSegment);
   }
 
+  getDoNotRefreshPageMessage() {
+    return "It can take up to 30 seconds to check your details. After you continue, do not reload or close this page.";
+  }
+
+  getDoNotRefreshPageText() {
+    return this.page
+      .locator("xpath=/html/body/div[2]/main/div/div/form/p[3]")
+      .innerHTML();
+  }
+
   async assertPrivacyTabs(linkName) {
     await this.whoAreWeSummaryLink.click();
     if (linkName === "ThirdParty") {
