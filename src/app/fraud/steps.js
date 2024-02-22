@@ -8,6 +8,7 @@ module.exports = {
     next: "check"
   },
   "/check": {
+    prereqs: ["/"],
     controller: check,
     next: "/oauth2/callback"
   }
