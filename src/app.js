@@ -1,5 +1,6 @@
 require("express");
 require("express-async-errors");
+
 const { setup } = require("hmpo-app");
 
 const RoutingService = require("./router");
@@ -13,6 +14,5 @@ app.get("nunjucks").addGlobal("getContext", function () {
     ctx: this.ctx.ctx
   };
 });
-
-AppSetup.init(app);
+AppSetup.init(app, router);
 RoutingService.init(router);
