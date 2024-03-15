@@ -81,6 +81,7 @@ describe("app", () => {
             ),
             "components"
           ),
+          path.resolve("node_modules/@govuk-one-login/"),
           "views"
         ],
         middlewareSetupFn: (app) => {
