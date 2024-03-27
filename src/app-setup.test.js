@@ -1,14 +1,32 @@
 const AppSetup = require("./app-setup");
+const path = require("path");
+const sessionConfig = require("./session-config");
 
 describe("app-setup", () => {
+  const sandbox = sinon.createSandbox();
+
   beforeEach(() => {
-    setGTM = sinon.stub();
-    setAPIConfig = sinon.stub();
-    setOAuthPaths = sinon.stub();
     app = {
-      set: sinon.stub()
+      set: sandbox.stub(),
+      use: sandbox.stub()
     };
-    setup = sinon.stub();
+    router = sandbox.stub();
+    setup = sandbox.stub().returns({ app, router });
+
+    isDynamoBool = new Boolean(true);
+    sessionConfigMap = sandbox.stub();
+
+    sandbox.stub(sessionConfig, "init").returns({
+      cookieName: "service_session",
+      secret: 1234,
+      cookieOptions: { maxAge: 7200000 },
+      ...("table-name" && { sessionStore: {} })
+    });
+    sandbox.stub(sessionConfig, "isDynamo").returns(isDynamoBool);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
   });
 
   describe("setup app", () => {
@@ -52,24 +70,53 @@ describe("app-setup", () => {
       sinon.assert.calledWith(app.set, "APP.PATHS.ENTRYPOINT", "/");
     });
 
-    // it("should set session config", () => {
-    //   const { app, router } = AppSetup.create();
+    it("should set application config", () => {
+      const { app, router } = AppSetup.create(setup);
 
-    // sinon.assert.calledWith(setup);
-    //
-    //       sinon.assert.calledWith(
-    //         app.set,
-    //         "APP.GTM.GA4_CONTAINER_ID",
-    //         "GTM-XXXXXXX"
-    //       );
-    //       sinon.assert.calledWith(
-    //         app.set,
-    //         "APP.GTM.ANALYTICS_COOKIE_DOMAIN",
-    //         "localhost"
-    //       );
-    //       sinon.assert.calledWith(app.set, "APP.GTM.UA_CONTAINER_ID", "UA-XXXXXXX");
-    //       sinon.assert.calledWith(app.set, "APP.GTM.UA_DISABLED", true);
-    //       sinon.assert.calledWith(app.set, "APP.GTM.GA4_DISABLED", false);
-    //     });
+      const loggerConfig = {
+        consoleLevel: "request",
+        console: true,
+        consoleJSON: true,
+        app: false
+      };
+
+      const options = {
+        config: { APP_ROOT: __dirname },
+        port: 5030,
+        logs: loggerConfig,
+        session: {
+          cookieName: "service_session",
+          secret: 1234,
+          cookieOptions: { maxAge: 7200000 },
+          ...("table-name" && { sessionStore: {} })
+        },
+        helmet: undefined, // To be tested separately
+        redis: isDynamoBool ? false : commonExpress.lib.redis(),
+        urls: {
+          public: "/public",
+          publicImages: "/public/images"
+        },
+        publicDirs: ["../dist/public"],
+        publicImagesDirs: ["../dist/public/images"],
+        translation: {
+          allowedLangs: ["en", "cy"],
+          fallbackLang: ["en"],
+          cookie: { name: "lng" }
+        },
+        views: [
+          path.resolve(
+            path.dirname(
+              require.resolve("@govuk-one-login/di-ipv-cri-common-express")
+            ),
+            "components"
+          ),
+          "views"
+        ],
+        //Ignoring middleware setup as arrow function cannot be asserted
+        dev: true
+      };
+      sinon.assert.calledOnce(setup);
+      sinon.assert.calledWithMatch(setup, options);
+    });
   });
 });

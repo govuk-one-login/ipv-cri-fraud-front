@@ -1,24 +1,14 @@
-const {
-  API,
-  APP,
-  PORT,
-  SESSION_TABLE_NAME,
-  LOG_LEVEL,
-  SESSION_SECRET,
-  SESSION_TTL
-} = require("./lib/config");
+const { API, APP, PORT, LOG_LEVEL } = require("./lib/config");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 
 const { setGTM } = commonExpress.lib.settings;
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
-const { setup } = require("hmpo-app");
+const sessionConfigService = require("./session-config");
+
 const path = require("path");
-const AWS = require("aws-sdk");
 const helmetConfig = commonExpress.lib.helmet;
 const setHeaders = commonExpress.lib.headers;
-const session = require("express-session");
-const DynamoDBStore = require("connect-dynamodb")(session);
 
 const init = (app) => {
   setAPIConfig({
@@ -40,7 +30,7 @@ const init = (app) => {
   });
 };
 
-const create = () => {
+const create = (setup) => {
   const loggerConfig = {
     consoleLevel: LOG_LEVEL,
     console: true,
@@ -48,22 +38,7 @@ const create = () => {
     app: false
   };
 
-  AWS.config.update({
-    region: "eu-west-2"
-  });
-  const dynamodb = new AWS.DynamoDB();
-
-  const dynamoDBSessionStore = new DynamoDBStore({
-    client: dynamodb,
-    table: SESSION_TABLE_NAME
-  });
-
-  const sessionConfig = {
-    cookieName: "service_session",
-    secret: SESSION_SECRET,
-    cookieOptions: { maxAge: SESSION_TTL },
-    ...(SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore })
-  };
+  const sessionConfig = sessionConfigService.init();
 
   const { app, router } = setup({
     config: { APP_ROOT: __dirname },
@@ -71,7 +46,7 @@ const create = () => {
     logs: loggerConfig,
     session: sessionConfig,
     helmet: helmetConfig,
-    redis: SESSION_TABLE_NAME ? false : commonExpress.lib.redis(),
+    redis: sessionConfigService.isDynamo() ? false : commonExpress.lib.redis(),
     urls: {
       public: "/public",
       publicImages: "/public/images"

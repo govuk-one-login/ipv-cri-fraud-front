@@ -1,10 +1,11 @@
 require("express");
 require("express-async-errors");
+const { setup } = require("hmpo-app");
 
 const RoutingService = require("./router");
 const AppSetup = require("./app-setup");
 
-const { app, router } = AppSetup.create();
+const { app, router } = AppSetup.create(setup);
 
 app.get("nunjucks").addGlobal("getContext", function () {
   return {

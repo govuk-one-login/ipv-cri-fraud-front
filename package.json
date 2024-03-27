@@ -21,7 +21,7 @@
     "lint": "prettier --check --no-editorconfig src test && eslint .",
     "lint-apply": "prettier --write src test && eslint .",
     "prepare": "husky install",
-    "test": "mocha",
+    "test": "SESSION_SECRET=1234 SESSION_TABLE_NAME=table-name mocha",
     "test:coverage": "nyc --reporter=lcov --reporter=text-summary yarn test",
     "test:watch": "mocha --watch",
     "mocks": "yarn run wiremock --port 8030 --root-dir test/mocks",
@@ -85,7 +85,8 @@
     "hmpo-i18n": "5.0.2",
     "hmpo-logger": "7.0.1",
     "jsonwebtoken": "9.0.0",
-    "nunjucks": "3.2.4"
+    "nunjucks": "3.2.4",
+    "supertest": "^6.3.4"
   },
   "resolutions": {
     "strip-ansi": "^6.0.1",
