@@ -44,6 +44,38 @@ Given(
   }
 );
 
+When(
+  "they view the Beta banner the correct text is present",
+  async function () {
+    const checkPage = new CheckPage(this.page);
+
+    expect(checkPage.isCurrentPage()).to.be.true;
+
+    await checkPage.assertBetaBannerText();
+  }
+);
+
+Then("I select Reject analytics cookies button", async function () {
+  const checkPage = new CheckPage(this.page);
+
+  await checkPage.assertRejectCookies();
+});
+
+Then("I select Gwrthod cwcis dadansoddi button", async function () {
+  const checkPage = new CheckPage(this.page);
+
+  await checkPage.assertRejectCookiesInWelsh();
+});
+
+Then(
+  "I select the link change your cookie settings and assert I have been redirected correctly",
+  async function () {
+    const checkPage = new CheckPage(this.page);
+
+    await checkPage.assertCookiesSettingLink();
+  }
+);
+
 Then("they see the text to warn against reloading the page", async function () {
   const checkPage = new CheckPage(this.page);
 
@@ -51,3 +83,12 @@ Then("they see the text to warn against reloading the page", async function () {
 
   expect(warningtext).to.equal(checkPage.getDoNotRefreshPageMessage());
 });
+
+When(
+  "they view the Beta banner the correct Welsh text is present",
+  async function () {
+    const checkPage = new CheckPage(this.page);
+
+    await checkPage.assertBetaBannerWelshText();
+  }
+);
