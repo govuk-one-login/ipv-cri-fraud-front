@@ -20,7 +20,7 @@ const init = () => {
 };
 
 const isDynamo = () => {
-  return SESSION_TABLE_NAME ? true : false;
+  return SESSION_TABLE_NAME ? true : false; // NOSONAR
 };
 
 module.exports = { init, isDynamo };

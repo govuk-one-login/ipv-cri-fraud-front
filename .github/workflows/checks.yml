@@ -30,10 +30,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+      - name: Build assets
+        run: yarn build
       - name: Run lint
         run: yarn lint
       - name: Run test and write coverage
-        run: yarn test:coverage
+        run: yarn run test:coverage
       - name: Run browser tests
         run: yarn run test:browser:ci
         env:

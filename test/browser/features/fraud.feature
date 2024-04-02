@@ -41,8 +41,6 @@ Feature: Happy path
       | link           |
       | Support        |
 
-
-
   @mock-api:fraud-success
   Scenario: Beta Banner Reject Analysis
     Given they have started the Fraud journey

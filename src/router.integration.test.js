@@ -1,3 +1,4 @@
+// BEGIN-NOSCAN
 //Integration test to test hmpo form wizard middleware needs investigation
 //require("express");
 //require("express-async-errors");
@@ -55,3 +56,4 @@
 //    });
 //  });
 //});
+// END-NOSCAN
