@@ -1,7 +1,5 @@
-@mock-api:fraud-success @success
+@mock-api:fraud-success
 Feature: Happy path
-
-  Viewing the Knowledge Based Verification questions successfully
 
   Background:
     Given Authenticatable Anita is using the system
@@ -42,3 +40,10 @@ Feature: Happy path
     Examples:
       | link           |
       | Support        |
+
+  @mock-api:fraud-success
+  Scenario: Beta Banner Reject Analysis
+    Given they have started the Fraud journey
+    When they view the Beta banner the correct text is present
+    Then I select Reject analytics cookies button
+    Then I select the link change your cookie settings and assert I have been redirected correctly
