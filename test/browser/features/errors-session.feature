@@ -1,5 +1,4 @@
-@mock-errors
-
+@mock-api:fraud-session-error
 Feature: Error handling
 
   API Errors in middle of journey

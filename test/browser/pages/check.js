@@ -101,7 +101,7 @@ module.exports = class PlaywrightDevPage {
   async assertRejectCookies() {
     await this.rejectCookiesButton.click();
     expect(await this.rejectCookiesMessage.innerText()).to.equal(
-      "You've rejected additional cookies. You can change your cookie settings at any time."
+      "You've rejected additional cookies. You can change your cookie settings  at any time."
     );
   }
 

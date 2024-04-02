@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #@fraud_CRI
 #Feature: Fraud CRI Language Test
 #
@@ -18,8 +18,8 @@
 #    And  I select the link newid eich gosodiadau cwcis
 #    Then I check the page to change cookie preferences opens
 #    And The test is complete and I close the driver
-=======
-@mock-api:fraud-success @newTest
+
+@mock-api:fraud-success
 Feature: Fraud CRI Language Test
 
   Background:
@@ -30,10 +30,9 @@ Feature: Fraud CRI Language Test
     And I add a cookie to change the language to Welsh
 
   #  To be removed after the test is moved to the front repo
-  @mock-api:fraud-success @newTest
+  @mock-api:fraud-success
   Scenario: Beta Banner Reject Analysis
     When they view the Beta banner the correct Welsh text is present
     Then I select Gwrthod cwcis dadansoddi button
     Then I select the link change your cookie settings and assert I have been redirected correctly
->>>>>>> 7d0fe7d (LIME-429 initial commit)
 

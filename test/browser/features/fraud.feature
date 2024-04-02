@@ -1,7 +1,5 @@
-@mock-api:fraud-success @success
+@mock-api:fraud-success
 Feature: Happy path
-
-  Viewing the Knowledge Based Verification questions successfully
 
   Background:
     Given Authenticatable Anita is using the system
@@ -43,24 +41,11 @@ Feature: Happy path
       | link           |
       | Support        |
 
-<<<<<<< HEAD
-#  @happy_path @build-fraud @staging-fraud @integration-fraud
-#  Scenario: Beta Banner Reject Analysis
-#    Given I navigate to the IPV Core Stub
-#    And I click the Fraud CRI for the testEnvironment
-#    Then I search for user number 12 in the ThirdParty table
-#    When I view the Beta banner
-#    When the beta banner reads This is a new service – your feedback (opens in new tab) will help us to improve it.
-#    And I select Reject analytics cookies button
-#    Then I see the Reject Analysis sentence You've rejected additional cookies. You can change your cookie settings at any time.
-#    Then  I select the link change your cookie settings
-#    Then I check the page to change cookie preferences opens
-#    And The test is complete and I close the driver
-=======
-  @Success
+
+
+  @mock-api:fraud-success
   Scenario: Beta Banner Reject Analysis
     Given they have started the Fraud journey
     When they view the Beta banner the correct text is present
     Then I select Reject analytics cookies button
     Then I select the link change your cookie settings and assert I have been redirected correctly
->>>>>>> 7d0fe7d (LIME-429 initial commit)
