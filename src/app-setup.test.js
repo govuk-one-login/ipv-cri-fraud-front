@@ -11,7 +11,10 @@ describe("app-setup", () => {
       set: sandbox.stub(),
       use: sandbox.stub()
     };
-    router = sandbox.stub();
+    // router = sandbox.stub();
+    router = {
+      use: sandbox.stub()
+    };
     setup = sandbox.stub().returns({ app, router });
 
     isDynamoBool = new Boolean(true);
@@ -32,7 +35,7 @@ describe("app-setup", () => {
 
   describe("setup app", () => {
     it("should set GTM variables", () => {
-      AppSetup.init(app);
+      AppSetup.init(app, router);
 
       sinon.assert.calledWith(
         app.set,
@@ -50,7 +53,7 @@ describe("app-setup", () => {
     });
 
     it("should set API config variables", () => {
-      AppSetup.init(app);
+      AppSetup.init(app, router);
 
       sinon.assert.calledWith(
         app.set,
@@ -66,7 +69,7 @@ describe("app-setup", () => {
     });
 
     it("should set Oauth paths", () => {
-      AppSetup.init(app);
+      AppSetup.init(app, router);
 
       sinon.assert.calledWith(app.set, "APP.PATHS.ENTRYPOINT", "/");
     });
@@ -111,6 +114,7 @@ describe("app-setup", () => {
             ),
             "components"
           ),
+          path.resolve("node_modules/@govuk-one-login/"),
           "views"
         ],
         //Ignoring middleware setup as arrow function cannot be asserted
