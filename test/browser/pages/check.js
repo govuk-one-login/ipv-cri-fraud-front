@@ -45,8 +45,8 @@ module.exports = class PlaywrightDevPage {
     return this.page.url().includes(urlSegment);
   }
 
-  getDoNotRefreshPageMessage() {
-    return "It can take up to 30 seconds to check your details. After you continue, do not reload or close this page.";
+  getDoNotRefreshPageMessage(warningMessage) {
+    return warningMessage;
   }
 
   getDoNotRefreshPageText() {
@@ -86,29 +86,18 @@ module.exports = class PlaywrightDevPage {
   }
 
   async assertBetaBannerText(betaBannerText) {
-    betaBannerText =
-      "This is a new service – your feedback (opens in new tab) will help us to improve it.";
     expect(await this.isCurrentPage()).to.be.true;
     expect(await this.betaBanner.innerText()).to.equal(betaBannerText);
   }
 
   async assertBetaBannerWelshText(betaBannerWelshText) {
-    betaBannerWelshText =
-      "Mae hwn yn wasanaeth newydd – bydd eich adborth (agor mewn tab newydd) yn ein helpu i'w wella.";
     expect(await this.betaBanner.innerText()).to.equal(betaBannerWelshText);
   }
 
-  async assertRejectCookies() {
+  async assertRejectCookies(rejectCookiesBtnText, rejectCookiesText) {
     await this.rejectCookiesButton.click();
     expect(await this.rejectCookiesMessage.innerText()).to.equal(
-      "You've rejected additional cookies. You can change your cookie settings at any time."
-    );
-  }
-
-  async assertRejectCookiesInWelsh() {
-    await this.rejectCookiesButton.click();
-    expect(await this.rejectCookiesMessage.innerText()).to.equal(
-      "Rydych wedi gwrthod cwcis ychwanegol. Gallwch newid eich gosodiadau cwcis unrhyw bryd."
+      rejectCookiesText
     );
   }
 

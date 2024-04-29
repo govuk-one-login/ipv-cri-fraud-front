@@ -45,27 +45,27 @@ Given(
 );
 
 When(
-  "they view the Beta banner the correct text is present",
-  async function () {
+  /^they view the Beta banner with the text as (.*)$/,
+  async function (betaBannerText) {
     const checkPage = new CheckPage(this.page);
 
     expect(checkPage.isCurrentPage()).to.be.true;
 
-    await checkPage.assertBetaBannerText();
+    await checkPage.assertBetaBannerText(betaBannerText);
   }
 );
 
-Then("I select Reject analytics cookies button", async function () {
-  const checkPage = new CheckPage(this.page);
+Then(
+  /^I select (.*) button and see the text (.*)$/,
+  async function (rejectCookiesBtnText, rejectCookiesText) {
+    const checkPage = new CheckPage(this.page);
 
-  await checkPage.assertRejectCookies();
-});
-
-Then("I select Gwrthod cwcis dadansoddi button", async function () {
-  const checkPage = new CheckPage(this.page);
-
-  await checkPage.assertRejectCookiesInWelsh();
-});
+    await checkPage.assertRejectCookies(
+      rejectCookiesBtnText,
+      rejectCookiesText
+    );
+  }
+);
 
 Then(
   "I select the link change your cookie settings and assert I have been redirected correctly",
@@ -76,19 +76,24 @@ Then(
   }
 );
 
-Then("they see the text to warn against reloading the page", async function () {
-  const checkPage = new CheckPage(this.page);
-
-  const warningtext = await checkPage.getDoNotRefreshPageText();
-
-  expect(warningtext).to.equal(checkPage.getDoNotRefreshPageMessage());
-});
-
-When(
-  "they view the Beta banner the correct Welsh text is present",
-  async function () {
+Then(
+  /^they see the reloading page warning text as (.*)$/,
+  async function (warningMessage) {
     const checkPage = new CheckPage(this.page);
 
-    await checkPage.assertBetaBannerWelshText();
+    const warningtext = await checkPage.getDoNotRefreshPageText();
+
+    expect(warningtext).to.equal(
+      checkPage.getDoNotRefreshPageMessage(warningMessage)
+    );
+  }
+);
+
+When(
+  /^they view the Beta banner with the Welsh text as (.*)$/,
+  async function (betaBannerWelshText) {
+    const checkPage = new CheckPage(this.page);
+
+    await checkPage.assertBetaBannerWelshText(betaBannerWelshText);
   }
 );

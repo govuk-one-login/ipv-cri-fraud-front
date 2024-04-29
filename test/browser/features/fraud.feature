@@ -9,7 +9,7 @@ Feature: Happy path
   Scenario: Run fraud check
     Given they have started the Fraud journey
     And they can see the check page
-    Then they see the text to warn against reloading the page
+    Then they see the reloading page warning text as It can take up to 30 seconds to check your details. After you continue, do not reload or close this page.
     When they continue to fraud check
     Then they should be redirected as a success
 
@@ -44,6 +44,6 @@ Feature: Happy path
   @mock-api:fraud-success
   Scenario: Beta Banner Reject Analysis
     Given they have started the Fraud journey
-    When they view the Beta banner the correct text is present
-    Then I select Reject analytics cookies button
+    When they view the Beta banner with the text as This is a new service – your feedback (opens in new tab) will help us to improve it.
+    Then I select Reject analytics cookies button and see the text You've rejected additional cookies. You can change your cookie settings at any time.
     Then I select the link change your cookie settings and assert I have been redirected correctly
