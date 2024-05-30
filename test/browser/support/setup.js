@@ -40,7 +40,7 @@ Before(async function ({ pickle } = {}) {
 
   this.SCENARIO_ID_HEADER = header;
 
-  const url = process.env.API_BASE_URL + `/__reset/${header}`;
+  const url = process.env.API_BASE_URL + `__reset/${header}`;
 
   try {
     await axios.get(url);
