@@ -39,6 +39,9 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
+      - name: SAM Validate
+        run: sam validate --region eu-west-2 -t deploy/template.yaml --lint
+
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
