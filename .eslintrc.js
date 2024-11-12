@@ -20,5 +20,11 @@ module.exports = {
       "error",
       { blankLine: "any", prev: "*", next: "*" }
     ]
-  }
+  },
+  ignorePatterns: [
+    "wallaby.conf.js",
+    "dist",
+    "src/app.test.js",
+    "src/app-setup.test.js"
+  ]
 };
