@@ -41,7 +41,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   pageUrlIncludes(urlSegment) {
-    console.log("URL " + this.page.url() + "       " + urlSegment);
+    console.log("URL " + this.page.url() + "       " + urlSegment); // eslint-disable-line no-console
     return this.page.url().includes(urlSegment);
   }
 
@@ -62,7 +62,7 @@ module.exports = class PlaywrightDevPage {
       await this.page.waitForTimeout(2000); //waitForNavigation and waitForLoadState do not work in this case
       let context = await this.page.context();
       let pages = await context.pages();
-      console.log("TAB NAME =  " + (await pages[1].title()));
+      console.log("TAB NAME =  " + (await pages[1].title())); // eslint-disable-line no-console
       expect(await pages[1].title()).to.equal(
         "Privacy and Your Data | Experian"
       );
@@ -71,7 +71,7 @@ module.exports = class PlaywrightDevPage {
       await this.page.waitForTimeout(2000); //waitForNavigation and waitForLoadState do not work in this case
       let context = await this.page.context();
       let pages = await context.pages();
-      console.log("TAB NAME =  " + (await pages[1].title()));
+      console.log("TAB NAME =  " + (await pages[1].title())); // eslint-disable-line no-console
       expect(await pages[1].title()).to.equal(
         "Privacy notice - GOV.UK One Login"
       );

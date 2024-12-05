@@ -13,6 +13,7 @@ const {
   LOG_LEVEL
 } = require("./lib/config");
 const express = require("express");
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 
 describe("app", () => {
   beforeEach(() => {
@@ -20,7 +21,7 @@ describe("app", () => {
     setGTM = sinon.stub();
     app = sinon.stub();
     AWS = {
-      DynamoDB: sinon.stub(),
+      DynamoDBClient: sinon.stub(),
       config: {
         update: sinon.stub()
       }
@@ -40,10 +41,10 @@ describe("app", () => {
       AWS.config.update({
         region: "eu-west-2"
       });
-      const dynamodb = new AWS.DynamoDB();
+      const dynamodbClient = new DynamoDBClient({});
 
       const dynamoDBSessionStore = new DynamoDBStore({
-        client: dynamodb,
+        client: dynamodbClient,
         table: SESSION_TABLE_NAME
       });
 
