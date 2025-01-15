@@ -4,11 +4,20 @@ const { expect } = require("chai");
 
 const { CheckPage } = require("../pages");
 
+const { injectAxe } = require("axe-playwright");
+
 When(/^they (?:have )?start(?:ed)? the Fraud journey$/, async function () {});
 
 Given(/they (?:can )?see? the check page$/, async function () {
   const checkPage = new CheckPage(this.page);
-
+  await injectAxe(this.page);
+  // Run Axe for WCAG 2.2 AA rules
+  const wcagResults = await this.page.evaluate(() => {
+    return axe.run({
+      runOnly: ["wcag2aa"]
+    });
+  });
+  expect(wcagResults.violations, "WCAG 2.2 AAA violations found").to.be.empty;
   expect(checkPage.isCurrentPage()).to.be.true;
 });
 
