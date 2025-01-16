@@ -1,0 +1,1138 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "fraud-cri-language-test;beta-banner-reject-analysis",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "Beta Banner Reject Analysis",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 60207610
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 36840779
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Authenticatable Anita is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 373486021
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 197216
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 123168
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1234975
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I add a cookie to change the language to Welsh",
+            "match": {
+              "location": "test/browser/step_definitions/UniversalStepDefs.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 161349348
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "they view the Beta banner with the Welsh text as Mae hwn yn wasanaeth newydd – bydd eich adborth (agor mewn tab newydd) yn ein helpu i'w wella.",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:92"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23079329
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "I select Gwrthod cwcis dadansoddi button and see the text Rydych wedi gwrthod cwcis ychwanegol. Gallwch newid eich gosodiadau cwcis unrhyw bryd.",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:58"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 62624412
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "I select the link change your cookie settings and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:70"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2548231360
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6706113
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "fraud-cri-language-test",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Fraud CRI Language Test",
+    "tags": [
+      {
+        "name": "@mock-api:fraud-success",
+        "line": 1
+      }
+    ],
+    "uri": "test/browser/features/WelshLangFraudCRI.feature"
+  },
+  {
+    "description": "  API Errors in middle of journey",
+    "elements": [
+      {
+        "description": "",
+        "id": "error-handling;api-error",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "API error",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6284037
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26569673
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "Error Ethem is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 243772087
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 138527
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 12,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 71032
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 180526
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "they continue to fraud check",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 171901784
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "they should be redirected as an error",
+            "match": {
+              "location": "test/browser/step_definitions/relying-party.js:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 698046
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6733030
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-check-error",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-check-error",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "error-handling",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Error handling",
+    "tags": [
+      {
+        "name": "@mock-api:fraud-check-error",
+        "line": 1
+      }
+    ],
+    "uri": "test/browser/features/errors-check.feature"
+  },
+  {
+    "description": "  API Errors in middle of journey",
+    "elements": [
+      {
+        "description": "",
+        "id": "error-handling;api-error",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "API error",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4088877
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 25289310
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "Error Ethem is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 110317809
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 86040
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 12,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42228
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "they should see an error page",
+            "match": {
+              "location": "test/browser/step_definitions/errors.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6208754
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3718153
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-session-error",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-session-error",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "error-handling",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Error handling",
+    "tags": [
+      {
+        "name": "@mock-api:fraud-session-error",
+        "line": 1
+      }
+    ],
+    "uri": "test/browser/features/errors-session.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "happy-path;run-fraud-check",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Run fraud check",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4655050
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 24605583
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Authenticatable Anita is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 216962564
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 90679
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 10,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 55323
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 129651
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "they see the reloading page warning text as It can take up to 30 seconds to check your details. After you continue, do not reload or close this page.",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 20304172
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "they continue to fraud check",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 173369114
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "they should be redirected as a success",
+            "match": {
+              "location": "test/browser/step_definitions/relying-party.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 331796
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5099527
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 8
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "happy-path;run-fraud-check",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "Run fraud check",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5191207
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 25890030
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Authenticatable Anita is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 256867800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 83615
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 18,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50373
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 159347
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "they continue to fraud check",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 177972578
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "they should be redirected as a success",
+            "match": {
+              "location": "test/browser/step_definitions/relying-party.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 162391
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5865038
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success-slow",
+            "line": 16
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "happy-path;run-fraud-check",
+        "keyword": "Scenario Outline",
+        "line": 31,
+        "name": "Run fraud check",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 7670010
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 25952598
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Authenticatable Anita is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 277659960
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 88844
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 25,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50534
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 26,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 183160
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 27,
+            "name": "they click ThirdParty and assert I have been directed correctly",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3224741416
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 11284351
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success-experian-links",
+            "line": 23
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "happy-path;run-fraud-check",
+        "keyword": "Scenario Outline",
+        "line": 32,
+        "name": "Run fraud check",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4933558
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 30397760
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Authenticatable Anita is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 218960535
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 91280
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 25,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 71192
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 26,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 99606
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 27,
+            "name": "they click Privacy Policy and assert I have been directed correctly",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2124363494
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6558037
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success-experian-links",
+            "line": 23
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "happy-path;check-support-links",
+        "keyword": "Scenario Outline",
+        "line": 42,
+        "name": "Check support links",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 8552721
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 31439889
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Authenticatable Anita is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 235602026
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 128989
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 36,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43770
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 111367
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 38,
+            "name": "they click Footer Support and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:36"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2062345040
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 8883207
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 34
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "happy-path;beta-banner-reject-analysis",
+        "keyword": "Scenario",
+        "line": 45,
+        "name": "Beta Banner Reject Analysis",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6986930
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 29278978
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Authenticatable Anita is using the system",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 220457056
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/details.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 100627
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 46,
+            "name": "they have started the Fraud journey",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 59781
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 47,
+            "name": "they view the Beta banner with the text as This is a new service – your feedback (opens in new tab) will help us to improve it.",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:47"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21445982
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 48,
+            "name": "I select Reject analytics cookies button and see the text You've rejected additional cookies. You can change your cookie settings at any time.",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:58"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43016012
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 49,
+            "name": "I select the link change your cookie settings and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/fraud.js:70"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2422988229
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4573620
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 44
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "happy-path",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Happy path",
+    "tags": [
+      {
+        "name": "@mock-api:fraud-success",
+        "line": 1
+      }
+    ],
+    "uri": "test/browser/features/fraud.feature"
+  }
+]
