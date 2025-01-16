@@ -46,6 +46,9 @@ Conditions:
     - !Equals [!Ref Environment, integration]
     - !Equals [!Ref Environment, production]
   IsProduction: !Equals [!Ref Environment, production]
+  # IsPerformance: !Or
+  # - !Equals [!Ref Environment, build]
+  # - !Equals [!Ref Environment, production]
   UsePermissionsBoundary: !Not
     - !Equals [!Ref PermissionsBoundary, "none"]
   UseCodeSigning: !Not
@@ -933,10 +936,10 @@ Resources:
       ComparisonOperator: LessThanThreshold
       TreatMissingData: breaching
 
-  FraudOnlyOneTaskCountAlarm:
+  FraudBelowMinTaskCountAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
-      AlarmDescription: !Sub Fraud ${Environment} frontend below desired ECS service tasks
+      AlarmDescription: !Sub Fraud ${Environment} frontend below minimum ECS service tasks
       ActionsEnabled: true
       AlarmActions:
         - !Ref AlarmTopicFraud
@@ -952,7 +955,7 @@ Resources:
       Period: 300
       EvaluationPeriods: 3
       DatapointsToAlarm: 3
-      Threshold: 2
+      Threshold: !FindInMap [EnvironmentConfiguration, !Ref Environment, minECSCount]
       ComparisonOperator: LessThanThreshold
       TreatMissingData: breaching
 
