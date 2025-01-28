@@ -86,7 +86,7 @@ describe("app-setup", () => {
 
       const options = {
         config: { APP_ROOT: __dirname },
-        port: 5030,
+        port: false,
         logs: loggerConfig,
         session: {
           cookieName: "service_session",
