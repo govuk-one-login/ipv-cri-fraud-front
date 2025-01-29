@@ -8,8 +8,11 @@ const setAxiosDefaults = commonExpress.lib.axios;
 const steps = require("./app/fraud/steps");
 const fields = require("./app/fraud/fields");
 const wizard = require("hmpo-form-wizard");
+const overloadProtection = require("./app/fraud/overloadProtection");
 
 const init = (router) => {
+  router.use(overloadProtection);
+
   router.use(getGTM);
   router.use(getLanguageToggle);
   router.use(setScenarioHeaders);
