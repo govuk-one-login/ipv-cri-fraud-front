@@ -1,5 +1,5 @@
 @mock-api:fraud-success
-Feature: Happy path
+Feature: Fraud CRI - Happy Path Tests
 
   Background:
     Given Authenticatable Anita is using the system
