@@ -7,7 +7,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   getSomethingWentWrongMessage() {
-    return "Sorry, there is a problem – Prove your identity – GOV.UK";
+    return "Sorry, there is a problem – GOV.UK One Login";
   }
 
   getErrorTitle() {
