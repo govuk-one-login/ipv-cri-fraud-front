@@ -31,6 +31,14 @@ Given(/^they (?:have )?continue(?:d)? to fraud check$/, async function () {
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 
+Given(/^they continue to fraud check page$/, async function () {
+  const checkPage = new CheckPage(this.page);
+
+  await Promise.all([checkPage.continue(), checkPage.waitForSpinner()]);
+
+  expect(checkPage.isCurrentPage()).to.be.false;
+});
+
 Given(
   /^they click (.*) and assert I have been directed correctly$/,
   async function (linkName) {
@@ -65,38 +73,91 @@ When(
 );
 
 Then(
-  /^I select (.*) button and see the text (.*)$/,
-  async function (rejectCookiesBtnText, rejectCookiesText) {
+  /^I select Reject analytics cookies button and see the text (.*)$/,
+  async function (rejectCookiesText) {
     const checkPage = new CheckPage(this.page);
 
-    await checkPage.assertRejectCookies(
-      rejectCookiesBtnText,
-      rejectCookiesText
-    );
+    await checkPage.assertRejectCookies(rejectCookiesText);
   }
 );
 
 Then(
-  "I select the link change your cookie settings and assert I have been redirected correctly",
+  /^I select Accept analytics cookies button and see the text (.*)$/,
+  async function (acceptCookiesText) {
+    const checkPage = new CheckPage(this.page);
+
+    await checkPage.assertAcceptCookies(acceptCookiesText);
+  }
+);
+
+Then(
+  "I select the accepted link change your cookie settings and assert I have been redirected correctly",
   async function () {
     const checkPage = new CheckPage(this.page);
 
-    await checkPage.assertCookiesSettingLink();
+    await checkPage.assertAcceptedCookiesSettingLink();
   }
 );
 
 Then(
-  /^they see the reloading page warning text as (.*)$/,
-  async function (warningMessage) {
+  "I select the rejected link change your cookie settings and assert I have been redirected correctly",
+  async function () {
     const checkPage = new CheckPage(this.page);
 
-    const warningtext = await checkPage.getDoNotRefreshPageText();
+    await checkPage.assertRejectedCookiesSettingLink();
+  }
+);
 
-    expect(warningtext).to.equal(
-      checkPage.getDoNotRefreshPageMessage(warningMessage)
+Then(
+  /^they can see the check page title text as (.*)$/,
+  async function (fraudLandingPageTitleSummary) {
+    const checkPage = new CheckPage(this.page);
+    await checkPage.assertFraudLandingPageTitleSummary(
+      fraudLandingPageTitleSummary
     );
   }
 );
+
+Then(
+  /^they can see the check page title summary text first part as (.*)$/,
+  async function (fraudLandingPageTitleSummaryTextOne) {
+    const checkPage = new CheckPage(this.page);
+    await checkPage.assertFraudLandingPageTitleSummaryTextOne(
+      fraudLandingPageTitleSummaryTextOne
+    );
+  }
+);
+
+Then(
+  /^they can see the check page title summary text second part as (.*)$/,
+  async function (fraudLandingPageTitleSummaryTextTwo) {
+    const checkPage = new CheckPage(this.page);
+    await checkPage.assertFraudLandingPageTitleSummaryTextTwo(
+      fraudLandingPageTitleSummaryTextTwo
+    );
+  }
+);
+
+Then(
+  /^they can see the check page warning text (.*)$/,
+  async function (fraudLandingPageWarningMessage) {
+    const checkPage = new CheckPage(this.page);
+    await checkPage.getDoNotRefreshPageMessage(fraudLandingPageWarningMessage);
+  }
+);
+
+// Then(
+//   /^they see the reloading page warning text as (.*)$/,
+//   async function (warningMessage) {
+//     const checkPage = new CheckPage(this.page);
+
+//     const warningtext = await checkPage.getDoNotRefreshPageText();
+
+//     expect(warningtext).to.equal(
+//       checkPage.getDoNotRefreshPageMessage(warningMessage)
+//     );
+//   }
+// );
 
 When(
   /^they view the Beta banner with the Welsh text as (.*)$/,

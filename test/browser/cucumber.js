@@ -7,7 +7,7 @@ module.exports = {
       "./test/browser/step_definitions/**/*.js"
     ],
     format: [
-      "progress-bar",
+      "progress",
       "json:reports/cucumber-report.json",
       "html:reports/index.html"
     ]
