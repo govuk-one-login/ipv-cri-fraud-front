@@ -62,7 +62,7 @@ Mappings:
   EnvironmentConfiguration:
     dev:
       logLevel: "debug"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
       fargateCPUsize: "256"
       fargateRAMsize: "512"
       ga4Enabled: "true"
@@ -72,7 +72,12 @@ Mappings:
       maxECSCount: 4
     build:
       logLevel: "info"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
+      fargateCPUsize: "1024"
+      fargateRAMsize: "2048"
+      ga4Disabled: "false"
+      uaDisabled: "false"
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
       fargateCPUsize: "2048"
       fargateRAMsize: "4096"
       ga4Enabled: "true"
@@ -82,7 +87,7 @@ Mappings:
       maxECSCount: 60
     staging:
       logLevel: "warn"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
       fargateCPUsize: "256"
       fargateRAMsize: "512"
       ga4Enabled: "true"
@@ -92,7 +97,7 @@ Mappings:
       maxECSCount: 4
     integration:
       logLevel: "warn"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
       fargateCPUsize: "512"
       fargateRAMsize: "1024"
       ga4Enabled: "true"
@@ -102,6 +107,11 @@ Mappings:
       maxECSCount: 4
     production:
       logLevel: "warn"
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables # pragma: allowlist secret
+      fargateCPUsize: "1024"
+      fargateRAMsize: "2048"
+      ga4Disabled: "false"
+      uaDisabled: "false"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
       fargateCPUsize: "2048"
       fargateRAMsize: "4096"
@@ -595,11 +605,11 @@ Resources:
             Version: 2012-10-17
             Statement:
               - Effect: Allow
-                Action: secretsmanager:GetSecretValue
-                Resource: arn:aws:secretsmanager:eu-west-2:216552277552:secret:*
+                Action: secretsmanager:GetSecretValue # pragma: allowlist secret
+                Resource: arn:aws:secretsmanager:eu-west-2:216552277552:secret:* # pragma: allowlist secret
               - Effect: Allow
-                Action: secretsmanager:ListSecrets
-                Resource: arn:aws:secretsmanager:eu-west-2:216552277552:secret:*
+                Action: secretsmanager:ListSecrets # pragma: allowlist secret
+                Resource: arn:aws:secretsmanager:eu-west-2:216552277552:secret:* # pragma: allowlist secret
               - Effect: Allow
                 Action: kms:Decrypt
                 Resource: arn:aws:kms:eu-west-2:216552277552:key/*
@@ -641,11 +651,11 @@ Resources:
             Version: 2012-10-17
             Statement:
               - Effect: Allow
-                Action: secretsmanager:GetSecretValue
-                Resource: arn:aws:secretsmanager:eu-west-2:216552277552:secret:*
+                Action: secretsmanager:GetSecretValue # pragma: allowlist secret
+                Resource: arn:aws:secretsmanager:eu-west-2:216552277552:secret:* # pragma: allowlist secret
               - Effect: Allow
-                Action: secretsmanager:ListSecrets
-                Resource: arn:aws:secretsmanager:eu-west-2:216552277552:secret:*
+                Action: secretsmanager:ListSecrets # pragma: allowlist secret
+                Resource: arn:aws:secretsmanager:eu-west-2:216552277552:secret:* # pragma: allowlist secret
               - Effect: Allow
                 Action: kms:Decrypt
                 Resource: arn:aws:kms:eu-west-2:216552277552:key/*
