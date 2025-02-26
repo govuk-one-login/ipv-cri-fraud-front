@@ -8,7 +8,7 @@ on:
 jobs:
   dockerBuildAndPush:
     name: Docker build and push
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04-arm
     env:
       AWS_REGION: eu-west-2
     permissions:
@@ -44,5 +44,6 @@ jobs:
         with:
           artifact-bucket-name: ${{ secrets.DEV_ARTIFACT_BUCKET }}
           template-file: deploy/template.yaml
+          dockerfile: dev.Dockerfile
           role-to-assume-arn: ${{ secrets.DEV_GH_ACTIONS_ROLE_ARN }}
           ecr-repo-name: ${{ secrets.DEV_ECR_REPOSITORY }}
