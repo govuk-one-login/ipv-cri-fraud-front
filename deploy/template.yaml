@@ -68,6 +68,7 @@ Mappings:
       languageToggleDisabled: "false"
       minECSCount: 1
       maxECSCount: 4
+      maxEventLoopDelay: "500"
     build:
       logLevel: "info"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
@@ -78,6 +79,7 @@ Mappings:
       languageToggleDisabled: "false"
       minECSCount: 4
       maxECSCount: 60
+      maxEventLoopDelay: "500"
     staging:
       logLevel: "warn"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
@@ -88,6 +90,7 @@ Mappings:
       languageToggleDisabled: "false"
       minECSCount: 2
       maxECSCount: 4
+      maxEventLoopDelay: "500"
     integration:
       logLevel: "warn"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
@@ -98,6 +101,7 @@ Mappings:
       languageToggleDisabled: "false"
       minECSCount: 2
       maxECSCount: 4
+      maxEventLoopDelay: "500"
     production:
       logLevel: "warn"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
@@ -108,6 +112,7 @@ Mappings:
       languageToggleDisabled: "false"
       minECSCount: 4
       maxECSCount: 60
+      maxEventLoopDelay: "500"
 
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
@@ -494,6 +499,8 @@ Resources:
                 ]
             - Name: LOG_LEVEL
               Value: !FindInMap [ EnvironmentConfiguration, !Ref "Environment", logLevel ]
+            - Name: MAX_EVENT_LOOP_DELAY
+              Value: !FindInMap [ EnvironmentConfiguration, !Ref "Environment", maxEventLoopDelay ]
           Secrets:
             - Name: DT_TENANT
               ValueFrom: !Join
