@@ -29,7 +29,7 @@ module.exports = {
       GA4_NAVIGATION_ENABLED: process.env.GA4_NAVIGATION_ENABLED || true,
       GA4_SELECT_CONTENT_ENABLED: process.env.GA4_SELECT_CONTENT_ENABLED || true
     },
-    LANGUAGE_TOGGLE_DISABLED: process.env.LANGUAGE_TOGGLE_DISABLED || "true"
+    LANGUAGE_TOGGLE_DISABLED: process.env.LANGUAGE_TOGGLE_DISABLED || "true",
   },
   PORT: process.env.PORT || 5030,
   LOG_LEVEL: process.env.LOG_LEVEL || "request",
