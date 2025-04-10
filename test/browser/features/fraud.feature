@@ -76,3 +76,11 @@ Feature: Fraud CRI - Happy Path Tests
     Examples:
       | DeviceIntelligenceCookieName |
       | di-device-intelligence       |
+      
+  @mock-api:fraud-success
+  Scenario: Fraud CRI - Axe Accessibility Scan - Fraud Check Page
+    Given they have started the Fraud journey
+    And they can see the check page
+    And I run the Axe Accessibility check against the Fraud Check entry page
+    When they continue to fraud check
+    Then they should be redirected as a success
