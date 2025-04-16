@@ -19,6 +19,7 @@ describe("app", () => {
   beforeEach(() => {
     setup = sinon.stub();
     setGTM = sinon.stub();
+    setDeviceIntelligence = sinon.stub();
     app = sinon.stub();
     AWS = {
       DynamoDBClient: sinon.stub(),
@@ -130,6 +131,34 @@ describe("app", () => {
       );
       sinon.assert.calledWith(setGTM, sinon.match.has("ga4Enabled", true));
       sinon.assert.calledWith(setGTM, sinon.match.has("uaEnabled", false));
+    });
+
+    it("should set Device Intelligence variables", () => {
+      let options = {
+        app,
+        deviceIntelligenceEnabled: APP.DEVICE_INTELLIGENCE_ENABLED,
+        deviceIntelligenceDomain: APP.DEVICE_INTELLIGENCE_DOMAIN
+      };
+
+      setDeviceIntelligence(options);
+
+      expect(setDeviceIntelligence).to.have.been.calledWithExactly(options);
+      sinon.assert.calledWith(
+        setDeviceIntelligence,
+        sinon.match.has("deviceIntelligenceEnabled", false)
+      );
+      sinon.assert.calledWith(
+        setDeviceIntelligence,
+        sinon.match.has("deviceIntelligenceDomain", "localhost")
+      );
+      sinon.assert.calledWith(
+        setDeviceIntelligence,
+        sinon.match.has("deviceIntelligenceEnabled", false)
+      );
+      sinon.assert.calledWith(
+        setDeviceIntelligence,
+        sinon.match.has("deviceIntelligenceDomain", "localhost")
+      );
     });
   });
 });
