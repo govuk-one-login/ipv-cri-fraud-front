@@ -11,7 +11,6 @@ describe("app-setup", () => {
       set: sandbox.stub(),
       use: sandbox.stub()
     };
-    // router = sandbox.stub();
     router = {
       use: sandbox.stub()
     };
@@ -50,6 +49,31 @@ describe("app-setup", () => {
       sinon.assert.calledWith(app.set, "APP.GTM.UA_CONTAINER_ID", "UA-XXXXXXX");
       sinon.assert.calledWith(app.set, "APP.GTM.UA_ENABLED", false);
       sinon.assert.calledWith(app.set, "APP.GTM.GA4_ENABLED", true);
+    });
+
+    it("should set Device Intelligence  variables", () => {
+      AppSetup.init(app, router);
+
+      sinon.assert.calledWith(
+        app.set,
+        "APP.DEVICE_INTELLIGENCE_ENABLED",
+        false
+      );
+      sinon.assert.calledWith(
+        app.set,
+        "APP.DEVICE_INTELLIGENCE_DOMAIN",
+        "localhost"
+      );
+      sinon.assert.calledWith(
+        app.set,
+        "APP.DEVICE_INTELLIGENCE_ENABLED",
+        false
+      );
+      sinon.assert.calledWith(
+        app.set,
+        "APP.DEVICE_INTELLIGENCE_DOMAIN",
+        "localhost"
+      );
     });
 
     it("should set API config variables", () => {
