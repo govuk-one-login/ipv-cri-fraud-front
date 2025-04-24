@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node src/app.js",
-    "start:ci": "API_BASE_URL=http://127.0.0.1:8030/ REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
+    "start:ci": "DEVICE_INTELLIGENCE_ENABLED=true API_BASE_URL=http://127.0.0.1:8030/ REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
     "dev": "LOG_LEVEL=debug nodemon src/app.js",
     "build": "yarn build-sass && yarn build-js && yarn copy-assets",
     "build-sass": "rm -rf dist/public/stylesheets/application.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
