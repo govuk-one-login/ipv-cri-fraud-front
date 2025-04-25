@@ -39,6 +39,15 @@ Given(/^they continue to fraud check page$/, async function () {
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 
+Then(
+  /^I see the Device Intelligence Cookie (.*)$/,
+  async function (deviceIntelligenceCookieName) {
+    const checkPage = new CheckPage(this.page);
+
+    await checkPage.checkDeviceIntelligenceCookie(deviceIntelligenceCookieName);
+  }
+);
+
 Given(
   /^they click (.*) and assert I have been directed correctly$/,
   async function (linkName) {

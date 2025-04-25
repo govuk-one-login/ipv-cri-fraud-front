@@ -34,7 +34,7 @@ Feature: Fraud CRI - Happy Path Tests
       | ThirdParty     |
       | Privacy Policy |
 
-  @mock-api:fraud-success @test
+  @mock-api:fraud-success
   Scenario Outline: Fraud CRI - Footer Links
     Given they have started the Fraud journey
     And they can see the check page
@@ -66,3 +66,13 @@ Feature: Fraud CRI - Happy Path Tests
     Given they have started the Fraud journey
     Then I select Reject analytics cookies button and see the text You've rejected additional cookies. You can change your cookie settings at any time.
     Then I select the rejected link change your cookie settings and assert I have been redirected correctly
+
+
+  @mock-api:driving-licence-PageCookies @validation-regression
+  Scenario: Driving Licence - Cookies - Device Intelligence
+    Given they have started the Fraud journey
+    And they can see the check page
+    Then I see the Device Intelligence Cookie <DeviceIntelligenceCookieName>
+    Examples:
+      | DeviceIntelligenceCookieName |
+      | di-device-intelligence       |
