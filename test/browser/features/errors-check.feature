@@ -1,5 +1,5 @@
 @mock-api:fraud-check-error
-Feature: Error handling
+Feature: Fraud CRI - Error handling - Check Error
 
   API Errors in middle of journey
 
