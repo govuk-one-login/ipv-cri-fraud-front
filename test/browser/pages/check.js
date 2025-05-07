@@ -18,9 +18,6 @@ module.exports = class PlaywrightDevPage {
     this.privacyPolicyLink = this.page.locator("a", {
       hasText: "Read our privacy notice (opens in new tab)"
     });
-    // this.continueButton = this.page.locator("button", {
-    //   hasText: " Continue "
-    // });
     this.continueButton = this.page.locator('xpath=//*[@id="continue"]');
     this.supportLink = this.page.locator(
       "xpath=/html/body/footer/div/div/div[1]/ul/li[5]/a"
@@ -83,11 +80,6 @@ module.exports = class PlaywrightDevPage {
     return this.page.url() === this.url;
   }
 
-  pageUrlIncludes(urlSegment) {
-    console.log("URL " + this.page.url() + "       " + urlSegment); // eslint-disable-line no-console
-    return this.page.url().includes(urlSegment);
-  }
-
   async assertFraudLandingPageTitleSummary(fraudLandingPageTitleSummary) {
     await this.page.waitForLoadState("domcontentloaded");
     await this.fraudLandingPageTitleSummary.isVisible(
@@ -123,25 +115,30 @@ module.exports = class PlaywrightDevPage {
   async assertPrivacyTabs(linkName) {
     await this.page.waitForLoadState("domcontentloaded");
     await this.whoAreWeSummaryLink.click();
+
+    let expectedTitle;
+    let targetLink;
+
     if (linkName === "ThirdParty") {
-      await this.experianLink.click();
-      await this.page.waitForTimeout(2000); //waitForNavigation and waitForLoadState do not work in this case
-      let context = this.page.context();
-      let pages = context.pages();
-      console.log("TAB NAME =  " + (await pages[1].title())); // eslint-disable-line no-console
-      expect(await pages[1].title()).to.equal(
-        "Privacy and Your Data | Experian"
-      );
+      expectedTitle = "Privacy and Your Data | Experian";
+      targetLink = this.experianLink;
     } else {
-      await this.privacyPolicyLink.click();
-      await this.page.waitForTimeout(2000); //waitForNavigation and waitForLoadState do not work in this case
-      let context = this.page.context();
-      let pages = context.pages();
-      console.log("TAB NAME =  " + (await pages[1].title())); // eslint-disable-line no-console
-      expect(await pages[1].title()).to.equal(
-        "Privacy notice - GOV.UK One Login"
-      );
+      expectedTitle = "Privacy notice - GOV.UK One Login";
+      targetLink = this.privacyPolicyLink;
     }
+
+    const newPagePromise = this.page.waitForEvent("popup");
+
+    await targetLink.click();
+
+    const newPage = await newPagePromise;
+
+    await newPage.waitForLoadState("domcontentloaded");
+
+    const actualTitle = await newPage.title();
+    expect(actualTitle).to.equal(expectedTitle);
+
+    await newPage.close();
   }
 
   async assertFooterLink(linkName) {
