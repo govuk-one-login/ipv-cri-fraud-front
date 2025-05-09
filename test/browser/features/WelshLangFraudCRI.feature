@@ -2,9 +2,8 @@
 Feature: Fraud CRI - Welsh Language Test
 
   Background:
-    Given Authenticatable Anita is using the system
+    Given Authenticatable Anita has started the Fraud Journey
     And they have provided their details
-    And they have started the Fraud journey
     And they can see the check page
     And I add a cookie to change the language to Welsh
 
@@ -19,8 +18,7 @@ Feature: Fraud CRI - Welsh Language Test
 
   @mock-api:fraud-success
   Scenario: Fraud CRI - Beta Banner Accept Analysis
-    Given they have started the Fraud journey
-    When they view the Beta banner with the Welsh text as Mae hwn yn wasanaeth newydd – bydd eich adborth (agor mewn tab newydd) yn ein helpu i'w wella.
+    Given they view the Beta banner with the Welsh text as Mae hwn yn wasanaeth newydd – bydd eich adborth (agor mewn tab newydd) yn ein helpu i'w wella.
     Then I select Accept analytics cookies button and see the text Rydych wedi derbyn cwcis ychwanegol. Gallwch newid eich gosodiadau cwcis unrhyw bryd.
     Then I select the accepted link change your cookie settings and assert I have been redirected correctly
 

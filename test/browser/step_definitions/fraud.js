@@ -6,8 +6,6 @@ const { CheckPage } = require("../pages");
 
 const { injectAxe } = require("axe-playwright");
 
-When(/^they (?:have )?start(?:ed)? the Fraud journey$/, async function () {});
-
 Given(/they (?:can )?see? the check page$/, async function () {
   const checkPage = new CheckPage(this.page);
   expect(checkPage.isCurrentPage()).to.be.true;
@@ -29,19 +27,14 @@ Given(
 
 Given(/^they (?:have )?continue(?:d)? to fraud check$/, async function () {
   const checkPage = new CheckPage(this.page);
-
   expect(checkPage.isCurrentPage()).to.be.true;
-
   await Promise.all([checkPage.continue(), checkPage.waitForSpinner()]);
-
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 
 Given(/^they continue to fraud check page$/, async function () {
   const checkPage = new CheckPage(this.page);
-
   await Promise.all([checkPage.continue(), checkPage.waitForSpinner()]);
-
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 
@@ -49,7 +42,6 @@ Then(
   /^I see the Device Intelligence Cookie (.*)$/,
   async function (deviceIntelligenceCookieName) {
     const checkPage = new CheckPage(this.page);
-
     await checkPage.checkDeviceIntelligenceCookie(deviceIntelligenceCookieName);
   }
 );
@@ -58,9 +50,7 @@ Given(
   /^they click (.*) and assert I have been directed correctly$/,
   async function (linkName) {
     const checkPage = new CheckPage(this.page);
-
     expect(checkPage.isCurrentPage()).to.be.true;
-
     await checkPage.assertPrivacyTabs(linkName);
   }
 );
@@ -69,9 +59,7 @@ Given(
   /^they click Footer (.*) and assert I have been redirected correctly$/,
   async function (linkName) {
     const checkPage = new CheckPage(this.page);
-
     expect(checkPage.isCurrentPage()).to.be.true;
-
     await checkPage.assertFooterLink(linkName);
   }
 );
@@ -80,9 +68,7 @@ When(
   /^they view the Beta banner with the text as (.*)$/,
   async function (betaBannerText) {
     const checkPage = new CheckPage(this.page);
-
     expect(checkPage.isCurrentPage()).to.be.true;
-
     await checkPage.assertBetaBannerText(betaBannerText);
   }
 );
@@ -91,7 +77,6 @@ Then(
   /^I select Reject analytics cookies button and see the text (.*)$/,
   async function (rejectCookiesText) {
     const checkPage = new CheckPage(this.page);
-
     await checkPage.assertRejectCookies(rejectCookiesText);
   }
 );
@@ -100,7 +85,6 @@ Then(
   /^I select Accept analytics cookies button and see the text (.*)$/,
   async function (acceptCookiesText) {
     const checkPage = new CheckPage(this.page);
-
     await checkPage.assertAcceptCookies(acceptCookiesText);
   }
 );
@@ -109,7 +93,6 @@ Then(
   "I select the accepted link change your cookie settings and assert I have been redirected correctly",
   async function () {
     const checkPage = new CheckPage(this.page);
-
     await checkPage.assertAcceptedCookiesSettingLink();
   }
 );
@@ -118,7 +101,6 @@ Then(
   "I select the rejected link change your cookie settings and assert I have been redirected correctly",
   async function () {
     const checkPage = new CheckPage(this.page);
-
     await checkPage.assertRejectedCookiesSettingLink();
   }
 );
@@ -161,24 +143,10 @@ Then(
   }
 );
 
-// Then(
-//   /^they see the reloading page warning text as (.*)$/,
-//   async function (warningMessage) {
-//     const checkPage = new CheckPage(this.page);
-
-//     const warningtext = await checkPage.getDoNotRefreshPageText();
-
-//     expect(warningtext).to.equal(
-//       checkPage.getDoNotRefreshPageMessage(warningMessage)
-//     );
-//   }
-// );
-
 When(
   /^they view the Beta banner with the Welsh text as (.*)$/,
   async function (betaBannerWelshText) {
     const checkPage = new CheckPage(this.page);
-
     await checkPage.assertBetaBannerWelshText(betaBannerWelshText);
   }
 );
