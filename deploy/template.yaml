@@ -65,6 +65,7 @@ Mappings:
       fargateRAMsize: "512"
       minECSCount: 1
       maxECSCount: 4
+      nodeEnv: "development"
     build:
       logLevel: "info"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
@@ -72,6 +73,7 @@ Mappings:
       fargateRAMsize: "4096"
       minECSCount: 4
       maxECSCount: 60
+      nodeEnv: "production"
     staging:
       logLevel: "warn"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
@@ -79,6 +81,7 @@ Mappings:
       fargateRAMsize: "512"
       minECSCount: 2
       maxECSCount: 4
+      nodeEnv: "development"
     integration:
       logLevel: "warn"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
@@ -86,6 +89,7 @@ Mappings:
       fargateRAMsize: "1024"
       minECSCount: 2
       maxECSCount: 4
+      nodeEnv: "development"
     production:
       logLevel: "warn"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
@@ -93,6 +97,7 @@ Mappings:
       fargateRAMsize: "4096"
       minECSCount: 4
       maxECSCount: 60
+      nodeEnv: "production"
 
   FeatureFlagMapping:
     dev:
@@ -508,6 +513,13 @@ Resources:
               Value: !FindInMap [ FeatureFlagMapping, !Ref Environment, deviceIntelligenceEnabled ]
             - Name: LOG_LEVEL
               Value: !FindInMap [ EnvironmentConfiguration, !Ref "Environment", logLevel ]
+            - Name: NODE_ENV
+              Value:
+                !FindInMap [
+                  EnvironmentConfiguration,
+                  !Ref Environment,
+                  nodeEnv
+                ]
           Secrets:
             - Name: DT_TENANT
               ValueFrom: !Join
