@@ -1,4 +1,5 @@
 const featureSets = require("./app/fraud/featureSets");
+const frontendUi = require("@govuk-one-login/frontend-ui");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 const { getGTM, getLanguageToggle, getDeviceIntelligence } =
@@ -17,6 +18,7 @@ const init = (router) => {
   router.use(setScenarioHeaders);
   router.use(setAxiosDefaults);
   router.use(featureSets);
+  router.use(frontendUi.frontendUiMiddlewareIdentityBypass);
 
   router.use("/oauth2", commonExpress.routes.oauth2);
 

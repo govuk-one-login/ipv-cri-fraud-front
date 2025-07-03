@@ -64,12 +64,25 @@ Given(
   }
 );
 
+Given(/^The Beta banner is displayed$/, async function () {
+  const checkPage = new CheckPage(this.page);
+  await checkPage.betaBannerDisplayed();
+});
+
 When(
   /^they view the Beta banner with the text as (.*)$/,
   async function (betaBannerText) {
     const checkPage = new CheckPage(this.page);
     expect(checkPage.isCurrentPage()).to.be.true;
     await checkPage.assertBetaBannerText(betaBannerText);
+  }
+);
+
+Then(
+  /^I assert the feedback URL (.*) is correct and live$/,
+  async function (expectedURL) {
+    const checkPage = new CheckPage(this.page);
+    await checkPage.assertFeedbackPageIsCorrectAndLive(expectedURL);
   }
 );
 

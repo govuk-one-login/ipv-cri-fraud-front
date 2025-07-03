@@ -50,6 +50,9 @@ module.exports = class PlaywrightDevPage {
       "xpath=/html/body/div[1]/div[3]/div[1]/div/div/p/a"
     );
     this.betaBanner = this.page.locator("xpath=/html/body/div[2]/div/p/span");
+    this.betaBannerLink = this.page.locator(
+      "xpath=/html/body/div[2]/div/p/span/a"
+    );
     this.acceptCookiesButton = this.page.locator(
       "xpath=/html/body/div[1]/div[1]/div[2]/button[1]"
     );
@@ -205,6 +208,11 @@ module.exports = class PlaywrightDevPage {
     }
   }
 
+  async betaBannerDisplayed() {
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.betaBanner.isVisible();
+  }
+
   async assertBetaBannerText(betaBannerText) {
     expect(await this.isCurrentPage()).to.be.true;
     expect(await this.betaBanner.innerText()).to.equal(betaBannerText);
@@ -212,6 +220,21 @@ module.exports = class PlaywrightDevPage {
 
   async assertBetaBannerWelshText(betaBannerWelshText) {
     expect(await this.betaBanner.innerText()).to.equal(betaBannerWelshText);
+  }
+
+  async assertFeedbackPageIsCorrectAndLive(expectedURL) {
+    const newPagePromise = this.page.waitForEvent("popup");
+
+    await this.betaBannerLink.click();
+
+    const newPage = await newPagePromise;
+    await newPage.waitForLoadState("domcontentloaded");
+
+    const actualURL = await newPage.url();
+
+    expect(actualURL).to.contain(expectedURL); // Use to.equal for exact URL match
+
+    await newPage.close();
   }
 
   async assertRejectCookies(rejectCookiesText) {
