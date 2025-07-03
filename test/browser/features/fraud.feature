@@ -46,7 +46,7 @@ Feature: Fraud CRI - Happy Path Tests
 
   @mock-api:fraud-success
   Scenario: Fraud CRI - Beta Banner
-    Then they view the Beta banner with the text as This is a new service – your feedback (opens in new tab) will help us to improve it.
+    Then they view the Beta banner with the text as This is a new service. Help us improve it and give your feedback (opens in a new tab).
 
   @mock-api:fraud-success
   Scenario: Fraud CRI - Cookies Accept Analysis
