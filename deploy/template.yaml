@@ -520,7 +520,7 @@ Resources:
               Value: !FindInMap [ FeatureFlagMapping, !Ref Environment, deviceIntelligenceEnabled ]
             - Name: LOG_LEVEL
               Value: !FindInMap [ EnvironmentConfiguration, !Ref "Environment", logLevel ]
-            - Name: MAY2025REBRANDENABLED
+            - Name: MAY_2025_REBRAND_ENABLED
               Value:
                 !FindInMap [
                   FeatureFlagMapping,
