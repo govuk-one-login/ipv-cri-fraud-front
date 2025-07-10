@@ -45,8 +45,13 @@ Feature: Fraud CRI - Happy Path Tests
       | CrownCopyright |
 
   @mock-api:fraud-success
-  Scenario: Fraud CRI - Beta Banner
-    Then they view the Beta banner with the text as This is a new service – your feedback (opens in new tab) will help us to improve it.
+  Scenario Outline: Fraud CRI - Beta Banner
+    Given The Beta banner is displayed
+    And they view the Beta banner with the text as This is a new service. Help us improve it and give your feedback (opens in a new tab).
+    Then I assert the feedback URL <expectedPageUrl> is correct and live
+    Examples:
+      | expectedPageUrl                          |
+      | https://signin.account.gov.uk/contact-us |
 
   @mock-api:fraud-success
   Scenario: Fraud CRI - Cookies Accept Analysis

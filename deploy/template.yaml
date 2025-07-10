@@ -105,26 +105,31 @@ Mappings:
       uaEnabled: "false"
       languageToggleDisabled: "false"
       deviceIntelligenceEnabled: "true"
+      may2025RebrandEnabled: "true"
     build:
       ga4Enabled: "true"
       uaEnabled: "false"
       languageToggleDisabled: "false"
       deviceIntelligenceEnabled: "true"
+      may2025RebrandEnabled: "true"
     staging:
       ga4Enabled: "true"
       uaEnabled: "false"
       languageToggleDisabled: "false"
       deviceIntelligenceEnabled: "true"
+      may2025RebrandEnabled: "true"
     integration:
       ga4Enabled: "true"
       uaEnabled: "false"
       languageToggleDisabled: "false"
       deviceIntelligenceEnabled: "true"
+      may2025RebrandEnabled: "false"
     production:
       ga4Enabled: "true"
       uaEnabled: "false"
       languageToggleDisabled: "false"
       deviceIntelligenceEnabled: "true"
+      may2025RebrandEnabled: "false"
 
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
@@ -515,6 +520,13 @@ Resources:
               Value: !FindInMap [ FeatureFlagMapping, !Ref Environment, deviceIntelligenceEnabled ]
             - Name: LOG_LEVEL
               Value: !FindInMap [ EnvironmentConfiguration, !Ref "Environment", logLevel ]
+            - Name: MAY2025REBRANDENABLED
+              Value:
+                !FindInMap [
+                  FeatureFlagMapping,
+                  !Ref "Environment",
+                  may2025RebrandEnabled
+                ]
             - Name: NODE_ENV
               Value:
                 !FindInMap [
