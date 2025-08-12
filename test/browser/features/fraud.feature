@@ -63,8 +63,20 @@ Feature: Fraud CRI - Happy Path Tests
     Given I select Reject analytics cookies button and see the text You've rejected additional cookies. You can change your cookie settings at any time.
     Then I select the rejected link change your cookie settings and assert I have been redirected correctly
 
-  @mock-api:driving-licence-PageCookies @validation-regression
-  Scenario: Driving Licence - Cookies - Device Intelligence
+  @mock-api:fraud-success
+  Scenario: Fraud CRI - Skip to Main Content
+    Given they can see the check page
+    Then I see the Skip to main content Link Text
+
+  @mock-api:fraud-success
+  Scenario: Fraud CRI - User Clicks the View Cookies on the Cookie Banner
+    Given they can see the check page
+    And The cookie banner is displayed
+    When User clicks on the View Cookies Link
+    And I check the Cookies page Title GOV.UK One Login cookies policy
+
+ @mock-api:fraud-success
+  Scenario: Fraud CRI - Cookies - Device Intelligence
     And they can see the check page
     Then I see the Device Intelligence Cookie <DeviceIntelligenceCookieName>
     Examples:

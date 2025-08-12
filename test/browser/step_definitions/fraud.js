@@ -118,6 +118,29 @@ Then(
   }
 );
 
+Given(/^The cookie banner is displayed$/, async function () {
+  const checkPage = new CheckPage(this.page);
+  await checkPage.cookieBannerDisplayed();
+});
+
+When(/^User clicks on the View Cookies Link$/, async function () {
+  const checkPage = new CheckPage(this.page);
+  await checkPage.clickViewCookiesLink();
+});
+
+Then(
+  /^I check the Cookies page Title (.*)$/,
+  async function (cookiesPageTitle) {
+    const checkPage = new CheckPage(this.page);
+    await checkPage.assertCookiesPolicyPageTitle(cookiesPageTitle);
+  }
+);
+
+Then(/^I see the (.*) Link Text$/, async function (skipToMainContent) {
+  const checkPage = new CheckPage(this.page);
+  await checkPage.assertSkipToMainContent(skipToMainContent);
+});
+
 Then(
   /^they can see the check page title text as (.*)$/,
   async function (fraudLandingPageTitleSummary) {

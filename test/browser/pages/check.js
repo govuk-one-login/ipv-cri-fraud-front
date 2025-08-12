@@ -19,6 +19,16 @@ module.exports = class PlaywrightDevPage {
       hasText: "Read our privacy notice (opens in new tab)"
     });
     this.continueButton = this.page.locator('xpath=//*[@id="continue"]');
+    this.skipToMainContent = this.page.locator("xpath=//html/body/a");
+    this.cookieBanner = this.page.locator(
+      'xpath=//*[@id="cookies-banner-main"]'
+    );
+    this.viewCookiesLink = this.page.locator(
+      'xpath=//*[@id="cookies-banner-main"]/div[2]/a'
+    );
+    this.cookiesPageTitle = this.page.locator(
+      'xpath=//*[@id="main-content"]/div/div/h1'
+    );
     this.supportLink = this.page.locator(
       "xpath=/html/body/footer/div/div/div[1]/ul/li[5]/a"
     );
@@ -75,7 +85,7 @@ module.exports = class PlaywrightDevPage {
       'xpath=//*[@id="main-content"]/div/div/form/p[2]'
     );
     this.fraudLandingPageWarningMessageText = this.page.locator(
-      'xpath=//*[@id="main-content"]/div/div/form/p[3]/text()'
+      'xpath=//*[@id="main-content"]/div/div/form/p[3]'
     );
   }
 
@@ -88,6 +98,9 @@ module.exports = class PlaywrightDevPage {
     await this.fraudLandingPageTitleSummary.isVisible(
       fraudLandingPageTitleSummary
     );
+    await expect(
+      await this.fraudLandingPageTitleSummary.textContent()
+    ).to.contains(fraudLandingPageTitleSummary);
   }
 
   async assertFraudLandingPageTitleSummaryTextOne(
@@ -97,6 +110,9 @@ module.exports = class PlaywrightDevPage {
     await this.fraudLandingPageTitleSummaryTextOne.isVisible(
       fraudLandingPageTitleSummaryTextOne
     );
+    await expect(
+      await this.fraudLandingPageTitleSummaryTextOne.textContent()
+    ).to.contains(fraudLandingPageTitleSummaryTextOne);
   }
 
   async assertFraudLandingPageTitleSummaryTextTwo(
@@ -106,6 +122,9 @@ module.exports = class PlaywrightDevPage {
     await this.fraudLandingPageTitleSummaryTextTwo.isVisible(
       fraudLandingPageTitleSummaryTextTwo
     );
+    await expect(
+      await this.fraudLandingPageTitleSummaryTextTwo.textContent()
+    ).to.contains(fraudLandingPageTitleSummaryTextTwo);
   }
 
   async getDoNotRefreshPageMessage(fraudLandingPageWarningMessage) {
@@ -113,6 +132,9 @@ module.exports = class PlaywrightDevPage {
     await this.fraudLandingPageWarningMessageText.isVisible(
       fraudLandingPageWarningMessage
     );
+    await expect(
+      await this.fraudLandingPageWarningMessageText.textContent()
+    ).to.contains(fraudLandingPageWarningMessage);
   }
 
   async assertPrivacyTabs(linkName) {
@@ -214,7 +236,6 @@ module.exports = class PlaywrightDevPage {
   }
 
   async assertBetaBannerText(betaBannerText) {
-    expect(await this.isCurrentPage()).to.be.true;
     expect(await this.betaBanner.innerText()).to.equal(betaBannerText);
   }
 
@@ -265,6 +286,32 @@ module.exports = class PlaywrightDevPage {
     let context = await this.page.context();
     let pages = context.pages();
     expect(pages[0].url()).to.equal("https://signin.account.gov.uk/cookies");
+  }
+
+  async cookieBannerDisplayed() {
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.cookieBanner.isVisible();
+  }
+
+  async clickViewCookiesLink() {
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.viewCookiesLink.click();
+  }
+
+  async assertCookiesPolicyPageTitle(cookiesPageTitle) {
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.cookiesPageTitle.isVisible(cookiesPageTitle);
+    expect(await this.cookiesPageTitle.textContent()).to.contains(
+      cookiesPageTitle
+    );
+  }
+
+  async assertSkipToMainContent(skipToMainContent) {
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.skipToMainContent.textContent(skipToMainContent);
+    expect(await this.skipToMainContent.textContent()).to.contains(
+      skipToMainContent
+    );
   }
 
   async waitForSpinner() {
