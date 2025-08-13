@@ -4,6 +4,8 @@
 {% extends "base-form.njk" %}
 {% set hmpoPageKey = "check" %}
 {% set gtmJourney = "fraud" %}
+{% set isPageDataSensitiveFlag = false %}
+{% set contentID = 'a5df0735-aa9f-46be-b9dc-fedea5fdd498' %}
 
 {% block mainContent %}
   <h1 id="header" class="govuk-heading-l">{{translate("pages.check.title")}}
@@ -17,7 +19,7 @@
   html: hmpoHtml(translate("pages.check.details.text"))
 }) }}
 
-{{ hmpoHtml(translate("pages.check.contentContinued")) }}
+  {{ hmpoHtml(translate("pages.check.contentContinued")) }}
 
   {{ hmpoSubmit(ctx, {
         id: "continue",
@@ -69,10 +71,14 @@
         .pageViewTracker
         .trackOnPageLoad({
           statusCode: '200', // Access status code
-          englishPageTitle: '{{translate("pages.check.title")}}',
+          isPageDataSensitiveFlag: isPageDataSensitiveFlag,
+          englishPageTitle: '{{translate("checkDetails.title")}}',
           taxonomy_level1: 'web cri', // Access taxonomy level 1
           taxonomy_level2: 'fraud', // Access taxonomy level 2
-          content_id: '001',
+          taxonomy_level3: 'undefined',
+          taxonomy_level4: 'undefined',
+          taxonomy_level5: 'undefined',
+          content_id: contentID,
           logged_in_status: true,
           dynamic: false
         });
