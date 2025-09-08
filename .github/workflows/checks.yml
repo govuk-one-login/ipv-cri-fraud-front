@@ -43,7 +43,7 @@ jobs:
         run: sam validate --region eu-west-2 -t deploy/template.yaml --lint
 
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22.16.0
 
