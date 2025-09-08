@@ -32,6 +32,13 @@ describe("feature sets", () => {
       expect(next).to.have.been.calledOnce;
     });
 
+    it("should call next if comma delimited featureSet is valid", async () => {
+      req.query.featureSet = "F01,F02";
+      await FeatureSets(req, res, next);
+      expect(req.session.featureSet).to.equal("F01,F02");
+      expect(next).to.have.been.calledOnce;
+    });
+
     it("should throw an error if featureSet is invalid", async () => {
       req.query.featureSet = "invalid-featureset";
       await FeatureSets(req, res, next);
@@ -43,10 +50,44 @@ describe("feature sets", () => {
       expect(req.session.featureSet).to.be.undefined;
     });
 
+    it("should throw an error if comma delimited featureSet is invalid", async () => {
+      req.query.featureSet = "FO1, F02";
+      await FeatureSets(req, res, next);
+      expect(next).to.have.been.calledWith(
+        sinon.match
+          .instanceOf(Error)
+          .and(sinon.match.has("message", "Invalid feature set ID"))
+      );
+      expect(req.session.featureSet).to.be.undefined;
+    });
+
+    it("should throw an error if featureSet is empty", async () => {
+      req.query.featureSet = "";
+      await FeatureSets(req, res, next);
+      expect(next).to.have.been.calledWith(
+        sinon.match
+          .instanceOf(Error)
+          .and(sinon.match.has("message", "Invalid feature set ID"))
+      );
+      expect(req.session.featureSet).to.be.undefined;
+    });
+
     it("should throw an error if featureSet is blank", async () => {
+      req.query.featureSet = " ";
+      await FeatureSets(req, res, next);
+      expect(next).to.have.been.calledWith(
+        sinon.match
+          .instanceOf(Error)
+          .and(sinon.match.has("message", "Invalid feature set ID"))
+      );
+      expect(req.session.featureSet).to.be.undefined;
+    });
+
+    it("should call next if featureSet is undefined", async () => {
       req.query.featureSet = undefined;
       await FeatureSets(req, res, next);
       expect(req.session.featureSet).to.be.undefined;
+      expect(next).to.have.been.calledOnce;
     });
   });
 });
