@@ -1,0 +1,62 @@
+name: Daily Smoke Tests in DEV
+on:
+  schedule:
+    # Monday to Friday at 1PM.
+    - cron: '0 13 * * 1-5'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Pre-commit github action
+      uses: pre-commit/action@v3.0.1
+      with:
+        extra_args: "detect-secrets --all-files"
+
+  run-premerge-checks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: SAM Validate
+        run: sam validate --region eu-west-2 -t deploy/template.yaml --lint
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.16.0
+
+      - name: Install dependencies
+        run: yarn install
+      - name: Build assets
+        run: yarn build
+      - name: Run lint
+        run: yarn lint
+      - name: Run test and write coverage
+        run: yarn run test:coverage
+      - name: Run browser tests
+        run: yarn run test:browser:ci
+        env:
+          BROWSER: chrome-headless
+      - name: Run sonarcloud scan
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: SonarSource/sonarqube-scan-action@v5.3.1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # obtained from https://sonarcloud.io
