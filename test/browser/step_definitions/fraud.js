@@ -28,13 +28,13 @@ Given(
 Given(/^they (?:have )?continue(?:d)? to fraud check$/, async function () {
   const checkPage = new CheckPage(this.page);
   expect(checkPage.isCurrentPage()).to.be.true;
-  await Promise.all([checkPage.continue(), checkPage.waitForSpinner()]);
+  await checkPage.continue();
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 
 Given(/^they continue to fraud check page$/, async function () {
   const checkPage = new CheckPage(this.page);
-  await Promise.all([checkPage.continue(), checkPage.waitForSpinner()]);
+  await checkPage.continue();
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 

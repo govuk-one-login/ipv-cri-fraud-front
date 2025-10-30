@@ -1,4 +1,3 @@
-const { expect: expect_play } = require("@playwright/test");
 const { expect: expect } = require("chai");
 
 module.exports = class PlaywrightDevPage {
@@ -314,15 +313,45 @@ module.exports = class PlaywrightDevPage {
     );
   }
 
-  async waitForSpinner() {
-    let spinnerVisible = await this.continueButton.isVisible();
-    expect_play(spinnerVisible).toBeTruthy();
-    return this.page.locator(".button--spinner").waitFor();
-  }
-
   async continue() {
-    this.continueButton.isVisible();
-    return this.continueButton.click();
+    await this.continueButton.waitFor({ state: "visible" });
+
+    const spinnerCheckPromise = this.page.evaluate(() => {
+      return new Promise((resolve) => {
+        const button = document.querySelector("#continue");
+
+        const observer = new MutationObserver((mutations) => {
+          for (const mutation of mutations) {
+            if (
+              mutation.type === "attributes" &&
+              mutation.attributeName === "class" &&
+              button.classList.contains("button--spinner")
+            ) {
+              observer.disconnect();
+              resolve({ hasSpinner: true });
+              return;
+            }
+          }
+        });
+
+        observer.observe(button, {
+          attributes: true,
+          attributeFilter: ["class"]
+        });
+
+        setTimeout(() => {
+          observer.disconnect();
+          resolve({ hasSpinner: false });
+        }, 1000);
+      });
+    });
+
+    await this.continueButton.click();
+    const result = await spinnerCheckPromise;
+
+    if (!result.hasSpinner) {
+      throw new Error("Spinner not visible");
+    }
   }
 
   async checkDeviceIntelligenceCookie(deviceIntelligenceCookieName) {

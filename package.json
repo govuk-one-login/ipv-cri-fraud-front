@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node src/app.js",
     "start:ci": "MAY_2025_REBRAND_ENABLED=true DEVICE_INTELLIGENCE_ENABLED=true API_BASE_URL=http://127.0.0.1:8030/ REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
-    "dev": "API_BASE_URL=https://s0dr45om2m.execute-api.eu-west-2.amazonaws.com/dev/ LOG_LEVEL=debug nodemon src/app.js",
+    "dev": "LOG_LEVEL=debug nodemon src/app.js",
     "build": "yarn build-sass && yarn build-js && yarn copy-assets",
     "build-sass": "rm -rf dist/public/stylesheets/application.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
     "copy-assets": "mkdir -p dist/public/scripts && mkdir -p dist/public/images && mkdir -p dist/locales && cp -R src/locales/* dist/locales && cp -R src/assets/javascripts/*.js dist/public/scripts && cp -R src/assets/images/* dist/public/images",
