@@ -45,7 +45,7 @@ jobs:
     - name: SAM Validate
       run: sam validate --region eu-west-2 -t deploy/template.yaml --lint
 
-  run-tests:
+  run-premerge-checks:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -79,7 +79,7 @@ jobs:
         run: yarn playwright install-deps chromium
         if: steps.playwright-cache.outputs.cache-hit == 'true'
 
-      - name: Build dependencies
+      - name: Build assets
         run: yarn build
 
       - name: Run lint
