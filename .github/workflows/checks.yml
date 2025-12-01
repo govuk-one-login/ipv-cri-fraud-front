@@ -1,17 +1,31 @@
 name: Pre-merge checks
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types:
       - opened
       - reopened
       - ready_for_review
       - synchronize
-  workflow_dispatch: # deploy manually
+  push:
+    branches:
+      - main
 
 jobs:
+  resolve-test-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      playwright-version: ${{ steps['resolve-playwright-version'].outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Resolve Playwright version
+        id: resolve-playwright-version
+        run: |
+          version="$(yq -r '.devDependencies["@playwright/test"] // .dependencies["@playwright/test"] // ""' package.json)"
+          test -n "$version" || { echo "No @playwright/test version found in package.json"; exit 1; }
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
   pre-commit:
     runs-on: ubuntu-latest
     steps:
@@ -28,43 +42,63 @@ jobs:
       with:
         extra_args: "detect-secrets --all-files"
 
+    - name: SAM Validate
+      run: sam validate --region eu-west-2 -t deploy/template.yaml --lint
+
   run-premerge-checks:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
+    needs: resolve-test-versions
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
-      - name: SAM Validate
-        run: sam validate --region eu-west-2 -t deploy/template.yaml --lint
+      - name: Checkout
+        uses: actions/checkout@v5
 
       - name: Use Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: 22.16.0
+          node-version: 22
+          cache: "yarn"
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
+
+      - name: Cache Playwright
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ needs['resolve-test-versions'].outputs.playwright-version }}
+
+      - name: Setup Playwright
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: yarn playwright install chromium --with-deps
+
+      - name: Setup Playwright dependencies
+        run: yarn playwright install-deps chromium
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+
       - name: Build assets
         run: yarn build
+
       - name: Run lint
         run: yarn lint
+
       - name: Run test and write coverage
-        run: yarn run test:coverage
+        run: yarn test:coverage
+
       - name: Run browser tests
-        run: yarn run test:browser:ci
+        run: yarn test:browser:ci
         env:
           BROWSER: chrome-headless
+
       - name: Run sonarcloud scan
         if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarqube-scan-action@v5.3.1
+        uses: SonarSource/sonarqube-scan-action@v6.0.0
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # obtained from https://sonarcloud.io
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Get test results history
         uses: actions/checkout@v4

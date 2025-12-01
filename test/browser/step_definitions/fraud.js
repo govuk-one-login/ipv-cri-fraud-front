@@ -4,7 +4,7 @@ const { expect } = require("chai");
 
 const { CheckPage } = require("../pages");
 
-const { injectAxe } = require("axe-playwright");
+const { AxeBuilder } = require("@axe-core/playwright");
 
 Given(/they (?:can )?see? the check page$/, async function () {
   const checkPage = new CheckPage(this.page);
@@ -14,27 +14,24 @@ Given(/they (?:can )?see? the check page$/, async function () {
 Given(
   /^I run the Axe Accessibility check against the Fraud Check entry page$/,
   async function () {
-    await injectAxe(this.page);
-    // Run Axe for WCAG 2.2 AA rules
-    const wcagResults = await this.page.evaluate(() => {
-      return axe.run({
-        runOnly: ["wcag22aa"]
-      });
-    });
-    expect(wcagResults.violations).to.be.empty;
+    const results = await new AxeBuilder({ page: this.page })
+      .withTags(["wcag22aa"])
+      .analyze();
+
+    expect(results.violations).to.be.empty;
   }
 );
 
 Given(/^they (?:have )?continue(?:d)? to fraud check$/, async function () {
   const checkPage = new CheckPage(this.page);
   expect(checkPage.isCurrentPage()).to.be.true;
-  await Promise.all([checkPage.continue(), checkPage.waitForSpinner()]);
+  await checkPage.continue();
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 
 Given(/^they continue to fraud check page$/, async function () {
   const checkPage = new CheckPage(this.page);
-  await Promise.all([checkPage.continue(), checkPage.waitForSpinner()]);
+  await checkPage.continue();
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 

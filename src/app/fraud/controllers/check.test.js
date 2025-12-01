@@ -1,6 +1,8 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const FraudCheckController = require("./check");
 
+const sessionId = "some-session-id";
+
 describe("check controller", () => {
   const check = new FraudCheckController({ route: "/test" });
 
@@ -19,7 +21,12 @@ describe("check controller", () => {
     next = setup.next;
 
     req.session.JWTData = { authParams: {}, user_id: "a-users-id" };
-    req.session.id = "some-session-id";
+    req.session.tokenId = sessionId;
+
+    req.session.authParams = {
+      redirect_uri: "https://client.example.com",
+      state: "A VALUE"
+    };
   });
 
   it("should be an instance of BaseController", () => {
@@ -27,14 +34,6 @@ describe("check controller", () => {
   });
 
   it("should retrieve auth code from cri-fraud-api and store in session", async () => {
-    const sessionId = "fraud123";
-
-    req.session.tokenId = sessionId;
-    req.session.authParams = {
-      redirect_uri: "https://client.example.com",
-      state: "A VALUE"
-    };
-
     const data = {};
 
     const resolvedPromise = new Promise((resolve) => resolve({ data }));
@@ -58,39 +57,104 @@ describe("check controller", () => {
     expect(req.sessionModel.get("redirect_url")).to.eq(data.redirectUrl);
   });
 
-  it("should add a crosscore version header if a feature set has been set", async () => {
-    const sessionId = "fraud123";
+  describe("when featureSet includes 'crosscoreV2'", () => {
+    it("should set the 'crosscore-version' header to '2'", async () => {
+      req.session.featureSet = "crosscoreV2";
+      const data = {};
 
-    req.session.tokenId = sessionId;
-    req.session.authParams = {
-      redirect_uri: "https://client.example.com",
-      state: "A VALUE"
-    };
+      const resolvedPromise = new Promise((resolve) => resolve({ data }));
+      let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
 
-    req.session.authParams = {
-      redirect_uri: "https://client.example.com",
-      state: "A VALUE"
-    };
-    req.session.featureSet = "crosscoreV2";
+      await check.saveValues(req, res, next);
 
-    const data = {};
-
-    const resolvedPromise = new Promise((resolve) => resolve({ data }));
-    let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
-
-    await check.saveValues(req, res, next);
-
-    sandbox.assert.calledWith(
-      stub,
-      "identity-check",
-      {},
-      {
-        headers: {
-          "Content-Type": "application/application-json",
-          "crosscore-version": "2",
-          session_id: sessionId
+      sandbox.assert.calledWith(
+        stub,
+        "identity-check",
+        {},
+        {
+          headers: {
+            session_id: sessionId,
+            "Content-Type": "application/application-json",
+            "crosscore-version": "2"
+          }
         }
-      }
-    );
+      );
+    });
+  });
+
+  describe("when featureSet includes 'watchlist'", () => {
+    it("should set the additional 'score-two-route' header to 'watchlist'", async () => {
+      req.session.featureSet = "watchlist,crosscoreV2";
+      const data = {};
+
+      const resolvedPromise = new Promise((resolve) => resolve({ data }));
+      let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
+
+      await check.saveValues(req, res, next);
+
+      sandbox.assert.calledWith(
+        stub,
+        "identity-check",
+        {},
+        {
+          headers: {
+            session_id: sessionId,
+            "Content-Type": "application/application-json",
+            "score-two-route": "watchlist",
+            "crosscore-version": "2"
+          }
+        }
+      );
+    });
+  });
+
+  describe("when featureSet includes something other than 'crosscoreV2'", () => {
+    it("should not set the additional 'crosscore-version' header", async () => {
+      req.session.featureSet = "not_crosscoreV2,watchlist";
+      const data = {};
+
+      const resolvedPromise = new Promise((resolve) => resolve({ data }));
+      let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
+
+      await check.saveValues(req, res, next);
+
+      sandbox.assert.calledWith(
+        stub,
+        "identity-check",
+        {},
+        {
+          headers: {
+            session_id: sessionId,
+            "Content-Type": "application/application-json",
+            "score-two-route": "watchlist"
+          }
+        }
+      );
+    });
+  });
+
+  describe("when featureSet includes something other than 'watchlist'", () => {
+    it("should not set the additional 'score-two-route' header", async () => {
+      req.session.featureSet = "crosscoreV2,not_watchlist";
+      const data = {};
+
+      const resolvedPromise = new Promise((resolve) => resolve({ data }));
+      let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
+
+      await check.saveValues(req, res, next);
+
+      sandbox.assert.calledWith(
+        stub,
+        "identity-check",
+        {},
+        {
+          headers: {
+            session_id: sessionId,
+            "Content-Type": "application/application-json",
+            "crosscore-version": "2"
+          }
+        }
+      );
+    });
   });
 });
