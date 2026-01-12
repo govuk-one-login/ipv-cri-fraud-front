@@ -15,7 +15,6 @@ const compat = new FlatCompat({
 export default [
   {
     ignores: [
-      "**/wallaby.conf.js",
       "src/app.test.js",
       "src/app-setup.test.js",
       "**/dist",
