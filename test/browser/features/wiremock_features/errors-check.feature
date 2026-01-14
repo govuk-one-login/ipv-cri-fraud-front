@@ -9,7 +9,7 @@ Feature: Fraud CRI - Error handling - Check Error
     And they have provided their details
 
   @mock-api:fraud-check-error
-  Scenario: API error
+  Scenario: API error - Error Page after /check page
     Given they can see the check page
     When they continue to fraud check
     Then they should be redirected as an error

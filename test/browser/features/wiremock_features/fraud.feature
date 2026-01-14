@@ -6,7 +6,7 @@ Feature: Fraud CRI - Happy Path Tests
     Given Authenticatable Anita has started the Fraud Journey
     And they have provided their details
 
-  @mock-api:fraud-success
+  @mock-api:fraud-success @test
   Scenario: Fraud CRI - Run fraud check
     Given they can see the check page
     Then they can see the check page title text as We need to check your details

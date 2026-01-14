@@ -1,9 +1,6 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
-
 const { expect } = require("chai");
-
-const { CheckPage } = require("../pages");
-
+const { CheckPage } = require("../../pages/wiremock_pages");
 const { AxeBuilder } = require("@axe-core/playwright");
 
 Given(/they (?:can )?see? the check page$/, async function () {
@@ -22,7 +19,7 @@ Given(
   }
 );
 
-Given(/^they (?:have )?continue(?:d)? to fraud check$/, async function () {
+When(/^they (?:have )?continue(?:d)? to fraud check$/, async function () {
   const checkPage = new CheckPage(this.page);
   expect(checkPage.isCurrentPage()).to.be.true;
   await checkPage.continue();
