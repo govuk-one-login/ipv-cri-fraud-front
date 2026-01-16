@@ -1,4 +1,4 @@
-const { API, APP, LOG_LEVEL } = require("./lib/config");
+const { API, APP } = require("./lib/config");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 
@@ -63,23 +63,16 @@ const init = (app, router) => {
 };
 
 const create = (setup) => {
-  const loggerConfig = {
-    consoleLevel: LOG_LEVEL,
-    console: true,
-    consoleJSON: true,
-    app: false
-  };
-
   const sessionConfig = sessionConfigService.init();
   const overloadProtectionConfig = overloadProtectionConfigService.init();
 
   const { app, router } = setup({
     config: { APP_ROOT: __dirname },
     port: false,
-    logs: loggerConfig,
+    logs: false, // already initialised in app.js
     session: sessionConfig,
     helmet: helmetConfig,
-    redis: sessionConfigService.isDynamo() ? false : commonExpress.lib.redis(),
+    redis: false,
     urls: {
       public: "/public",
       publicImages: "/public/images"

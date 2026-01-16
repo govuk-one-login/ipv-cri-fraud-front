@@ -65,5 +65,11 @@ export default [
         }
       ],
     }
+  },
+  {
+    files: ["src/utils/dynamodb-local.js", "src/dynamo-session-config.js", "test/browser/support/*.js"],
+    rules: {
+      "no-console": 0 // no logger available here so console allowed
+    }
   }
 ];

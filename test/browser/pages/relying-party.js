@@ -1,30 +1,43 @@
 module.exports = class PlaywrightDevPage {
   /**
    * @param {import('@playwright/test').Page} page
+   * @param {string} wireMockBaseUrl - Dynamic WireMock base URL (e.g., http://localhost:32963)
    */
-  constructor(page) {
+  constructor(page, wireMockBaseUrl) {
     this.page = page;
+    this.wireMockBaseUrl = wireMockBaseUrl;
   }
 
   async goto() {
-    this.startingUrl =
-      "http://localhost:5030/oauth2/authorize?request=lorem&client_id=standalone";
+    const params = new URLSearchParams({
+      request: "lorem",
+      client_id: "standalone"
+    });
 
-    await this.page.goto(this.startingUrl);
+    this.startingUrl = `http://localhost:5030/oauth2/authorize?${params}`;
+
+    await this.page.goto(this.startingUrl, {
+      waitUntil: "networkidle"
+    });
   }
 
-  async isRedirectPage() {
-    const url = this.page.url();
+  async gotoWithFeatureSet(featureSet) {
+    const params = new URLSearchParams({
+      request: "lorem",
+      client_id: "standalone",
+      featureSet: featureSet
+    });
 
-    const isCorrectPage =
-      url.startsWith("http://localhost:8030") &&
-      url.endsWith("client_id=standalone&state=sT%40t3&code=FACEFEED");
+    this.startingUrl = `http://localhost:5030/oauth2/authorize?${params}`;
 
-    return isCorrectPage;
+    await this.page.goto(this.startingUrl, {
+      waitUntil: "networkidle"
+    });
   }
 
   isRelyingPartyServer() {
-    return new URL(this.page.url()).origin === "http://localhost:8030";
+    const expectedOrigin = new URL(this.wireMockBaseUrl).origin;
+    return new URL(this.page.url()).origin === expectedOrigin;
   }
 
   hasSuccessQueryParams() {

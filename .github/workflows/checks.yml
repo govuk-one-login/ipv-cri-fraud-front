@@ -89,7 +89,7 @@ jobs:
         run: yarn test:coverage
 
       - name: Run browser tests
-        run: yarn test:browser:ci
+        run: yarn test:browser
         env:
           BROWSER: chrome-headless
 

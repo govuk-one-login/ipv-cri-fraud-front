@@ -4,7 +4,7 @@ const { RelyingPartyPage } = require("../pages");
 
 Given(/^(.*) has started the Fraud Journey$/, async function (name) {
   this.user = this.allUsers[name];
-  const rpPage = new RelyingPartyPage(this.page);
+  const rpPage = new RelyingPartyPage(this.page, this.wireMockBaseUrl);
 
   await rpPage.goto();
 });

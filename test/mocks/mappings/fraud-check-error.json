@@ -29,8 +29,9 @@
         "jsonBody": {
           "session_id": "ABADCAFE",
           "state": "sT@t3",
-          "redirect_uri": "http://localhost:8030/return"
-        }
+          "redirect_uri": "http://{{request.headers.Host}}/return"
+        },
+        "transformers": ["response-template"]
       }
     },
     {
@@ -48,6 +49,25 @@
       },
       "response": {
         "status": 500
+      }
+    },
+    {
+      "scenarioName": "fraud-check-error",
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/return.*",
+        "queryParameters": {
+          "error": {
+            "equalTo": "server_error"
+          },
+          "error_description": {
+            "equalTo": "general error"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "OAuth error callback received"
       }
     }
   ]
