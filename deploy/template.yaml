@@ -49,6 +49,7 @@ Conditions:
   # IsPerformance: !Or
   # - !Equals [!Ref Environment, build]
   # - !Equals [!Ref Environment, production]
+  EnableSpotArmInstance: !Equals [!Ref Environment, dev]
   UsePermissionsBoundary: !Not
     - !Equals [!Ref PermissionsBoundary, "none"]
   UseCodeSigning: !Not
