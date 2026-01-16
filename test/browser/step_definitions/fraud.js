@@ -29,7 +29,7 @@ Given(/^they (?:have )?continue(?:d)? to fraud check$/, async function () {
   expect(checkPage.isCurrentPage()).to.be.false;
 });
 
-Given(/^they continue to fraud check page$/, async function () {
+When(/^they continue to fraud check page$/, async function () {
   const checkPage = new CheckPage(this.page);
   await checkPage.continue();
   expect(checkPage.isCurrentPage()).to.be.false;

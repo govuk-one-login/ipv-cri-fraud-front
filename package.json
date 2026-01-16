@@ -9,8 +9,10 @@
   },
   "scripts": {
     "start": "node src/app.js",
-    "start:ci": "MAY_2025_REBRAND_ENABLED=true DEVICE_INTELLIGENCE_ENABLED=true API_BASE_URL=http://127.0.0.1:8030/ REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
-    "dev": "LOG_LEVEL=debug nodemon src/app.js",
+    "start:ci": "MAY_2025_REBRAND_ENABLED=true DEVICE_INTELLIGENCE_ENABLED=true API_BASE_URL=http://127.0.0.1:8030/ NODE_ENV=development node src/app.js",
+    "dev": "yarn docker:up && LOG_LEVEL=debug nodemon src/app.js",
+    "docker:up": "docker ps -a --format '{{.Names}}' | grep -q '^dynamodb-local$' || docker compose up --wait",
+    "docker:down": "docker compose down",
     "build": "yarn build-sass && yarn build-js && yarn copy-assets",
     "build-sass": "rm -rf dist/public/stylesheets/application.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
     "copy-assets": "mkdir -p dist/public/scripts && mkdir -p dist/public/images && mkdir -p dist/locales && cp -R src/locales/* dist/locales && cp -R src/assets/javascripts/*.js dist/public/scripts && cp -R src/assets/images/* dist/public/images",
@@ -25,8 +27,7 @@
     "test:coverage": "nyc --reporter=lcov --reporter=text-summary yarn test",
     "test:watch": "mocha --watch",
     "mocks": "yarn run wiremock --port 8030 --root-dir test/mocks",
-    "test:browser": "mkdir -p reports && wait-on tcp:127.0.0.1:8030 tcp:127.0.0.1:5030 && API_BASE_URL=http://127.0.0.1:8030/ MOCK_API=true cucumber-js --config test/browser/cucumber.js",
-    "test:browser:ci": "npm-run-all -p -r start:ci mocks test:browser",
+    "test:browser": "mkdir -p reports && cucumber-js --config test/browser/cucumber.js",
     "check-translation": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js '../../../../src/locales'"
   },
   "repository": {
@@ -63,6 +64,7 @@
     "sass": "1.63.4",
     "sinon": "19.0.2",
     "sinon-chai": "3.7.0",
+    "testcontainers": "11.11.0",
     "uglify-js": "3.19.3",
     "wait-on": "8.0.4",
     "wiremock": "3.13.1"

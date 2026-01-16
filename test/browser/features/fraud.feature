@@ -21,7 +21,7 @@ Feature: Fraud CRI - Happy Path Tests
     When they continue to fraud check
     Then they should be redirected as a success
 
-  @mock-api:fraud-success-experian-links
+  @mock-api:fraud-success
   Scenario Outline: Fraud CRI - Who we check your details with Drop Down
     Given they can see the check page
     And they click <page> and assert I have been directed correctly

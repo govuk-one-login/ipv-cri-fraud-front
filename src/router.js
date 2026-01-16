@@ -1,5 +1,7 @@
-const featureSets = require("./app/fraud/featureSets");
-const frontendUi = require("@govuk-one-login/frontend-ui");
+const featureSets = require("./app/fraud/feature-sets");
+const {
+  frontendUiMiddlewareIdentityBypass
+} = require("@govuk-one-login/frontend-ui");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 const { getGTM, getLanguageToggle, getDeviceIntelligence } =
@@ -10,15 +12,19 @@ const setAxiosDefaults = commonExpress.lib.axios;
 const steps = require("./app/fraud/steps");
 const fields = require("./app/fraud/fields");
 const wizard = require("hmpo-form-wizard");
+const ensureSessionSavedBeforeRedirect = require("./lib/session-save-middleware");
 
 const init = (router) => {
+  // must come first
+  router.use(ensureSessionSavedBeforeRedirect);
+
   router.use(getGTM);
   router.use(getLanguageToggle);
+  router.use(frontendUiMiddlewareIdentityBypass);
   router.use(getDeviceIntelligence);
   router.use(setScenarioHeaders);
   router.use(setAxiosDefaults);
   router.use(featureSets);
-  router.use(frontendUi.frontendUiMiddlewareIdentityBypass);
 
   router.use("/oauth2", commonExpress.routes.oauth2);
 
