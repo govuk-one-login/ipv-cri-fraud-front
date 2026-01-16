@@ -1,3 +1,4 @@
+//QualityGateUnitTest
 const BaseController = require("hmpo-form-wizard").Controller;
 const FraudCheckController = require("./check");
 

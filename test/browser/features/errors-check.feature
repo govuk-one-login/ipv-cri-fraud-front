@@ -1,3 +1,4 @@
+@QualityGateRegressionTest
 @mock-api:fraud-check-error
 Feature: Fraud CRI - Error handling - Check Error
 
