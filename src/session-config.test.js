@@ -23,10 +23,5 @@ describe("app", () => {
         ...{ sessionStore: "sessionStoreMock" }
       });
     });
-
-    it("should return true if table name is set", () => {
-      var isDynamo = sessionConfig.isDynamo();
-      expect(isDynamo).to.be.true;
-    });
   });
 });

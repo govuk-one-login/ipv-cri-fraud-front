@@ -18,6 +18,9 @@ yarn install
 
 - `BASE_URL`: Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows
 - `PORT` - Default port to run webserver on. (Default to `5030`)
+- `SESSION_TABLE_NAME` - DynamoDB table name for session storage
+- `SESSION_SECRET` - Secret key for session encryption
+- `LOCAL_DYNAMO_ENDPOINT_OVERRIDE` - DynamoDB endpoint override (local development only)
 - `GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID` - Container ID for GA4 tracking.
 - `UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID` - Container ID for UA tracking.
 - `GA4_ENABLED` - Feature flag to enable GA4, defaulted to `"true"`
@@ -31,6 +34,45 @@ yarn install
 - `GA4_SELECT_CONTENT_ENABLED`- Feature flag to enable GA4 select content tracking, defaulted to `"true"`
 - `LANGUAGE_TOGGLE_DISABLED` - Feature flag to disable Language Toggle, defaulted to `true`
 - `MAY_2025_REBRAND_ENABLED` - Feature flag to enable the May 2025 GOV.UK branding change, defaults to `false`
+
+## Local Development with DynamoDB
+
+This app uses DynamoDB for session storage. Local development uses docker-compose, while tests use TestContainers.
+
+### Prerequisites
+
+- Docker and Docker Compose installed
+- Yarn package manager
+- Node.js 22.x
+
+### Quick Start
+
+```bash
+yarn build
+yarn dev
+```
+
+This automatically starts docker-compose (if not already running) and launches the app with nodemon.
+
+### How It Works
+
+**Local Development:**
+- `yarn dev` ensures docker-compose containers are running
+- App connects to DynamoDB at `localhost:8000`
+- DynamoDB Admin GUI available at `localhost:8001` for inspecting session table
+
+**Testing:**
+- Browser tests use TestContainers to start an isolated DynamoDB instance
+- Container is automatically created before tests and destroyed after
+- Separate from any running local dev containers
+- No manual setup required
+
+### Manual Docker Commands
+
+```bash
+yarn docker:up    # Start containers (if not already running)
+yarn docker:down  # Stop containers
+```
 
 ## Pre-Commit Checking / Verification
 
@@ -117,7 +159,7 @@ This can be run by using:
 The frontend can be configured to use this server through changing two environment variables:
 
 - `NODE_ENV = development` - this enables a middleware that passes the `x-scenario-id` header from web requests through to the API.
-- `API_BASE_URL = http://localhost:8090` - this points the frontend to the wiremock instance.
+- `API_BASE_URL = http://localhost:8030` - this points the frontend to the wiremock instance.
 
 A browser extension that can modify headers can be used to set the value of the header in a web browser. Example - [Mod Header](https://modheader.com)
 

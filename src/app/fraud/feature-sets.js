@@ -1,4 +1,6 @@
-const { PACKAGE_NAME } = require("../../lib/config");
+const {
+  API: { PACKAGE_NAME }
+} = require("../../lib/config");
 const logger = require("hmpo-logger").get(PACKAGE_NAME);
 
 module.exports = function (req, res, next) {
@@ -6,11 +8,11 @@ module.exports = function (req, res, next) {
     const featureSet = req.query.featureSet;
     const isValidFeatureSet = /^\w{1,32}(,\w{1,32})*$/.test(featureSet);
     if (!isValidFeatureSet) {
-      throw new Error("Invalid feature set ID");
+      return next(new Error("Invalid feature set ID"));
     }
 
     if (featureSet !== undefined) {
-      logger.info("feature set is " + featureSet);
+      logger.request("feature set is " + featureSet);
       req.session.featureSet = featureSet;
     }
     next();
