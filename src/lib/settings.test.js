@@ -1,3 +1,4 @@
+//QualityGateUnitTest
 const { setAPIConfig, setOAuthPaths } = require("./settings");
 
 describe("settings", () => {

@@ -1,3 +1,4 @@
+//QualityGateUnitTest
 const path = require("path");
 const featureSets = require("./app/fraud/featureSets");
 
