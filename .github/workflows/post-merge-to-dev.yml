@@ -3,12 +3,13 @@ on:
   push:
     branches:
       - main
+      - IPS-228-MS
   workflow_dispatch: # deploy manually
 
 jobs:
   dockerBuildAndPush:
     name: Docker build and push
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04-arm
     env:
       AWS_REGION: eu-west-2
     permissions:
