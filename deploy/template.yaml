@@ -623,6 +623,9 @@ Resources:
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
+      RuntimePlatform:
+        CpuArchitecture: ARM64
+        OperatingSystemFamily: LINUX
       TaskRoleArn: !GetAtt ECSTaskRole.Arn
       Tags:
         - Key: Name
