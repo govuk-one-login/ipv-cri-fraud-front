@@ -1,6 +1,8 @@
 FROM --platform=linux/arm64 node:22-alpine@sha256:42c19d60d8df0a9eaff90a0598bb575bd1dc9511b55c1d77930e4684b0774a16 AS builder
 WORKDIR /app
 
+RUN corepack enable
+
 COPY .yarn ./.yarn
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY /src ./src
@@ -15,6 +17,7 @@ RUN yarn install --production --frozen-lockfile
 
 FROM --platform=linux/arm64 node:22-alpine@sha256:42c19d60d8df0a9eaff90a0598bb575bd1dc9511b55c1d77930e4684b0774a16 AS final
 
+RUN corepack enable
 RUN apk add --no-cache tini
 
 WORKDIR /app
@@ -30,7 +33,7 @@ COPY --from=builder /app/src ./src
 # COPY --from=khw46367.live.dynatrace.com/linux/oneagent-codemodules-musl:nodejs / /
 # ENV LD_PRELOAD=/opt/dynatrace/oneagent/agent/lib64/liboneagentproc.so
 
-ENV PORT=8080
+ENV PORT=8080:qq
 EXPOSE $PORT
 
 ENTRYPOINT ["tini", "--"]
