@@ -636,6 +636,8 @@ Resources:
           Value: "Fraud CRI"
         - Key: Environment
           Value: !Sub "${Environment}"
+        - Key: Architecture
+          Value: "ARM64"
 
   ECSTaskExecutionRole:
     Type: "AWS::IAM::Role"
