@@ -639,6 +639,8 @@ Resources:
           Value: !Sub "${Environment}"
         - Key: Architecture
           Value: "ARM64"
+        - Key: Runtime
+          Value: "npm"
 
   ECSTaskExecutionRole:
     Type: "AWS::IAM::Role"
