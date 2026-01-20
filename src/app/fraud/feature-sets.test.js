@@ -1,4 +1,4 @@
-const FeatureSets = require("./featureSets");
+const FeatureSets = require("./feature-sets");
 
 describe("feature sets", () => {
   let req;

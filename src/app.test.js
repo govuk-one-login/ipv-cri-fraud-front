@@ -1,5 +1,5 @@
 const path = require("path");
-const featureSets = require("./app/fraud/featureSets");
+const featureSets = require("./app/fraud/feature-sets");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 

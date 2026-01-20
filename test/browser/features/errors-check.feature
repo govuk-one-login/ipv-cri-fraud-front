@@ -4,7 +4,7 @@ Feature: Fraud CRI - Error handling - Check Error
   API Errors in middle of journey
 
   Background:
-    Given Error Ethem has started the Fraud Journey
+    Given Erroring Ethem has started the Fraud Journey
     And they have provided their details
 
   @mock-api:fraud-check-error

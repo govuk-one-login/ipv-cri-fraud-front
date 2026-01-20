@@ -16,7 +16,6 @@ describe("app-setup", () => {
     };
     setup = sandbox.stub().returns({ app, router });
 
-    isDynamoBool = new Boolean(true);
     sessionConfigMap = sandbox.stub();
 
     sandbox.stub(sessionConfig, "init").returns({
@@ -25,7 +24,6 @@ describe("app-setup", () => {
       cookieOptions: { maxAge: 7200000 },
       ...("table-name" && { sessionStore: {} })
     });
-    sandbox.stub(sessionConfig, "isDynamo").returns(isDynamoBool);
   });
 
   afterEach(() => {
@@ -99,19 +97,12 @@ describe("app-setup", () => {
     });
 
     it("should set application config", () => {
-      const { app, router } = AppSetup.create(setup);
-
-      const loggerConfig = {
-        consoleLevel: "request",
-        console: true,
-        consoleJSON: true,
-        app: false
-      };
+      AppSetup.create(setup);
 
       const options = {
         config: { APP_ROOT: __dirname },
         port: false,
-        logs: loggerConfig,
+        logs: false,
         session: {
           cookieName: "service_session",
           secret: 1234,
@@ -119,7 +110,7 @@ describe("app-setup", () => {
           ...("table-name" && { sessionStore: {} })
         },
         helmet: helmetConfig,
-        redis: isDynamoBool ? false : commonExpress.lib.redis(),
+        redis: false,
         urls: {
           public: "/public",
           publicImages: "/public/images"
