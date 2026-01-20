@@ -502,7 +502,7 @@ Resources:
     DependsOn: ECSAccessLogsGroup
 
   ECSServiceTaskDefinition:
-    # Updated for Node 22 ARM64 with npm runtime
+    # Updated for Node 22 ARM64 with npm runtime v2
     Type: "AWS::ECS::TaskDefinition"
     Properties:
       ContainerDefinitions:
