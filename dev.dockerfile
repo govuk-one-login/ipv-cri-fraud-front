@@ -3,7 +3,7 @@ FROM --platform=linux/arm64 node:22-alpine@sha256:42c19d60d8df0a9eaff90a0598bb57
 WORKDIR /app
 
 # Enable corepack for correct yarn version
-RUN corepack enable
+RUN mkdir -p /root/.cache/node/corepack/v1 && corepack enable
 
 COPY .yarn ./.yarn
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -20,7 +20,7 @@ RUN yarn install --production --frozen-lockfile
 FROM --platform=linux/arm64 node:22-alpine@sha256:42c19d60d8df0a9eaff90a0598bb575bd1dc9511b55c1d77930e4684b0774a16 AS final
 
 # Enable corepack for runtime
-RUN corepack enable
+RUN mkdir -p /root/.cache/node/corepack/v1 && corepack enable
 RUN apk add --no-cache tini
 
 WORKDIR /app

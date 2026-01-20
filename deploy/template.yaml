@@ -502,6 +502,7 @@ Resources:
     DependsOn: ECSAccessLogsGroup
 
   ECSServiceTaskDefinition:
+    # Updated for Node 22 ARM64 support
     Type: "AWS::ECS::TaskDefinition"
     Properties:
       ContainerDefinitions:
