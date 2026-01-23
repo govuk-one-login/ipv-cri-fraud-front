@@ -1,3 +1,4 @@
+@QualityGateRegressionTest @QualityGateIntegrationTest
 @mock-api:fraud-success
 Feature: Fraud CRI - Welsh Language Test
 

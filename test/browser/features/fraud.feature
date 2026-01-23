@@ -1,3 +1,4 @@
+@QualityGateRegressionTest @QualityGateIntegrationTest
 @mock-api:fraud-success
 Feature: Fraud CRI - Happy Path Tests
 
@@ -83,6 +84,7 @@ Feature: Fraud CRI - Happy Path Tests
       | DeviceIntelligenceCookieName |
       | di-device-intelligence       |
 
+  @QualityGateAccessibilityTest
   @mock-api:fraud-success
   Scenario: Fraud CRI - Axe Accessibility Scan - Fraud Check Page
     And they can see the check page
