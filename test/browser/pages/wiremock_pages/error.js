@@ -13,8 +13,4 @@ module.exports = class PlaywrightDevPage {
   getErrorTitle() {
     return this.page.title();
   }
-
-  isCurrentPage() {
-    return this.page.url() === this.url;
-  }
 };
