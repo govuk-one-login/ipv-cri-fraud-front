@@ -9,10 +9,10 @@ Feature: Fraud CRI - Error handling - Session Error
     And they have provided their details
 
   @mock-api:fraud-session-error
-  Scenario: API error
+  Scenario: API error - Sorry There is a Problem Error Page
     Then they should see an error page
 
   @mock-api:fraud-session-error
-  Scenario: API error
+  Scenario: API error - Axe Accessibility Scan - Sorry There is a Problem Error Page
     Then they should see an error page
     And I run the Axe Accessibility check against the Fraud Error page

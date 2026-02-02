@@ -121,6 +121,23 @@ The frontend can be configured to use this server through changing two environme
 
 A browser extension that can modify headers can be used to set the value of the header in a web browser. Example - [Mod Header](https://modheader.com)
 
+
+## Core Stub Tests
+
+There are E2E tests which run against the core stub, in the Dev, Build and Staging environments.
+
+To execute these tests run:
+
+`yarn run test:browser:stub:ci`
+
+To build the Docker image run:
+
+`docker build --tag fraud-cri-test-image -f Dockerfile ..`
+
+To execute the tests in docker run:
+
+`docker run -e STACK_NAME=local fraud-cri-test-image` - add `-e ENVIRONMENT=dev` to run in Dev environment
+
 ## Request properties
 
 In order to support consistent use of headers for API requests. [middleware](./src/lib/axios.js) is applied to add an instance of [axios](https://axios-http.com/) on each reqest onto `req.axios`. This is then reused in any code that uses the API.
