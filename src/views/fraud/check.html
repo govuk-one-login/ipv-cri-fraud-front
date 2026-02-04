@@ -5,6 +5,14 @@
 {% set hmpoPageKey = "check" %}
 {% set gtmJourney = "fraud" %}
 
+{% set isPageDataSensitive = false %}
+{% set statusCode = 200 %}
+{% set pageTitleKey = "pages.check.title" %}
+{% set contentID = "001" %}
+{% set taxLevel2 = 'fraud' %}
+{% set isPageDynamic = false %}
+{% set loggedInStatus = true %}
+
 {% block mainContent %}
   <h1 id="header" class="govuk-heading-l">{{translate("pages.check.title")}}
   </h1>
@@ -61,22 +69,6 @@
         }
       })
     }
-
-    window.addEventListener('load', function () {
-      window
-        .DI
-        .analyticsGa4
-        .pageViewTracker
-        .trackOnPageLoad({
-          statusCode: '200', // Access status code
-          englishPageTitle: '{{translate("pages.check.title")}}',
-          taxonomy_level1: 'web cri', // Access taxonomy level 1
-          taxonomy_level2: 'fraud', // Access taxonomy level 2
-          content_id: '001',
-          logged_in_status: true,
-          dynamic: false
-        });
-    });
   </script>
 
 {% endblock %}
