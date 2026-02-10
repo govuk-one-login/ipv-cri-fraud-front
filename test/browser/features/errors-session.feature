@@ -1,3 +1,4 @@
+@QualityGateRegressionTest
 @mock-api:fraud-session-error
 Feature: Fraud CRI - Error handling - Session Error
 

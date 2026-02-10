@@ -18,18 +18,6 @@ class FraudCheckController extends BaseController {
       ...createPersonalDataHeaders(`${BASE_URL}${CHECK}`, req)
     };
 
-    const featureSetList = req.session.featureSet?.split(",");
-
-    if (featureSetList) {
-      if (featureSetList.includes("crosscoreV2")) {
-        headers["crosscore-version"] = "2";
-      }
-
-      if (featureSetList.includes("watchlist")) {
-        headers["score-two-route"] = "watchlist";
-      }
-    }
-
     await req.axios.post(`${CHECK}`, {}, { headers: headers });
 
     return super.saveValues(req, res, callback);
