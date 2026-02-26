@@ -1,0 +1,2881 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "fraud-cri---welsh-language-test;fraud-cri---run-fraud-check",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "Fraud CRI - Run fraud check",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 80834290
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 38428523
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 423954631
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 236493
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1387286
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I add a cookie to change the language to Welsh",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/universal-step-defs.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 195299535
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "they can see the check page title text as Rydym angen gwirio eich manylion",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 38636054
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "they can see the check page title summary text first part as Bydd eich manylion yn cael eu gwirio yn erbyn gwybodaeth sy'n cael ei ddal gan sefydliad arall.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:148"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4591863
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "they can see the check page title summary text second part as Bydd hyn yn ein helpu i'ch amddiffyn rhag dwyn hunaniaeth ar-lein.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:158"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3745106
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "they can see the check page warning text Gall gymryd hyd at 30 eiliad i wirio'ch manylion. Ar ôl i chi barhau, peidiwch ag ail-lwytho neu gau'r dudalen hon.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:168"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3577133
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 17,
+            "name": "they continue to fraud check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 210957169
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "they should be redirected as a success",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/relying-party.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 435321
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 12904794
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---welsh-language-test;fraud-cri---beta-banner-accept-analysis",
+        "keyword": "Scenario",
+        "line": 21,
+        "name": "Fraud CRI - Beta Banner Accept Analysis",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 7071824
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 25728826
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 296509089
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 100900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 247569
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I add a cookie to change the language to Welsh",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/universal-step-defs.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 178189177
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 22,
+            "name": "they view the Beta banner with the Welsh text as Mae hwn yn wasanaeth newydd. Helpwch ni i'w wella a rhoi eich adborth (agor mewn tab newydd).",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:176"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 32681682
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "I select Accept analytics cookies button and see the text Rydych wedi derbyn cwcis ychwanegol. Gallwch newid eich gosodiadau cwcis ar unrhyw adeg.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:91"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 45740827
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "I select the accepted link change your cookie settings and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:99"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3903346253
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6267401
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 20
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---welsh-language-test;fraud-cri---beta-banner-reject-analysis",
+        "keyword": "Scenario",
+        "line": 27,
+        "name": "Fraud CRI - Beta Banner Reject Analysis",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5477310
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 27013313
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 305701043
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 121161
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 143283
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I add a cookie to change the language to Welsh",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/universal-step-defs.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 167702245
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 28,
+            "name": "they view the Beta banner with the Welsh text as Mae hwn yn wasanaeth newydd. Helpwch ni i'w wella a rhoi eich adborth (agor mewn tab newydd).",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:176"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 20967013
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 29,
+            "name": "I select Reject analytics cookies button and see the text Rydych wedi gwrthod cwcis ychwanegol. Gallwch newid eich gosodiadau cwcis ar unrhyw adeg.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:83"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 59288853
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "I select the rejected link change your cookie settings and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:107"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3258878604
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6032874
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 26
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "fraud-cri---welsh-language-test",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Fraud CRI - Welsh Language Test",
+    "tags": [
+      {
+        "name": "@QualityGateRegressionTest",
+        "line": 1
+      },
+      {
+        "name": "@QualityGateIntegrationTest",
+        "line": 1
+      },
+      {
+        "name": "@mock-api:fraud-success",
+        "line": 2
+      }
+    ],
+    "uri": "test/browser/features/wiremock_features/WelshLangFraudCRI.feature"
+  },
+  {
+    "description": "  API Errors in middle of journey",
+    "elements": [
+      {
+        "description": "",
+        "id": "fraud-cri---error-handling---check-error;api-error---error-page-after-/check-page",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "API error - Error Page after /check page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5211613
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 28268649
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "Error Ethem has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 322607318
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119729
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 144185
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "they continue to fraud check",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 177881452
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "they should be redirected as an error",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/relying-party.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 382822
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 12943272
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-check-error",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-check-error",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "fraud-cri---error-handling---check-error",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Fraud CRI - Error handling - Check Error",
+    "tags": [
+      {
+        "name": "@QualityGateRegressionTest",
+        "line": 1
+      },
+      {
+        "name": "@mock-api:fraud-check-error",
+        "line": 2
+      }
+    ],
+    "uri": "test/browser/features/wiremock_features/errors-check.feature"
+  },
+  {
+    "description": "  API Errors in middle of journey",
+    "elements": [
+      {
+        "description": "",
+        "id": "fraud-cri---error-handling---session-error;api-error---sorry-there-is-a-problem-error-page",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "API error - Sorry There is a Problem Error Page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5629668
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 28123512
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "Error Ethem has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 187927448
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 156742
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "they should see an error page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/errors.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6596886
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4427332
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-session-error",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-session-error",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---error-handling---session-error;api-error---axe-accessibility-scan---sorry-there-is-a-problem-error-page",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "API error - Axe Accessibility Scan - Sorry There is a Problem Error Page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 9488164
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 31288585
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "Error Ethem has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 174236752
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 101760
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "they should see an error page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/errors.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3289509
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "I run the Axe Accessibility check against the Fraud Error page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/errors.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 430875046
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4825224
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-session-error",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-session-error",
+            "line": 15
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "fraud-cri---error-handling---session-error",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Fraud CRI - Error handling - Session Error",
+    "tags": [
+      {
+        "name": "@QualityGateRegressionTest",
+        "line": 1
+      },
+      {
+        "name": "@mock-api:fraud-session-error",
+        "line": 2
+      }
+    ],
+    "uri": "test/browser/features/wiremock_features/errors-session.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---run-fraud-check",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Fraud CRI - Run fraud check",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4786295
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 27025227
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 268601630
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 124555
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 11,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 162911
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "they can see the check page title text as We need to check your details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42917883
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "they can see the check page title summary text first part as Your details will be checked against information held by another organisation.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:148"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3580603
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "they can see the check page title summary text second part as This will help us protect you against online identity theft.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:158"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2923085
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "they can see the check page warning text It can take up to 30 seconds to check your details. After you continue, do not reload or close this page.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:168"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3009283
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 16,
+            "name": "they continue to fraud check",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 195558409
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "they should be redirected as a success",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/relying-party.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 193858
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 11806162
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 9
+          },
+          {
+            "name": "@test",
+            "line": 9
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---run-fraud-check---slow-mode",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Fraud CRI - Run fraud check - Slow Mode",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6198365
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 27056624
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 276532640
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 110324
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 21,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 139467
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "they continue to fraud check",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 215403111
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "they should be redirected as a success",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/relying-party.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 189202
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 12971268
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success-slow",
+            "line": 19
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---who-we-check-your-details-with-drop-down",
+        "keyword": "Scenario Outline",
+        "line": 31,
+        "name": "Fraud CRI - Who we check your details with Drop Down",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6111129
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26407962
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 291563150
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 102874
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 27,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 120170
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "they click ThirdParty and assert I have been directed correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2633943793
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5581815
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success-experian-links",
+            "line": 25
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---who-we-check-your-details-with-drop-down",
+        "keyword": "Scenario Outline",
+        "line": 32,
+        "name": "Fraud CRI - Who we check your details with Drop Down",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 7421099
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 29672348
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 281067439
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118097
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 27,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 171766
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "they click Privacy Policy and assert I have been directed correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1710695307
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 8670790
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success-experian-links",
+            "line": 25
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---footer-links",
+        "keyword": "Scenario Outline",
+        "line": 40,
+        "name": "Fraud CRI - Footer Links",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6944215
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26343947
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 275188458
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 159399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 36,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 237845
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "they click Footer Accessibility and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 745373661
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5276789
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 34
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---footer-links",
+        "keyword": "Scenario Outline",
+        "line": 41,
+        "name": "Fraud CRI - Footer Links",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5301816
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 25709726
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 247534474
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 122283
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 36,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 165396
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "they click Footer Cookies and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 327890477
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5829185
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 34
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---footer-links",
+        "keyword": "Scenario Outline",
+        "line": 42,
+        "name": "Fraud CRI - Footer Links",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4196959
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 25074809
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 304101958
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 137756
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 36,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 143073
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "they click Footer TsAndCs and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 739291151
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 7309367
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 34
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---footer-links",
+        "keyword": "Scenario Outline",
+        "line": 43,
+        "name": "Fraud CRI - Footer Links",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4610616
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26805875
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 280908929
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 150614
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 36,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 200619
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "they click Footer Privacy and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 146123471
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5633453
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 34
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---footer-links",
+        "keyword": "Scenario Outline",
+        "line": 44,
+        "name": "Fraud CRI - Footer Links",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6752805
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26556984
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 297875810
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 113019
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 36,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 134810
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "they click Footer Support and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 883598434
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 10243399
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 34
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---footer-links",
+        "keyword": "Scenario Outline",
+        "line": 45,
+        "name": "Fraud CRI - Footer Links",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4826853
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 27679412
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 284028062
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 114851
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 36,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 121000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "they click Footer OGL and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 207866097
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 7361987
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 34
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---footer-links",
+        "keyword": "Scenario Outline",
+        "line": 46,
+        "name": "Fraud CRI - Footer Links",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4431481
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26369021
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 298554400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 129364
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 36,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 190675
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "they click Footer CrownCopyright and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 140536209
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5726810
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 34
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---beta-banner",
+        "keyword": "Scenario Outline",
+        "line": 55,
+        "name": "Fraud CRI - Beta Banner",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 6427749
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 27113815
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 272937064
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119948
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 50,
+            "name": "The Beta banner is displayed",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:61"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23299556
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 51,
+            "name": "they view the Beta banner with the text as This is a new service. Help us improve it and give your feedback (opens in a new tab).",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:66"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 19514843
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "I assert the feedback URL https://signin.account.gov.uk/contact-us is correct and live",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:75"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 92599183
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4371993
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 48
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---cookies-accept-analysis",
+        "keyword": "Scenario",
+        "line": 58,
+        "name": "Fraud CRI - Cookies Accept Analysis",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3963942
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26740065
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 268390009
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 91606
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 59,
+            "name": "I select Accept analytics cookies button and see the text You've accepted additional cookies. You can change your cookie settings at any time.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:91"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 61583868
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 60,
+            "name": "I select the accepted link change your cookie settings and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:99"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3692788548
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5509590
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 57
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---cookies-reject-analysis",
+        "keyword": "Scenario",
+        "line": 63,
+        "name": "Fraud CRI - Cookies Reject Analysis",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3421505
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 27872856
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 300719231
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 161632
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 64,
+            "name": "I select Reject analytics cookies button and see the text You've rejected additional cookies. You can change your cookie settings at any time.",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:83"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 66271141
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 65,
+            "name": "I select the rejected link change your cookie settings and assert I have been redirected correctly",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:107"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3258767661
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5619781
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 62
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---skip-to-main-content",
+        "keyword": "Scenario",
+        "line": 68,
+        "name": "Fraud CRI - Skip to Main Content",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4618311
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 26998988
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 266299956
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 155462
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 69,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 187550
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 70,
+            "name": "I see the Skip to main content Link Text",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:133"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42531396
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5242877
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 67
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---user-clicks-the-view-cookies-on-the-cookie-banner",
+        "keyword": "Scenario",
+        "line": 73,
+        "name": "Fraud CRI - User Clicks the View Cookies on the Cookie Banner",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3574840
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 28565592
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 268735593
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 110595
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 74,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 133910
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 75,
+            "name": "The cookie banner is displayed",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:115"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 35525079
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 76,
+            "name": "User clicks on the View Cookies Link",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 262583775
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 77,
+            "name": "I check the Cookies page Title GOV.UK One Login cookies policy",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:125"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 886674965
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3748418
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 72
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---cookies---device-intelligence",
+        "keyword": "Scenario",
+        "line": 85,
+        "name": "Fraud CRI - Cookies - Device Intelligence",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5477058
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 30644785
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 305140040
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119208
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 81,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 146768
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 82,
+            "name": "I see the Device Intelligence Cookie di-device-intelligence",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:35"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 501474409
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 5473071
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 79
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "fraud-cri---happy-path-tests;fraud-cri---axe-accessibility-scan---fraud-check-page",
+        "keyword": "Scenario",
+        "line": 89,
+        "name": "Fraud CRI - Axe Accessibility Scan - Fraud Check Page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3172659
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 27451786
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "Authenticatable Anita has started the Fraud Journey",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 287235911
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "they have provided their details",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/details.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 127209
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 90,
+            "name": "they can see the check page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 181361
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 91,
+            "name": "I run the Axe Accessibility check against the Fraud Check entry page",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 420854978
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 92,
+            "name": "they continue to fraud check",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/fraud.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 198238655
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 93,
+            "name": "they should be redirected as a success",
+            "match": {
+              "location": "test/browser/step_definitions/wiremock_steps/relying-party.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 225468
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 11493291
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@QualityGateRegressionTest",
+            "line": 1
+          },
+          {
+            "name": "@QualityGateIntegrationTest",
+            "line": 1
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 2
+          },
+          {
+            "name": "@QualityGateAccessibilityTest",
+            "line": 87
+          },
+          {
+            "name": "@mock-api:fraud-success",
+            "line": 88
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "fraud-cri---happy-path-tests",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Fraud CRI - Happy Path Tests",
+    "tags": [
+      {
+        "name": "@QualityGateRegressionTest",
+        "line": 1
+      },
+      {
+        "name": "@QualityGateIntegrationTest",
+        "line": 1
+      },
+      {
+        "name": "@mock-api:fraud-success",
+        "line": 2
+      }
+    ],
+    "uri": "test/browser/features/wiremock_features/fraud.feature"
+  }
+]
