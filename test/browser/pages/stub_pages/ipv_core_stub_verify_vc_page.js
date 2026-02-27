@@ -52,7 +52,8 @@ module.exports = class IpvCoreStubVerfiyVcPage {
       return parsed;
     } catch (err) {
       throw new Error(
-        `Failed to parse JSON from VC payload: ${err.message}\nContent: ${jsonString}`
+        `Failed to parse JSON from VC payload: ${err.message}\nContent: ${jsonString}`,
+        { cause: err }
       );
     }
   }
