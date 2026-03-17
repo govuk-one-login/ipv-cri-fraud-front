@@ -1,7 +1,7 @@
 const AppSetup = require("./app-setup");
 const path = require("path");
 const sessionConfig = require("./session-config");
-const helmetConfig = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/helmet");
+const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 
 describe("app-setup", () => {
   const sandbox = sinon.createSandbox();
@@ -118,7 +118,7 @@ describe("app-setup", () => {
           cookieOptions: { maxAge: 7200000 },
           ...("table-name" && { sessionStore: {} })
         },
-        helmet: helmetConfig,
+        helmet: commonExpress.lib.helmet,
         redis: isDynamoBool ? false : commonExpress.lib.redis(),
         urls: {
           public: "/public",

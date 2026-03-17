@@ -1,3 +1,6 @@
+process.env.SESSION_SECRET = "1234";
+process.env.SESSION_TABLE_NAME = "table-name";
+
 const chai = require("chai");
 const sinon = require("sinon");
 const sinonChai = require("sinon-chai");

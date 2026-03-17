@@ -53,12 +53,14 @@ jobs:
     needs: resolve-test-versions
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
+        uses: actions/checkout@v6
         with:
-          node-version: 22
+          fetch-depth: 0 # required for sonar
+
+      - name: Node setup
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
           cache: "yarn"
 
       - name: Install dependencies
@@ -96,15 +98,15 @@ jobs:
         env:
           BROWSER: chrome-headless
 
-      - name: Run sonarcloud scan
+      - name: Sonar scan
         if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarqube-scan-action@v6.0.0
+        uses: SonarSource/sonarqube-scan-action@v7.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Get test results history
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         if: always()
         continue-on-error: true
         with:
