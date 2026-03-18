@@ -2,20 +2,13 @@ const { API, APP, LOG_LEVEL } = require("./lib/config");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 
-const { setGTM, setLanguageToggle, setDeviceIntelligence } =
-  commonExpress.lib.settings;
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
 const sessionConfigService = require("./session-config");
 const overloadProtectionConfigService = require("./overload-protection-config");
 
 const path = require("path");
-const helmetConfig = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/helmet");
 const setHeaders = commonExpress.lib.headers;
-const {
-  setI18n
-} = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/i18next");
 // Common express relies on 0/1 strings
-const showLanguageToggle = APP.LANGUAGE_TOGGLE_DISABLED === "true" ? "0" : "1";
 const {
   frontendVitalSignsInitFromApp
 } = require("@govuk-one-login/frontend-vital-signs");
@@ -30,7 +23,7 @@ const init = (app, router) => {
 
   setOAuthPaths({ app, entryPointPath: APP.PATHS.FRAUD });
 
-  setGTM({
+  commonExpress.lib.settings.setGTM({
     app,
     ga4ContainerId: APP.GTM.GA4_ID,
     uaContainerId: APP.GTM.UA_ID,
@@ -46,14 +39,17 @@ const init = (app, router) => {
     analyticsDataSensitive: APP.GTM.ANALYTICS_DATA_SENSITIVE
   });
 
-  setDeviceIntelligence({
+  commonExpress.lib.settings.setDeviceIntelligence({
     app,
     deviceIntelligenceEnabled: APP.DEVICE_INTELLIGENCE_ENABLED,
     deviceIntelligenceDomain: APP.DEVICE_INTELLIGENCE_DOMAIN
   });
 
-  setLanguageToggle({ app, showLanguageToggle: showLanguageToggle });
-  setI18n({
+  commonExpress.lib.settings.setLanguageToggle({
+    app,
+    showLanguageToggle: APP.LANGUAGE_TOGGLE_DISABLED === "true" ? "0" : "1"
+  });
+  commonExpress.lib.i18n.setI18n({
     router,
     config: {
       secure: true,
@@ -78,7 +74,7 @@ const create = (setup) => {
     port: false,
     logs: loggerConfig,
     session: sessionConfig,
-    helmet: helmetConfig,
+    helmet: commonExpress.lib.helmet,
     redis: sessionConfigService.isDynamo() ? false : commonExpress.lib.redis(),
     urls: {
       public: "/public",
