@@ -890,7 +890,7 @@ Resources:
       Namespace: "AWS/ECS"
       Statistic: "Average"
       Period: "60"
-      Threshold: "60"
+      Threshold: "30"
 
   EcsStepScaleInAlarm:
     DependsOn: ECSAutoScalingTarget
@@ -914,7 +914,7 @@ Resources:
       Namespace: "AWS/ECS"
       Statistic: "Average"
       Period: "60"
-      Threshold: "20"
+      Threshold: "30"
 
   ####################################################################
   #                                                                  #
