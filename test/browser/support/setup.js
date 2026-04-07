@@ -30,8 +30,8 @@ BeforeAll(async function () {
     });
   } else {
     global.browser = await chromium.launch({
-      headless: false,
-      slowMo: 500 // ms
+      headless: true,
+      slowMo: 0 // ms
     });
   }
 });
