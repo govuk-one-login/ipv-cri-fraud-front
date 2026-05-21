@@ -39,7 +39,9 @@ jobs:
     permissions:
       contents: write
       packages: write
-    needs: resolve-test-versions
+    needs:
+      - resolve-test-versions
+      - pre-commit
     steps:
       - name: Checkout
         uses: actions/checkout@v6
