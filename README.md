@@ -11,7 +11,7 @@ This is the home for the front end user interface for a credential issuer as a p
 Clone this repository and then run
 
 ```bash
-yarn install
+npm install
 ```
 
 ## Environment Variables
@@ -112,7 +112,7 @@ These configuration files are stored as JSON files in the [./test/mocks/mappings
 
 This can be run by using:
 
-`yarn run mock`
+`npm run mocks`
 
 The frontend can be configured to use this server through changing two environment variables:
 
@@ -128,7 +128,7 @@ There are E2E tests which run against the core stub, in the Dev, Build and Stagi
 
 To execute these tests run:
 
-`yarn run test:browser:stub:ci`
+`npm run test:browser:stub:ci`
 
 To build the Docker image run:
 
