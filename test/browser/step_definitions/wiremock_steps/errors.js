@@ -13,7 +13,7 @@ Then(
   /^I run the Axe Accessibility check against the Fraud Error page$/,
   async function () {
     const results = await new AxeBuilder({ page: this.page })
-      .withTags(["wcag22aa"])
+      .withTags(["wcag22aa", "best-practice"])
       .analyze();
 
     expect(results.violations).to.be.empty;
