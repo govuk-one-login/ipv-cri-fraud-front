@@ -28,3 +28,10 @@ Feature: Fraud CRI - Welsh Language Test
     When they view the Beta banner with the Welsh text as Mae hwn yn wasanaeth newydd. Helpwch ni i'w wella a rhoi eich adborth (agor mewn tab newydd).
     Then I select Reject analytics cookies button and see the text Rydych wedi gwrthod cwcis ychwanegol. Gallwch newid eich gosodiadau cwcis ar unrhyw adeg.
     Then I select the rejected link change your cookie settings and assert I have been redirected correctly
+
+  @QualityGateAccessibilityTest
+  @mock-api:fraud-success
+  Scenario: Fraud CRI - Axe Accessibility Scan - Fraud Check Page Welsh
+    And I run the Axe Accessibility check against the Fraud Check entry page
+    When they continue to fraud check page
+    Then they should be redirected as a success
