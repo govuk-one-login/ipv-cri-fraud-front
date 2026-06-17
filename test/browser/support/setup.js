@@ -1,10 +1,7 @@
 const { Before, BeforeAll, AfterAll, After } = require("@cucumber/cucumber");
-const { setDefaultTimeout } = require("@cucumber/cucumber");
 const { chromium } = require("@playwright/test");
 const axios = require("axios");
 const ConfigurationReader = require("./configuration-reader");
-
-setDefaultTimeout(31 * 1000); // 60 seconds for all steps
 
 BeforeAll(async function () {
   // Log environment at start of test execution (only for stub tests)

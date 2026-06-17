@@ -4,7 +4,6 @@ Feature: Fraud CRI - Welsh Language Test
 
   Background:
     Given Authenticatable Anita has started the Fraud Journey
-    And they have provided their details
     And they can see the check page
     And I add a cookie to change the language to Welsh
 

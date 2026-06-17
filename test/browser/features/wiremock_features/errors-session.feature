@@ -6,7 +6,6 @@ Feature: Fraud CRI - Error handling - Session Error
 
   Background:
     Given Error Ethem has started the Fraud Journey
-    And they have provided their details
 
   @mock-api:fraud-session-error
   Scenario: API error - Sorry There is a Problem Error Page

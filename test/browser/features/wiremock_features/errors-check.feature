@@ -6,7 +6,6 @@ Feature: Fraud CRI - Error handling - Check Error
 
   Background:
     Given Error Ethem has started the Fraud Journey
-    And they have provided their details
 
   @mock-api:fraud-check-error
   Scenario: API error - Error Page after /check page

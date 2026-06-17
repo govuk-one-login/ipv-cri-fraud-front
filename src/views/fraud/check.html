@@ -14,25 +14,30 @@
 {% set loggedInStatus = true %}
 
 {% block mainContent %}
-  <h1 id="header" class="govuk-heading-l">{{translate("pages.check.title")}}
+  <h1 id="header" data-testid="fraud-title" class="govuk-heading-l">{{translate("pages.check.title")}}
   </h1>
   {% call hmpoForm(ctx) %}
 
-  {{ hmpoHtml(translate("pages.check.content")) }}
+  <div data-testid="fraud-summary">
+    {{ hmpoHtml(translate("pages.check.content")) }}
+  </div>
 
   {{ govukDetails({
   summaryText: translate("pages.check.details.summary"),
   html: hmpoHtml(translate("pages.check.details.text"))
 }) }}
 
-{{ hmpoHtml(translate("pages.check.contentContinued")) }}
+  <div data-testid="fraud-warning">
+    {{ hmpoHtml(translate("pages.check.contentContinued")) }}
+  </div>
 
   {{ hmpoSubmit(ctx, {
         id: "continue",
         text: translate("buttons.next"),
         attributes: {
           "data-nav": true,
-          "data-link": "/oauth2/callback"
+          "data-link": "/oauth2/callback",
+          "data-testid": "fraud-continue"
         }
 
     }) }}

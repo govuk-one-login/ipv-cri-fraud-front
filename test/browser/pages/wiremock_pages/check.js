@@ -74,18 +74,17 @@ module.exports = class PlaywrightDevPage {
     this.rejectCookiesMessage = this.page.locator(
       "xpath=/html/body/div[1]/div[3]/div[1]/div/div/p"
     );
-    this.fraudLandingPageTitleSummary = this.page.locator(
-      'xpath=//*[@id="header"]'
-    );
-    this.fraudLandingPageTitleSummaryTextOne = this.page.locator(
-      'xpath=//*[@id="main-content"]/div/div/form/p[1]'
-    );
-    this.fraudLandingPageTitleSummaryTextTwo = this.page.locator(
-      'xpath=//*[@id="main-content"]/div/div/form/p[2]'
-    );
-    this.fraudLandingPageWarningMessageText = this.page.locator(
-      'xpath=//*[@id="main-content"]/div/div/form/p[3]'
-    );
+    this.fraudLandingPageTitleSummary = this.page.getByTestId("fraud-title");
+    this.fraudLandingPageTitleSummaryTextOne = this.page
+      .getByTestId("fraud-summary")
+      .locator("p")
+      .nth(0);
+    this.fraudLandingPageTitleSummaryTextTwo = this.page
+      .getByTestId("fraud-summary")
+      .locator("p")
+      .nth(1);
+    this.fraudLandingPageWarningMessageText =
+      this.page.getByTestId("fraud-warning");
   }
 
   isCurrentPage() {
