@@ -4,7 +4,6 @@ Feature: Fraud CRI - Happy Path Tests
 
   Background:
     Given Authenticatable Anita has started the Fraud Journey
-    And they have provided their details
 
   @mock-api:fraud-success @test
   Scenario: Fraud CRI - Run fraud check

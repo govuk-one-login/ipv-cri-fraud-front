@@ -1,15 +1,7 @@
 const { Given } = require("@cucumber/cucumber");
 const { RelyingPartyPage } = require("../../pages/wiremock_pages");
 
-Given(/^(.*) has started the Fraud Journey$/, async function (name) {
-  this.user = this.allUsers[name];
+Given(/^.* has started the Fraud Journey$/, async function () {
   const rpPage = new RelyingPartyPage(this.page);
-
   await rpPage.goto();
 });
-
-Given(
-  "they have provided their details",
-  { timeout: 10 * 1000 },
-  async function () {}
-);

@@ -13,16 +13,6 @@ module.exports = class PlaywrightDevPage {
     await this.page.goto(this.startingUrl);
   }
 
-  async isRedirectPage() {
-    const url = this.page.url();
-
-    const isCorrectPage =
-      url.startsWith("http://localhost:8030") &&
-      url.endsWith("client_id=standalone&state=sT%40t3&code=FACEFEED");
-
-    return isCorrectPage;
-  }
-
   isRelyingPartyServer() {
     return new URL(this.page.url()).origin === "http://localhost:8030";
   }
