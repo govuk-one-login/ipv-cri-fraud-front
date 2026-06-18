@@ -6,7 +6,7 @@ const {
   IpvCoreStubUserEditPage,
   FraudCheckPage,
   IpvCoreStubVerfiyVcPage
-} = require("../../pages/stub_pages");
+} = require("../../pages/stub-pages");
 const ConfigurationReader = require("../../support/configuration-reader");
 
 require("dotenv").config();

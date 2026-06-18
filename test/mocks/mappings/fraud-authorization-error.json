@@ -1,0 +1,95 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "fraud-authorization-error",
+      "newScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "url": "/__reset/fraud-authorization-error"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "fraud-authorization-error",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "FraudCheck",
+      "request": {
+        "method": "POST",
+        "urlPath": "/session",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-authorization-error"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "session_id": "ABADCAFE",
+          "state": "sT@t3",
+          "redirect_uri": "http://localhost:8030/return"
+        }
+      }
+    },
+    {
+      "scenarioName": "fraud-authorization-error",
+      "requiredScenarioState": "FraudCheck",
+      "newScenarioState": "AuthCode",
+      "request": {
+        "method": "POST",
+        "urlPath": "/identity-check",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-authorization-error"
+          },
+          "session_id": {
+            "equalTo": "ABADCAFE"
+          }
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "fraud-authorization-error",
+      "requiredScenarioState": "AuthCode",
+      "request": {
+        "method": "GET",
+        "urlPath": "/authorization",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-authorization-error"
+          },
+          "session_id": {
+            "equalTo": "ABADCAFE"
+          }
+        }
+      },
+      "response": {
+        "status": 500
+      }
+    },
+    {
+      "scenarioName": "fraud-authorization-error",
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/return.*",
+        "queryParameters": {
+          "error": {
+            "equalTo": "server_error"
+          },
+          "error_description": {
+            "equalTo": "general error"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "OAuth error callback received"
+      }
+    }
+  ]
+}
