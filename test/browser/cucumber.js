@@ -3,7 +3,6 @@ const path = require("path");
 
 const repoRoot = path.resolve(__dirname, "..", "..");
 
-const DEFAULT_TIMEOUT = 60 * 1000;
 const PROGRESS = "progress";
 
 const commonSupport = ["./test/browser/support/**/*.js"];
@@ -26,8 +25,7 @@ module.exports = {
       PROGRESS,
       `json:${makeReportPath("cucumber-report.json")}`,
       `html:${makeReportPath("index.html")}`
-    ],
-    timeout: DEFAULT_TIMEOUT
+    ]
   },
 
   stub_tests: {
@@ -40,8 +38,7 @@ module.exports = {
       PROGRESS,
       `json:${makeReportPath("cucumber-stub-report.json")}`,
       `html:${makeReportPath("stub-index.html")}`
-    ],
-    timeout: DEFAULT_TIMEOUT
+    ]
   },
 
   wiremock_tests: {
@@ -51,7 +48,6 @@ module.exports = {
       PROGRESS,
       `json:${makeReportPath("cucumber-wiremock-report.json")}`,
       `html:${makeReportPath("wiremock-index.html")}`
-    ],
-    timeout: DEFAULT_TIMEOUT
+    ]
   }
 };

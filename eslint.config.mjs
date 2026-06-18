@@ -65,7 +65,13 @@ export default [
           args: "after-used",
           varsIgnorePattern: "Given|And|When|Then"
         }
-      ],
+      ]
+    }
+  },
+  {
+    files: ["test/browser/support/setup.js"],
+    rules: {
+      "no-console": "off"
     }
   }
 ];

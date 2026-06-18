@@ -1,7 +1,15 @@
-const { Before, BeforeAll, AfterAll, After } = require("@cucumber/cucumber");
+const {
+  Before,
+  BeforeAll,
+  AfterAll,
+  After,
+  setDefaultTimeout
+} = require("@cucumber/cucumber");
 const { chromium } = require("@playwright/test");
 const axios = require("axios");
 const ConfigurationReader = require("./configuration-reader");
+
+setDefaultTimeout(60 * 1000);
 
 BeforeAll(async function () {
   // Log environment at start of test execution (only for stub tests)
@@ -11,10 +19,8 @@ BeforeAll(async function () {
   ) {
     try {
       const testEnvironment = ConfigurationReader.get("ENVIRONMENT");
-      // eslint-disable-next-line no-console
       console.log(`Running tests for environment: ${testEnvironment}`);
     } catch {
-      // eslint-disable-next-line no-console
       console.log("ENVIRONMENT not configured");
     }
   }
@@ -44,7 +50,6 @@ Before(async function ({ pickle } = {}) {
   // Determine if this is a stub test based on the tag @stub-test
   this.isStubTest = tags.find((tag) => tag.name === "@stub-test");
 
-  // eslint-disable-next-line no-console
   console.log(`\nRunning: ${pickle.name}`);
 
   // Existing logic for WireMock scenario header and reset
@@ -58,7 +63,6 @@ Before(async function ({ pickle } = {}) {
       try {
         await axios.get(url);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.log(`Warning: Failed to reset mock API: ${error.message}`);
       }
     }
@@ -76,11 +80,11 @@ Before(async function () {
     contextOptions.baseURL = ConfigurationReader.get("API_BASE_URL");
   }
 
-  // Apply scenario ID header if present
   if (this.SCENARIO_ID_HEADER) {
+    this.testTxmaAuditEncoded = "test-txma-audit-encoded-value";
     contextOptions.extraHTTPHeaders = {
-      ...contextOptions.extraHTTPHeaders, // Preserve any existing headers
-      "x-scenario-id": this.SCENARIO_ID_HEADER
+      "x-scenario-id": this.SCENARIO_ID_HEADER,
+      "txma-audit-encoded": this.testTxmaAuditEncoded
     };
   }
 

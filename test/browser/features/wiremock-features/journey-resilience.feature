@@ -21,3 +21,10 @@ Feature: Fraud CRI - Journey Resilience
     When they continue to fraud check
     Then they should be redirected as a success
     And the backend received the identity-check request with the session_id header
+
+  @mock-api:fraud-success
+  Scenario: The identity-check request carries the txma-audit-encoded header
+    Given they can see the check page
+    When they continue to fraud check
+    Then they should be redirected as a success
+    And the backend received the identity-check request with the txma-audit-encoded header
