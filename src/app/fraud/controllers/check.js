@@ -2,6 +2,7 @@ const BaseController = require("hmpo-form-wizard").Controller;
 const {
   createPersonalDataHeaders
 } = require("@govuk-one-login/frontend-passthrough-headers");
+const LOGGER = require("../../../utils/logger");
 
 const {
   API: {
@@ -13,12 +14,17 @@ const {
 class FraudCheckController extends BaseController {
   async saveValues(req, res, callback) {
     const headers = {
-      "Content-Type": "application/application-json",
       session_id: req.session.tokenId,
       ...createPersonalDataHeaders(`${BASE_URL}${CHECK}`, req)
     };
 
-    await req.axios.post(`${CHECK}`, {}, { headers: headers });
+    try {
+      LOGGER.info("check: calling identity-check lambda");
+      await req.axios.post(`${CHECK}`, {}, { headers });
+    } catch (error) {
+      LOGGER.logError(req, error, { messagePrefix: "check" });
+      return callback(error);
+    }
 
     return super.saveValues(req, res, callback);
   }
