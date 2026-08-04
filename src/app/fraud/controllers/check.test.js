@@ -11,8 +11,6 @@ describe("check controller", () => {
   let next;
   let sandbox;
 
-  afterEach(() => sandbox.restore());
-
   beforeEach(() => {
     sandbox = sinon.createSandbox();
     const setup = setupDefaultMocks();
@@ -20,24 +18,17 @@ describe("check controller", () => {
     res = setup.res;
     next = setup.next;
 
-    req.session.JWTData = { authParams: {}, user_id: "a-users-id" };
     req.session.tokenId = sessionId;
-
-    req.session.authParams = {
-      redirect_uri: "https://client.example.com",
-      state: "A VALUE"
-    };
   });
+
+  afterEach(() => sandbox.restore());
 
   it("should be an instance of BaseController", () => {
     expect(check).to.be.an.instanceof(BaseController);
   });
 
-  it("should retrieve auth code from cri-fraud-api and store in session", async () => {
-    const data = {};
-
-    const resolvedPromise = new Promise((resolve) => resolve({ data }));
-    let stub = sandbox.stub(req.axios, "post").returns(resolvedPromise);
+  it("should call the identity-check lambda and continue the journey", async () => {
+    const stub = sandbox.stub(req.axios, "post").resolves({ data: {} });
 
     await check.saveValues(req, res, next);
 
@@ -47,13 +38,19 @@ describe("check controller", () => {
       {},
       {
         headers: {
-          session_id: sessionId,
-          "Content-Type": "application/application-json"
+          session_id: sessionId
         }
       }
     );
-    stub.restore();
+    expect(next).to.have.been.calledOnceWithExactly();
+  });
 
-    expect(req.sessionModel.get("redirect_url")).to.eq(data.redirectUrl);
+  it("should forward errors to the callback", async () => {
+    const error = new Error("identity-check unavailable");
+    sandbox.stub(req.axios, "post").rejects(error);
+
+    await check.saveValues(req, res, next);
+
+    expect(next).to.have.been.calledOnceWithExactly(error);
   });
 });
