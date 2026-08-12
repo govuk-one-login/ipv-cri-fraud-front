@@ -28,26 +28,21 @@ describe("check controller", () => {
   });
 
   it("should call the identity-check lambda and continue the journey", async () => {
-    const stub = sandbox.stub(req.axios, "post").resolves({ data: {} });
+    req.customFetch = sandbox.stub().resolves(new Response());
 
     await check.saveValues(req, res, next);
 
-    sandbox.assert.calledWith(
-      stub,
-      "identity-check",
-      {},
-      {
-        headers: {
-          session_id: sessionId
-        }
-      }
-    );
+    sandbox.assert.calledWith(req.customFetch, "/identity-check", {
+      method: "POST",
+      headers: { session_id: sessionId },
+      timeoutMs: 30_000
+    });
     expect(next).to.have.been.calledOnceWithExactly();
   });
 
   it("should forward errors to the callback", async () => {
     const error = new Error("identity-check unavailable");
-    sandbox.stub(req.axios, "post").rejects(error);
+    req.customFetch = sandbox.stub().rejects(error);
 
     await check.saveValues(req, res, next);
 

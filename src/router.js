@@ -5,7 +5,7 @@ const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 const { getGTM, getLanguageToggle, getDeviceIntelligence } =
   commonExpress.lib.locals;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
-const setAxiosDefaults = commonExpress.lib.axios;
+const { customFetchMiddleware } = commonExpress.lib.customFetch;
 
 const steps = require("./app/fraud/steps");
 const fields = require("./app/fraud/fields");
@@ -16,7 +16,7 @@ const init = (router) => {
   router.use(getLanguageToggle);
   router.use(getDeviceIntelligence);
   router.use(setScenarioHeaders);
-  router.use(setAxiosDefaults);
+  router.use(customFetchMiddleware);
   router.use(featureSets);
   router.use(frontendUi.frontendUiMiddlewareIdentityBypass);
 
