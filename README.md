@@ -139,9 +139,6 @@ To execute the tests in docker run:
 
 `docker run -e STACK_NAME=local fraud-cri-test-image` - add `-e ENVIRONMENT=dev` to run in Dev environment
 
-## Request properties
-
-In order to support consistent use of headers for API requests. [middleware](./src/lib/axios.js) is applied to add an instance of [axios](https://axios-http.com/) on each reqest onto `req.axios`. This is then reused in any code that uses the API.
 
 ### Code Owners
 

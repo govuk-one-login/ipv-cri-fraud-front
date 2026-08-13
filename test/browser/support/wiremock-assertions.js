@@ -1,10 +1,9 @@
-const axios = require("axios");
 const ConfigurationReader = require("./configuration-reader");
 
 async function fetchWiremockRequests() {
   const baseUrl = ConfigurationReader.get("API_BASE_URL");
-  const res = await axios.get(`${baseUrl}__admin/requests`);
-  return res.data.requests || [];
+  const res = await fetch(`${baseUrl}/__admin/requests`);
+  return (await res.json()).requests || [];
 }
 
 async function findWiremockRequest({ method, url }) {

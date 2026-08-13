@@ -8,7 +8,6 @@ import sinonChai from "sinon-chai";
 import chaiAsPromised from "chai-as-promised";
 import JourneyModel from "hmpo-form-wizard/lib/journey-model.js";
 import WizardModel from "hmpo-form-wizard/lib/wizard-model.js";
-import axios from "axios";
 
 should();
 use(sinonChai);
@@ -20,10 +19,7 @@ global.expect = expect;
 global.setupDefaultMocks = () => {
   const req = {
     form: { values: {} },
-    axios: axios,
-    ordnanceAxios: {
-      get: sinon.fake()
-    },
+    customFetch: sinon.fake(),
     session: {
       "hmpo-wizard-previous": {}
     }

@@ -20,7 +20,11 @@ class FraudCheckController extends BaseController {
 
     try {
       LOGGER.info("check: calling identity-check lambda");
-      await req.axios.post(`${CHECK}`, {}, { headers });
+      await req.customFetch(CHECK, {
+        method: "POST",
+        headers,
+        timeoutMs: 30_000
+      });
     } catch (error) {
       LOGGER.logError(req, error, { messagePrefix: "check" });
       return callback(error);
