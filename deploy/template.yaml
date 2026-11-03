@@ -429,15 +429,6 @@ Resources:
       LogGroupName: !Sub /aws/ecs/${AWS::StackName}-FraudFront-ECS
       RetentionInDays: !Ref LogGroupRetentionInDays
 
-  ECSAccessLogsGroupSubscriptionFilterCsls:
-    Type: AWS::Logs::SubscriptionFilter
-    Condition: IsNotDevelopment
-    Properties:
-      DestinationArn: "arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython"
-      FilterPattern: ""
-      LogGroupName: !Sub "/aws/ecs/${AWS::StackName}-FraudFront-ECS"
-    DependsOn: ECSAccessLogsGroup
-
   ECSServiceTaskDefinition:
     Type: "AWS::ECS::TaskDefinition"
     Properties:
@@ -698,7 +689,7 @@ Resources:
         PermissionsBoundary: !If
           - UsePermissionsBoundary
           - Fn::ImportValue: !Sub "${AWS::StackName}-ECSCanaryPermissionsBoundaryArn"
-          - AWS::NoValue
+          - !Ref AWS::NoValue
         SecurityGroups: !GetAtt ECSSecurityGroup.GroupId
         Subnets: !Join
           - ","
@@ -760,15 +751,6 @@ Resources:
     Properties:
       LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-FraudFront-API-GW-AccessLogs
       RetentionInDays: !Ref LogGroupRetentionInDays
-
-  APIGWAccessLogsGroupSubscriptionFilterCsls:
-    Type: AWS::Logs::SubscriptionFilter
-    Condition: IsNotDevelopment
-    Properties:
-      DestinationArn: "arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython"
-      FilterPattern: ""
-      LogGroupName: !Sub "/aws/apigateway/${AWS::StackName}-FraudFront-API-GW-AccessLogs"
-    DependsOn: APIGWAccessLogsGroup
 
   FraudFrontSessionsTable:
     Type: AWS::DynamoDB::Table
