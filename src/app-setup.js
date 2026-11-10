@@ -119,8 +119,7 @@ const create = (setup) => {
       });
       app.use(setHeaders);
     },
-    overloadProtection: overloadProtectionConfig,
-    dev: true
+    overloadProtection: overloadProtectionConfig
   });
 
   return { app, router };
