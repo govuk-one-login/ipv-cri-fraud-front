@@ -1,5 +1,8 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "frontend-ui/build/components/form/macro.njk" import form %}
+{% from "frontend-ui/build/components/html/macro.njk" import html %}
+{% from "frontend-ui/build/components/submit/macro.njk" import submit %}
 
 {% extends "base-form.njk" %}
 {% set hmpoPageKey = "check" %}
@@ -16,22 +19,22 @@
 {% block mainContent %}
   <h1 id="header" data-testid="fraud-title" class="govuk-heading-l">{{translate("pages.check.title")}}
   </h1>
-  {% call hmpoForm(ctx) %}
+  {% call form(ctx) %}
 
   <div data-testid="fraud-summary">
-    {{ hmpoHtml(translate("pages.check.content")) }}
+    {{ html(translate("pages.check.content")) }}
   </div>
 
   {{ govukDetails({
   summaryText: translate("pages.check.details.summary"),
-  html: hmpoHtml(translate("pages.check.details.text"))
+  html: html(translate("pages.check.details.text"))
 }) }}
 
   <div data-testid="fraud-warning">
-    {{ hmpoHtml(translate("pages.check.contentContinued")) }}
+    {{ html(translate("pages.check.contentContinued")) }}
   </div>
 
-  {{ hmpoSubmit(ctx, {
+  {{ submit(ctx, {
         id: "continue",
         text: translate("buttons.next"),
         attributes: {

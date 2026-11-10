@@ -12,6 +12,10 @@ const setHeaders = commonExpress.lib.headers;
 const {
   frontendVitalSignsInitFromApp
 } = require("@govuk-one-login/frontend-vital-signs");
+const {
+  addFrontendUiGlobals,
+  localsMiddleware
+} = require("@govuk-one-login/frontend-ui");
 
 const init = (app, router) => {
   setAPIConfig({
@@ -98,6 +102,11 @@ const create = (setup) => {
       "views"
     ],
     middlewareSetupFn: (app) => {
+      const nunjucksEnv = app.get("nunjucks");
+      if (nunjucksEnv) {
+        addFrontendUiGlobals(nunjucksEnv);
+        app.use(localsMiddleware(app, nunjucksEnv));
+      }
       frontendVitalSignsInitFromApp(app, {
         interval: 60000,
         logLevel: "info",
