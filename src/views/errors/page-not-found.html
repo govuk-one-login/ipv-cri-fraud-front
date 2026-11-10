@@ -14,8 +14,8 @@
         {{ translate("pageNotFound.title") }}
     </h1>
 
-    {% from "hmpo-html/macro.njk" import hmpoHtml %}
-    {{ hmpoHtml(translate("pageNotFound.content")) }}
+    {% from "frontend-ui/build/components/html/macro.njk" import html %}
+    {{ html(translate("pageNotFound.content")) }}
 {% endblock %}
 
 {% block scripts %}
