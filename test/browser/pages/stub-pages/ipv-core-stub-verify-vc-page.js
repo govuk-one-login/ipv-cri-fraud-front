@@ -317,7 +317,6 @@ module.exports = class IpvCoreStubVerfiyVcPage {
       this.validateScoreWithChai(actualScore, expectedScore, isMasked, assert);
       this.validateCiWithChai(actualCi, expectedCi, isMasked, assert);
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.log(
         "VC validation failed. Full parsed JSON payload:",
         JSON.stringify(await this.readVcPayload(), null, 2)
