@@ -2,8 +2,7 @@ const featureSets = require("./app/fraud/featureSets");
 const frontendUi = require("@govuk-one-login/frontend-ui");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
-const { getGTM, getLanguageToggle, getDeviceIntelligence } =
-  commonExpress.lib.locals;
+const { getGTM, getDeviceIntelligence } = commonExpress.lib.locals;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
 const { customFetchMiddleware } = commonExpress.lib.customFetch;
 
@@ -13,7 +12,6 @@ const wizard = require("hmpo-form-wizard");
 
 const init = (router) => {
   router.use(getGTM);
-  router.use(getLanguageToggle);
   router.use(getDeviceIntelligence);
   router.use(setScenarioHeaders);
   router.use(customFetchMiddleware);
