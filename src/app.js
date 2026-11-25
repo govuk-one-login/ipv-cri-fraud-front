@@ -1,13 +1,13 @@
-require("express");
-require("express-async-errors");
-const { PORT } = require("./lib/config");
-const { setup } =
-  require("@govuk-one-login/di-ipv-cri-common-express").bootstrap;
+import "express";
+import "express-async-errors";
 
-const RoutingService = require("./router");
-const AppSetup = require("./app-setup");
+import { config } from "./lib/config.js";
+const { PORT } = config;
+import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
+import { routingService  } from "./router.js";
+import * as appSetup from "./app-setup.js";
 
-const { app, router } = AppSetup.create(setup);
+const { app, router } = appSetup.create(commonExpress.bootstrap.setup);
 
 app.get("nunjucks").addGlobal("getContext", function () {
   return {
@@ -16,8 +16,8 @@ app.get("nunjucks").addGlobal("getContext", function () {
   };
 });
 
-AppSetup.init(app);
-RoutingService.init(router);
+appSetup.init(app);
+routingService(router);
 
 /* Server configuration */
 const server = app.listen(PORT);

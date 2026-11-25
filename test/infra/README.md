@@ -7,7 +7,7 @@ Modular test suite for validating CloudFormation template resources and configur
 ```
 test/infra/
 ├── helpers/
-│   ├── helpers.js             # Core validation functions
+│   ├── vi-helpers.js             # Core validation functions
 │   └── constants.js           # Reusable test constants
 ├── resources/                 # Resource-specific tests
 │   ├── apigateway.test.js

@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "User interface for the Identity Proofing and Verification (IPV) system within the GDS digital identity platform, GOV.UK Sign In.",
   "main": "src/app.js",
+  "type": "module",
   "engines": {
     "node": "22.x",
     "npm": "10.x"
@@ -28,7 +29,9 @@
     "mocks": "wiremock --port 8030 --root-dir test/mocks",
     "test:browser:wiremock": "cucumber-js --config test/browser/cucumber.js --profile wiremock_tests",
     "test:browser:corestub": "cucumber-js --config test/browser/cucumber.js --profile core_stub",
-    "translation-check": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js '../../../../src/locales'"
+    "translation-check": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js '../../../../src/locales'",
+    "test:vi": "vitest run",
+    "test:vi:coverage": "vitest run --coverage"
   },
   "repository": {
     "type": "git",
@@ -46,6 +49,7 @@
     "@eslint/eslintrc": "3.3.7",
     "@eslint/js": "10.0.1",
     "@playwright/test": "1.61.0",
+    "@vitest/coverage-v8": "5.1.1",
     "chai": "6.2.2",
     "chai-as-promised": "8.0.2",
     "eslint": "10.14.0",
@@ -62,6 +66,7 @@
     "sinon": "22.0.0",
     "sinon-chai": "4.0.1",
     "uglify-js": "3.19.3",
+    "vitest": "5.1.1",
     "wiremock": "3.13.2"
   },
   "dependencies": {

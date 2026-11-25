@@ -1,11 +1,12 @@
-const { setAPIConfig, setOAuthPaths } = require("./settings");
+import { describe, expect, it, beforeEach, vi } from "vitest";
+import { setAPIConfig, setOAuthPaths } from './settings.js';
 
-describe("settings", () => {
+describe.only("settings", () => {
   let app;
 
   beforeEach(() => {
     app = {
-      set: sinon.stub()
+      set: vi.fn()
     };
   });
 

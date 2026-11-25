@@ -1,17 +1,16 @@
-const BaseController = require("hmpo-form-wizard").Controller;
-const {
-  createPersonalDataHeaders
-} = require("@govuk-one-login/frontend-passthrough-headers");
-const LOGGER = require("../../../utils/logger");
+import Controller from "hmpo-form-wizard/lib/controller/index.js";
+import { createPersonalDataHeaders } from "@govuk-one-login/frontend-passthrough-headers";
+import { LOGGER } from "../../../utils/logger.js";
+import { config } from "../../../lib/config.js";
 
 const {
   API: {
     BASE_URL,
     PATHS: { CHECK }
   }
-} = require("../../../lib/config");
+} = config;
 
-class FraudCheckController extends BaseController {
+export class FraudCheckController extends Controller {
   async saveValues(req, res, callback) {
     const headers = {
       session_id: req.session.tokenId,
@@ -34,4 +33,3 @@ class FraudCheckController extends BaseController {
   }
 }
 
-module.exports = FraudCheckController;

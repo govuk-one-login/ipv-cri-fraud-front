@@ -1,7 +1,7 @@
-const { name } = require("../../package.json");
-
-const wrapper = require("@govuk-one-login/di-ipv-cri-common-express").bootstrap
-  .logger;
+import { default as pkg } from "../../package.json" with { type: "json" };
+const { name } = pkg;
+import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
+const wrapper = commonExpress.bootstrap.logger;
 
 /** @type {import("pino").Logger} */
 const LOGGER = wrapper.get(name);
@@ -14,4 +14,4 @@ const LOGGER = wrapper.get(name);
 LOGGER.logError = (req, err, options) =>
   wrapper.logError(req, err, { logger: LOGGER, ...options });
 
-module.exports = LOGGER;
+export { LOGGER };
