@@ -324,4 +324,4 @@ export class IpvCoreStubVerifyVcPage {
       throw error;
     }
   }
-};
+}

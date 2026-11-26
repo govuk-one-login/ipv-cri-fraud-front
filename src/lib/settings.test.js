@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, vi } from "vitest";
-import { setAPIConfig, setOAuthPaths } from './settings.js';
+import { setAPIConfig, setOAuthPaths } from "./settings.js";
 
 describe("settings", () => {
   let app;

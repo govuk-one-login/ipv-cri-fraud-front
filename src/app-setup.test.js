@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeEach, afterEach, vi } from "vitest";
 import * as appSetup from "./app-setup.js";
-import path from "node:path"
+import path from "node:path";
 import * as sessionConfigService from "./session-config.js";
 import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
 import { overloadProtectionConfigService } from "./overload-protection-config.js";
@@ -42,7 +42,7 @@ describe("app-setup", () => {
   });
 
   afterEach(() => {
-    vi.resetAllMocks()
+    vi.resetAllMocks();
   });
 
   describe("setup app", () => {

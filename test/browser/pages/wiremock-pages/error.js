@@ -13,4 +13,4 @@ export class ErrorPlaywrightDevPage {
   getErrorTitle() {
     return this.page.title();
   }
-};
+}

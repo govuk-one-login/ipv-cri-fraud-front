@@ -175,7 +175,7 @@ function getAllResourceTypes() {
   ];
 }
 
-const testResourceProperty = validateResourceProperty
+const testResourceProperty = validateResourceProperty;
 
 export {
   loadTemplate,

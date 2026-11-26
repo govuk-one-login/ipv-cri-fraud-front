@@ -14,7 +14,7 @@ describe("feature sets", () => {
     next = setup.next;
   });
   afterEach(() => {
-    vi.resetAllMocks()
+    vi.resetAllMocks();
   });
 
   describe("validateFeatureSet", () => {

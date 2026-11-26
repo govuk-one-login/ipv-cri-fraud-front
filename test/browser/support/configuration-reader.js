@@ -2,7 +2,7 @@
  * Configuration reader utility
  * Reads configuration from config.js with environment variables taking precedence
  */
-import { config } from './config.js';
+import { config } from "./config.js";
 
 class ConfigurationReader {
   /**

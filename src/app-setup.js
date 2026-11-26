@@ -11,7 +11,6 @@ import { overloadProtectionConfigService } from "./overload-protection-config.js
 const setHeaders = commonExpress.lib.headers;
 import { frontendVitalSignsInitFromApp } from "@govuk-one-login/frontend-vital-signs";
 
-
 const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // g
@@ -80,7 +79,9 @@ const create = (setup) => {
     publicImagesDirs: ["../dist/public/images"],
     views: [
       path.resolve(
-        path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
+        path.dirname(
+          require.resolve("@govuk-one-login/di-ipv-cri-common-express")
+        ),
         "components"
       ),
       path.resolve("node_modules/@govuk-one-login/"),

@@ -32,4 +32,3 @@ export class FraudCheckController extends Controller {
     return super.saveValues(req, res, callback);
   }
 }
-

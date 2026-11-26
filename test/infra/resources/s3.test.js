@@ -1,7 +1,4 @@
-import {
-  validateResourceProperty,
-  loadTemplate
-} from "../helpers/helpers.js";
+import { validateResourceProperty, loadTemplate } from "../helpers/helpers.js";
 
 describe("@QualityGateStackTest", () => {
   describe("AWS::S3::Bucket Resources", () => {

@@ -10,8 +10,6 @@ const config = {
   CORE_STUB_USERNAME: process.env.coreStubUsername,
   CORE_STUB_PASSWORD: process.env.coreStubPassword,
   API_BASE_URL: process.env.API_BASE_URL
-}
-
-export {
-  config
 };
+
+export { config };

@@ -35,4 +35,4 @@ export class RelyingPlaywrightDevPage {
       searchParams.get("error_description") === "general error"
     );
   }
-};
+}

@@ -16,7 +16,6 @@ const {
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { fileURLToPath } from "node:url";
 
-
 describe("app", () => {
   let setGTM;
   let setDeviceIntelligence;
@@ -82,7 +81,9 @@ describe("app", () => {
         views: [
           path.resolve(
             path.dirname(
-              path.resolve("node_modules/@govuk-one-login/di-ipv-cri-common-express")
+              path.resolve(
+                "node_modules/@govuk-one-login/di-ipv-cri-common-express"
+              )
             ),
             "components"
           ),
@@ -124,7 +125,6 @@ describe("app", () => {
 
       //expect(setGTM).to.have.been.calledWithExactly(options);
 
-
       expect(setGTM).calledWith(options);
       expect(setGTM).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -160,7 +160,6 @@ describe("app", () => {
       };
 
       setDeviceIntelligence(options);
-
 
       expect(setDeviceIntelligence).calledWith(options);
 

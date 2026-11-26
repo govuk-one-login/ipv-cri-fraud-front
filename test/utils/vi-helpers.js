@@ -2,7 +2,6 @@ import { vi } from "vitest";
 import JourneyModel from "hmpo-form-wizard/lib/journey-model.js";
 import WizardModel from "hmpo-form-wizard/lib/wizard-model.js";
 
-
 process.env.SESSION_SECRET = "1234";
 process.env.SESSION_TABLE_NAME = "table-name";
 process.env.USE_PINO_LOGGER = "true";
@@ -17,14 +16,14 @@ export const createDefaultReqResNext = () => {
   };
   req.journeyModel = new JourneyModel(null, {
     req,
-    key: "test",
+    key: "test"
   });
 
   req.sessionModel = new WizardModel(null, {
     req,
     key: "test",
     journeyModel: req.journeyModel,
-    fields: {},
+    fields: {}
   });
 
   const res = {
@@ -35,6 +34,6 @@ export const createDefaultReqResNext = () => {
   return {
     req,
     res,
-    next,
+    next
   };
 };

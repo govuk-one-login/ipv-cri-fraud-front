@@ -4,7 +4,7 @@ import "express-async-errors";
 import { config } from "./lib/config.js";
 const { PORT } = config;
 import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
-import { routingService  } from "./router.js";
+import { routingService } from "./router.js";
 import * as appSetup from "./app-setup.js";
 
 const { app, router } = appSetup.create(commonExpress.bootstrap.setup);

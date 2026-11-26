@@ -58,4 +58,4 @@ export class IpvCoreStubUserEditPage {
       details.secondaryPostcode
     );
   }
-};
+}

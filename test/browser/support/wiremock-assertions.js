@@ -20,7 +20,4 @@ function getHeaderCaseInsensitive(headers, name) {
   return matchKey ? headers[matchKey] : undefined;
 }
 
-export {
-  findWiremockRequest,
-  getHeaderCaseInsensitive
-};
+export { findWiremockRequest, getHeaderCaseInsensitive };

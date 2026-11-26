@@ -1,6 +1,6 @@
 import { BeforeAll, AfterAll } from "@cucumber/cucumber";
 import { spawn } from "node:child_process";
-import net from "node:net"
+import net from "node:net";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 

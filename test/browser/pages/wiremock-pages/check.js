@@ -375,4 +375,4 @@ export class CheckPlaywrightDevPage {
 
     return true;
   }
-};
+}

@@ -23,4 +23,4 @@ export class FraudCheckPage {
       this.page.waitForNavigation({ timeout: 40000 })
     ]);
   }
-};
+}

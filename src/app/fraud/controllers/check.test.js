@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeEach, vi, afterEach } from "vitest";
 import Controller from "hmpo-form-wizard/lib/controller/index.js";
-import { FraudCheckController } from "./check.js" ;
+import { FraudCheckController } from "./check.js";
 import { createDefaultReqResNext } from "../../../../test/utils/vi-helpers.js";
 
 const sessionId = "some-session-id";

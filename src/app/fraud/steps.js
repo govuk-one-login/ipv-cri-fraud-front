@@ -1,6 +1,6 @@
-import { FraudCheckController as check } from './controllers/check.js'
+import { FraudCheckController as check } from "./controllers/check.js";
 
-export const steps= {
+export const steps = {
   "/": {
     resetJourney: true,
     entryPoint: true,

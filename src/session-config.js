@@ -1,11 +1,6 @@
 import { config } from "./lib/config.js";
-import { createSessionStore } from "./dynamo-session-config.js"
-const {
-  SESSION_TABLE_NAME,
-  SESSION_SECRET,
-  SESSION_TTL
-} = config;
-
+import { createSessionStore } from "./dynamo-session-config.js";
+const { SESSION_TABLE_NAME, SESSION_SECRET, SESSION_TTL } = config;
 
 const init = () => {
   const sessionConfig = {

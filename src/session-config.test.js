@@ -4,7 +4,7 @@ import * as sessionDbConfig from "./dynamo-session-config.js";
 
 describe("app", () => {
   afterEach(() => {
-    vi.resetAllMocks()
+    vi.resetAllMocks();
   });
 
   describe("setup session", () => {

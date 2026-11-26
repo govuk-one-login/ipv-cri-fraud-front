@@ -11,4 +11,4 @@ export class UniversalPlaywrightDevPage {
     }
     await this.page.goto(this.page.url() + "?lng=" + languageIsoCode);
   }
-};
+}

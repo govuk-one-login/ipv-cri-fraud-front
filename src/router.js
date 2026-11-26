@@ -6,7 +6,7 @@ const { getGTM, getDeviceIntelligence } = commonExpress.lib.locals;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
 const { customFetchMiddleware } = commonExpress.lib.customFetch;
 
-import { steps } from './app/fraud/steps.js';
+import { steps } from "./app/fraud/steps.js";
 import { fields } from "./app/fraud/fields.js";
 
 const routingService = (router) => {

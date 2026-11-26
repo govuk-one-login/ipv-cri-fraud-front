@@ -38,16 +38,16 @@ export default {
 
 export const core_stub = {
   paths: ["./test/browser/features/stub-features/**/*.feature"],
-    require: [
+  require: [
     "./test/browser/support/setup.js",
     "./test/browser/step-definitions/stub-steps/**/*.js"
   ],
-    format: [
+  format: [
     PROGRESS,
     `json:${makeReportPath("cucumber-stub-report.json")}`,
     `html:${makeReportPath("stub-index.html")}`
   ]
-}
+};
 
 export const wiremock_tests = {
   paths: ["./test/browser/features/wiremock-features/**/*.feature"],
@@ -61,4 +61,4 @@ export const wiremock_tests = {
     `json:${makeReportPath("cucumber-wiremock-report.json")}`,
     `html:${makeReportPath("wiremock-index.html")}`
   ]
-}
+};

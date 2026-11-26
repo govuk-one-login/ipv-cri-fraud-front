@@ -20,4 +20,4 @@ export class IpvCoreStubUserSearchPage {
   async userSearchEditUser() {
     await this.userSearchEditUserButton.click();
   }
-};
+}

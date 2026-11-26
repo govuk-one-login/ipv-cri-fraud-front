@@ -63,4 +63,4 @@ export class IpvCoreStubCredentialIssuerPage {
     await this.userNameInput.fill(userName);
     await this.searchForUatUserButton.click();
   }
-};
+}
