@@ -1,13 +1,13 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-const {
+import {
   IpvCoreStubCredentialIssuerPage,
   IpvCoreStubUserSearchPage,
   IpvCoreStubUserEditPage,
   FraudCheckPage,
   IpvCoreStubVerifyVcPage
-} = require("../../pages/stub-pages/index.js");
-const ConfigurationReader = require("../../support/configuration-reader");
+} from "../../pages/stub-pages/index.js";
+import { ConfigurationReader } from "../../support/configuration-reader.js";
 
 Given("I navigate to the IPV Core Stub", async function () {
   await this.context.clearCookies();

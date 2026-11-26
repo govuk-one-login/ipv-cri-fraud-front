@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach, vi } from "vitest";
 import { setAPIConfig, setOAuthPaths } from './settings.js';
 
-describe.only("settings", () => {
+describe("settings", () => {
   let app;
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
 import { Then } from "@cucumber/cucumber";
-const { RelyingPartyPage } = require("../../pages/wiremock-pages/index.js");
+import { RelyingPartyPage } from "../../pages/wiremock-pages/index.js";
 import { expect } from "chai";
 
 Then("they should be redirected as a success", function () {

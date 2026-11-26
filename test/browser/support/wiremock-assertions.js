@@ -1,4 +1,4 @@
-import { ConfigurationReader } from "./configuration-reader";
+import { ConfigurationReader } from "./configuration-reader.js";
 
 async function fetchWiremockRequests() {
   const baseUrl = ConfigurationReader.get("API_BASE_URL");

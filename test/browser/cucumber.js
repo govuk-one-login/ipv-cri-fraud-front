@@ -1,5 +1,8 @@
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..", "..");
 
 try {
@@ -18,7 +21,7 @@ const commonStubSteps = ["./test/browser/step-definitions/stub-steps/**/*.js"];
 const makeReportPath = (name) =>
   path.relative(process.cwd(), path.join(repoRoot, "reports", name));
 
-module.exports = {
+export default {
   default: {
     paths: [
       "./test/browser/features/wiremock-features/**/*.feature",
@@ -30,32 +33,32 @@ module.exports = {
       `json:${makeReportPath("cucumber-report.json")}`,
       `html:${makeReportPath("index.html")}`
     ]
-  },
-
-  core_stub: {
-    paths: ["./test/browser/features/stub-features/**/*.feature"],
-    require: [
-      "./test/browser/support/setup.js",
-      "./test/browser/step-definitions/stub-steps/**/*.js"
-    ],
-    format: [
-      PROGRESS,
-      `json:${makeReportPath("cucumber-stub-report.json")}`,
-      `html:${makeReportPath("stub-index.html")}`
-    ]
-  },
-
-  wiremock_tests: {
-    paths: ["./test/browser/features/wiremock-features/**/*.feature"],
-    require: [
-      ...commonSupport,
-      ...commonWiremockSteps,
-      "./test/browser/local-app.js"
-    ],
-    format: [
-      PROGRESS,
-      `json:${makeReportPath("cucumber-wiremock-report.json")}`,
-      `html:${makeReportPath("wiremock-index.html")}`
-    ]
   }
 };
+
+export const core_stub = {
+  paths: ["./test/browser/features/stub-features/**/*.feature"],
+    require: [
+    "./test/browser/support/setup.js",
+    "./test/browser/step-definitions/stub-steps/**/*.js"
+  ],
+    format: [
+    PROGRESS,
+    `json:${makeReportPath("cucumber-stub-report.json")}`,
+    `html:${makeReportPath("stub-index.html")}`
+  ]
+}
+
+export const wiremock_tests = {
+  paths: ["./test/browser/features/wiremock-features/**/*.feature"],
+  require: [
+    ...commonSupport,
+    ...commonWiremockSteps,
+    "./test/browser/local-app.js"
+  ],
+  format: [
+    PROGRESS,
+    `json:${makeReportPath("cucumber-wiremock-report.json")}`,
+    `html:${makeReportPath("wiremock-index.html")}`
+  ]
+}
