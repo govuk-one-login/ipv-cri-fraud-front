@@ -1,4 +1,4 @@
-import { default as pkg } from "../../package.json" with { type: "json" };
+import pkg from "../../package.json" with { type: "json" };
 const { name } = pkg;
 import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
 const wrapper = commonExpress.bootstrap.logger;

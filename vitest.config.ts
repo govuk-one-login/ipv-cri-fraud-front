@@ -8,8 +8,16 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text", "lcov"],
-      include: ["src/**/*"],
-      exclude: ["**/*.njk", "**/*.md"],
-    },
-  },
+      include: ["src/**/*.js"],
+      exclude: [
+        "**/*.test.js",
+        "src/**/fields.js",
+        "src/**/steps.js",
+        "src/app.js",
+        "src/router.js",
+        "src/dynamo-session-config.js",
+        "src/lib/config.js"
+      ]
+    }
+  }
 });
