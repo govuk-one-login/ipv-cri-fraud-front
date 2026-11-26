@@ -1,6 +1,6 @@
-const { expect: expect } = require("chai");
+import { expect } from "@playwright/test";
 
-module.exports = class PlaywrightDevPage {
+export class CheckPlaywrightDevPage {
   /**
    * @param {import('@playwright/test').Page} page
    */

@@ -1,7 +1,7 @@
-const yaml = require("js-yaml");
-const fs = require("fs");
-const path = require("path");
-const { expect } = require("chai");
+import yaml from "js-yaml";
+import fs from "node:fs";
+import path from "node:path";
+import { expect } from "chai";
 
 // Cached template data
 let template;
@@ -175,7 +175,9 @@ function getAllResourceTypes() {
   ];
 }
 
-module.exports = {
+const testResourceProperty = validateResourceProperty
+
+export {
   loadTemplate,
   getResourcesByType,
   validateResourceProperty,
@@ -183,5 +185,5 @@ module.exports = {
   findInRawYaml,
   getAllResourceTypes,
   // Legacy exports for backward compatibility
-  testResourceProperty: validateResourceProperty
+  testResourceProperty
 };

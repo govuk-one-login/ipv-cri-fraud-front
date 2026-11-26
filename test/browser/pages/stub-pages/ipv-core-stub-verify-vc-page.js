@@ -1,6 +1,6 @@
-const { expect } = require("@playwright/test");
+import { expect } from "@playwright/test";
 
-module.exports = class IpvCoreStubVerfiyVcPage {
+export class IpvCoreStubVerifyVcPage {
   /**
    * @param {import('@playwright/test').Page} page
    */

@@ -1,4 +1,4 @@
-module.exports = class PlaywrightDevPage {
+export class RelyingPlaywrightDevPage {
   /**
    * @param {import('@playwright/test').Page} page
    */

@@ -1,7 +1,7 @@
-const { Given, When, Then } = require("@cucumber/cucumber");
-const { expect } = require("chai");
-const { CheckPage } = require("../../pages/wiremock-pages");
-const { AxeBuilder } = require("@axe-core/playwright");
+import { Given, When, Then } from "@cucumber/cucumber";
+import { expect } from "chai";
+import { CheckPage } from "../../pages/wiremock-pages/index.js";
+import { AxeBuilder } from "@axe-core/playwright";
 
 Given(/they (?:can )?see? the check page$/, async function () {
   const checkPage = new CheckPage(this.page);

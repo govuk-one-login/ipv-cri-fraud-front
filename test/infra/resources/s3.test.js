@@ -1,7 +1,7 @@
-const {
+import {
   validateResourceProperty,
   loadTemplate
-} = require("../helpers/helpers");
+} from "../helpers/helpers.js";
 
 describe("@QualityGateStackTest", () => {
   describe("AWS::S3::Bucket Resources", () => {

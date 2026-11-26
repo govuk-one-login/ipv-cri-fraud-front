@@ -1,4 +1,4 @@
-const ConfigurationReader = require("./configuration-reader");
+import { ConfigurationReader } from "./configuration-reader";
 
 async function fetchWiremockRequests() {
   const baseUrl = ConfigurationReader.get("API_BASE_URL");
@@ -20,7 +20,7 @@ function getHeaderCaseInsensitive(headers, name) {
   return matchKey ? headers[matchKey] : undefined;
 }
 
-module.exports = {
+export {
   findWiremockRequest,
   getHeaderCaseInsensitive
 };

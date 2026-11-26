@@ -1,4 +1,4 @@
-exports.UniversalSteps = class PlaywrightDevPage {
+export class UniversalPlaywrightDevPage {
   constructor(page, url) {
     this.page = page;
     this.url = url;

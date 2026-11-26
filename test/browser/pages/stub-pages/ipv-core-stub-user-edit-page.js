@@ -1,4 +1,4 @@
-module.exports = class IpvCoreStubUserEditPage {
+export class IpvCoreStubUserEditPage {
   /**
    * @param {import('@playwright/test').Page} page
    */

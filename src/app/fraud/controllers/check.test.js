@@ -5,7 +5,7 @@ import { createDefaultReqResNext } from "../../../../test/utils/vi-helpers.js";
 
 const sessionId = "some-session-id";
 
-describe.only("check controller", () => {
+describe("check controller", () => {
   const check = new FraudCheckController({ route: "/test" });
 
   let req;
@@ -39,15 +39,6 @@ describe.only("check controller", () => {
       headers: { session_id: sessionId },
       timeoutMs: 30_000
     });
-
-    // sandbox.assert.calledWith(req.customFetch, "/identity-check", {
-    //   method: "POST",
-    //   headers: { session_id: sessionId },
-    //   timeoutMs: 30_000
-    // });
-    // expect(next).to.have.been.calledOnceWithExactly(expect.objectContaining({
-    //
-    // }));
   });
 
   it("should forward errors to the callback", async () => {

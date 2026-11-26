@@ -1,9 +1,9 @@
-const { When, Then } = require("@cucumber/cucumber");
-const { expect } = require("chai");
-const {
+import { When, Then } from "@cucumber/cucumber";
+import { expect } from "chai";
+import {
   findWiremockRequest,
   getHeaderCaseInsensitive
-} = require("../../support/wiremock-assertions");
+} from "../../support/wiremock-assertions.js";
 
 When("they reload the check page", async function () {
   await this.page.reload({ waitUntil: "domcontentloaded" });
