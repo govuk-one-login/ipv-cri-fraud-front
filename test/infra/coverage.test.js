@@ -1,7 +1,11 @@
-const { expect } = require("chai");
-const { getAllResourceTypes } = require("./helpers/helpers");
-const fs = require("node:fs");
-const path = require("node:path");
+import { expect } from "chai";
+import { getAllResourceTypes } from "./helpers/helpers.js";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename); // g
 
 describe("@QualityGateStackTest", () => {
   describe("Test Coverage Validation", () => {

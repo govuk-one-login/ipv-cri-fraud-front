@@ -1,22 +1,21 @@
-const featureSets = require("./app/fraud/featureSets");
-const frontendUi = require("@govuk-one-login/frontend-ui");
-
-const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
+import { featureSets } from "./app/fraud/featureSets.js";
+import { frontendUiMiddlewareIdentityBypass } from "@govuk-one-login/frontend-ui";
+import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
+import wizard from "hmpo-form-wizard";
 const { getGTM, getDeviceIntelligence } = commonExpress.lib.locals;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
 const { customFetchMiddleware } = commonExpress.lib.customFetch;
 
-const steps = require("./app/fraud/steps");
-const fields = require("./app/fraud/fields");
-const wizard = require("hmpo-form-wizard");
+import { steps } from "./app/fraud/steps.js";
+import { fields } from "./app/fraud/fields.js";
 
-const init = (router) => {
+const routingService = (router) => {
   router.use(getGTM);
   router.use(getDeviceIntelligence);
   router.use(setScenarioHeaders);
   router.use(customFetchMiddleware);
   router.use(featureSets);
-  router.use(frontendUi.frontendUiMiddlewareIdentityBypass);
+  router.use(frontendUiMiddlewareIdentityBypass);
 
   router.use("/oauth2", commonExpress.routes.oauth2);
 
@@ -31,4 +30,4 @@ const init = (router) => {
   router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
 };
 
-module.exports = { init };
+export { routingService };

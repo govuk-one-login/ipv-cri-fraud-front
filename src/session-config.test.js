@@ -1,21 +1,18 @@
-const sessionConfig = require("./session-config");
-const sessionDbConfig = require("./dynamo-session-config");
+import { describe, expect, it, vi, afterEach } from "vitest";
+import { init, isDynamo } from "./session-config.js";
+import * as sessionDbConfig from "./dynamo-session-config.js";
 
 describe("app", () => {
-  const sandbox = sinon.createSandbox();
-  beforeEach(() => {
-    sandbox
-      .stub(sessionDbConfig, "createSessionStore")
-      .returns("sessionStoreMock");
-  });
-
   afterEach(() => {
-    sandbox.restore();
+    vi.resetAllMocks();
   });
 
   describe("setup session", () => {
-    it("should initialise session config", () => {
-      var initialisedSessionConfig = sessionConfig.init();
+    it("should initialise session config", async () => {
+      vi.spyOn(sessionDbConfig, "createSessionStore").mockReturnValue(
+        "sessionStoreMock"
+      );
+      const initialisedSessionConfig = await init();
       expect(initialisedSessionConfig).to.deep.equal({
         cookieName: "service_session",
         secret: "1234",
@@ -25,8 +22,8 @@ describe("app", () => {
     });
 
     it("should return true if table name is set", () => {
-      var isDynamo = sessionConfig.isDynamo();
-      expect(isDynamo).to.be.true;
+      const isDynamoName = isDynamo();
+      expect(isDynamoName).to.be.true;
     });
   });
 });

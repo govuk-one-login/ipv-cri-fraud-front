@@ -1,7 +1,11 @@
-const { BeforeAll, AfterAll } = require("@cucumber/cucumber");
-const { spawn } = require("node:child_process");
-const net = require("node:net");
-const path = require("node:path");
+import { BeforeAll, AfterAll } from "@cucumber/cucumber";
+import { spawn } from "node:child_process";
+import net from "node:net";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename);
 
 const repoRoot = path.resolve(__dirname, "..", "..");
 const MOCK_PORT = 8030;

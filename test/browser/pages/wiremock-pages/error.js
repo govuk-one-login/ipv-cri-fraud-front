@@ -1,4 +1,4 @@
-module.exports = class PlaywrightDevPage {
+export class ErrorPlaywrightDevPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
@@ -13,4 +13,4 @@ module.exports = class PlaywrightDevPage {
   getErrorTitle() {
     return this.page.title();
   }
-};
+}

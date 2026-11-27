@@ -1,6 +1,6 @@
-const { expect } = require("@playwright/test");
+import { expect } from "@playwright/test";
 
-module.exports = class FraudCheckPage {
+export class FraudCheckPage {
   constructor(page) {
     this.page = page;
     // Selectors for elements on the Fraud Check Page
@@ -23,4 +23,4 @@ module.exports = class FraudCheckPage {
       this.page.waitForNavigation({ timeout: 40000 })
     ]);
   }
-};
+}

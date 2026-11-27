@@ -1,7 +1,13 @@
-module.exports = {
-  FraudCheckPage: require("./fraud-check-page.js"),
-  IpvCoreStubCredentialIssuerPage: require("./ipv-core-stub-credential-issuer-page.js"),
-  IpvCoreStubUserSearchPage: require("./ipv-core-stub-user-search-page.js"),
-  IpvCoreStubUserEditPage: require("./ipv-core-stub-user-edit-page.js"),
-  IpvCoreStubVerfiyVcPage: require("./ipv-core-stub-verify-vc-page.js")
+import { FraudCheckPage } from "./fraud-check-page.js";
+import { IpvCoreStubCredentialIssuerPage } from "./ipv-core-stub-credential-issuer-page.js";
+import { IpvCoreStubUserEditPage } from "./ipv-core-stub-user-edit-page.js";
+import { IpvCoreStubUserSearchPage } from "./ipv-core-stub-user-search-page.js";
+import { IpvCoreStubVerifyVcPage } from "./ipv-core-stub-verify-vc-page.js";
+
+export {
+  FraudCheckPage,
+  IpvCoreStubCredentialIssuerPage,
+  IpvCoreStubUserSearchPage,
+  IpvCoreStubUserEditPage,
+  IpvCoreStubVerifyVcPage
 };

@@ -1,9 +1,9 @@
-const { When, Then } = require("@cucumber/cucumber");
-const { expect } = require("chai");
-const {
+import { When, Then } from "@cucumber/cucumber";
+import { expect } from "@playwright/test";
+import {
   findWiremockRequest,
   getHeaderCaseInsensitive
-} = require("../../support/wiremock-assertions");
+} from "../../support/wiremock-assertions.js";
 
 When("they reload the check page", async function () {
   await this.page.reload({ waitUntil: "domcontentloaded" });
@@ -17,8 +17,10 @@ Then(
       url: "/identity-check"
     });
 
-    expect(entry, "expected wiremock to have captured a POST /identity-check")
-      .to.exist;
+    expect(
+      entry,
+      "expected wiremock to have captured a POST /identity-check"
+    ).toBeTruthy();
 
     const sessionId = getHeaderCaseInsensitive(
       entry.request.headers,
@@ -27,7 +29,7 @@ Then(
     expect(
       sessionId,
       "expected session_id header on /identity-check to equal ABADCAFE"
-    ).to.equal("ABADCAFE");
+    ).toBe("ABADCAFE");
   }
 );
 
@@ -39,8 +41,10 @@ Then(
       url: "/identity-check"
     });
 
-    expect(entry, "expected wiremock to have captured a POST /identity-check")
-      .to.exist;
+    expect(
+      entry,
+      "expected wiremock to have captured a POST /identity-check"
+    ).toBeTruthy();
 
     const txma = getHeaderCaseInsensitive(
       entry.request.headers,
@@ -49,6 +53,6 @@ Then(
     expect(
       txma,
       `expected txma-audit-encoded header on /identity-check to equal ${this.testTxmaAuditEncoded}`
-    ).to.equal(this.testTxmaAuditEncoded);
+    ).toBe(this.testTxmaAuditEncoded);
   }
 );

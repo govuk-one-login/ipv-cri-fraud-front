@@ -1,33 +1,41 @@
-const path = require("path");
-const featureSets = require("./app/fraud/featureSets");
+import { describe, expect, it, beforeEach, vi } from "vitest";
+import path from "node:path";
+import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
+import { config } from "./lib/config.js";
 
-const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const {
-  API,
   APP,
   PORT,
   SESSION_SECRET,
   SESSION_TABLE_NAME,
   SESSION_TTL,
   LOG_LEVEL
-} = require("./lib/config");
-const express = require("express");
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+} = config;
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { fileURLToPath } from "node:url";
 
 describe("app", () => {
+  let setGTM;
+  let setDeviceIntelligence;
+  let app;
+  let AWS;
+  let DynamoDBStore;
+  let setup;
+
   beforeEach(() => {
-    setup = sinon.stub();
-    setGTM = sinon.stub();
-    setDeviceIntelligence = sinon.stub();
-    app = sinon.stub();
+    setup = vi.fn();
+    setGTM = vi.fn();
+    setDeviceIntelligence = vi.fn();
+    app = vi.fn();
     AWS = {
-      DynamoDBClient: sinon.stub(),
+      DynamoDBClient: vi.fn(),
       config: {
-        update: sinon.stub()
+        update: vi.fn()
       }
     };
-    DynamoDBStore = sinon.stub();
+    DynamoDBStore = vi.fn();
   });
 
   describe("setup app", () => {
@@ -49,8 +57,7 @@ describe("app", () => {
         table: SESSION_TABLE_NAME
       });
 
-      const helmetConfig = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/helmet");
-
+      const helmetConfig = commonExpress.lib.helmet;
       const sessionConfig = {
         cookieName: "service_session",
         secret: SESSION_SECRET,
@@ -74,7 +81,9 @@ describe("app", () => {
         views: [
           path.resolve(
             path.dirname(
-              require.resolve("@govuk-one-login/di-ipv-cri-common-express")
+              path.resolve(
+                "node_modules/@govuk-one-login/di-ipv-cri-common-express"
+              )
             ),
             "components"
           ),
@@ -88,8 +97,11 @@ describe("app", () => {
 
       setup(options);
 
-      expect(setup).to.have.been.calledWithExactly(options);
-      sinon.assert.calledWith(setup, sinon.match.has("port", 5030));
+      expect(setup).calledWith(options);
+      expect(setup).toHaveBeenCalledWith(
+        expect.objectContaining({ port: 5030 })
+      );
+      // sinon.assert.calledWith(setup, sinon.match.has("port", 5030));
     });
 
     it("should set GTM variables", () => {
@@ -111,21 +123,33 @@ describe("app", () => {
 
       setGTM(options);
 
-      expect(setGTM).to.have.been.calledWithExactly(options);
-      sinon.assert.calledWith(
-        setGTM,
-        sinon.match.has("ga4ContainerId", "GTM-XXXXXXX")
+      //expect(setGTM).to.have.been.calledWithExactly(options);
+
+      expect(setGTM).calledWith(options);
+      expect(setGTM).toHaveBeenCalledWith(
+        expect.objectContaining({
+          ga4ContainerId: "GTM-XXXXXXX",
+          uaContainerId: "UA-XXXXXXX",
+          analyticsCookieDomain: "localhost",
+          ga4Enabled: true,
+          uaEnabled: false
+        })
       );
-      sinon.assert.calledWith(
-        setGTM,
-        sinon.match.has("uaContainerId", "UA-XXXXXXX")
-      );
-      sinon.assert.calledWith(
-        setGTM,
-        sinon.match.has("analyticsCookieDomain", "localhost")
-      );
-      sinon.assert.calledWith(setGTM, sinon.match.has("ga4Enabled", true));
-      sinon.assert.calledWith(setGTM, sinon.match.has("uaEnabled", false));
+
+      // sinon.assert.calledWith(
+      //   setGTM,
+      //   sinon.match.has("ga4ContainerId", "GTM-XXXXXXX")
+      // );
+      // sinon.assert.calledWith(
+      //   setGTM,
+      //   sinon.match.has("uaContainerId", "UA-XXXXXXX")
+      // );
+      // sinon.assert.calledWith(
+      //   setGTM,
+      //   sinon.match.has("analyticsCookieDomain", "localhost")
+      // );
+      // sinon.assert.calledWith(setGTM, sinon.match.has("ga4Enabled", true));
+      // sinon.assert.calledWith(setGTM, sinon.match.has("uaEnabled", false));
     });
 
     it("should set Device Intelligence variables", () => {
@@ -137,23 +161,31 @@ describe("app", () => {
 
       setDeviceIntelligence(options);
 
-      expect(setDeviceIntelligence).to.have.been.calledWithExactly(options);
-      sinon.assert.calledWith(
-        setDeviceIntelligence,
-        sinon.match.has("deviceIntelligenceEnabled", false)
+      expect(setDeviceIntelligence).calledWith(options);
+
+      expect(setDeviceIntelligence).toHaveBeenCalledWith(
+        expect.objectContaining({
+          deviceIntelligenceEnabled: false,
+          deviceIntelligenceDomain: "localhost"
+        })
       );
-      sinon.assert.calledWith(
-        setDeviceIntelligence,
-        sinon.match.has("deviceIntelligenceDomain", "localhost")
-      );
-      sinon.assert.calledWith(
-        setDeviceIntelligence,
-        sinon.match.has("deviceIntelligenceEnabled", false)
-      );
-      sinon.assert.calledWith(
-        setDeviceIntelligence,
-        sinon.match.has("deviceIntelligenceDomain", "localhost")
-      );
+
+      // sinon.assert.calledWith(
+      //   setDeviceIntelligence,
+      //   sinon.match.has("deviceIntelligenceEnabled", false)
+      // );
+      // sinon.assert.calledWith(
+      //   setDeviceIntelligence,
+      //   sinon.match.has("deviceIntelligenceDomain", "localhost")
+      // );
+      // sinon.assert.calledWith(
+      //   setDeviceIntelligence,
+      //   sinon.match.has("deviceIntelligenceEnabled", false)
+      // );
+      // sinon.assert.calledWith(
+      //   setDeviceIntelligence,
+      //   sinon.match.has("deviceIntelligenceDomain", "localhost")
+      // );
     });
   });
 });

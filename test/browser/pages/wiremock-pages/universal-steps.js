@@ -1,4 +1,4 @@
-exports.UniversalSteps = class PlaywrightDevPage {
+export class UniversalPlaywrightDevPage {
   constructor(page, url) {
     this.page = page;
     this.url = url;
@@ -11,4 +11,4 @@ exports.UniversalSteps = class PlaywrightDevPage {
     }
     await this.page.goto(this.page.url() + "?lng=" + languageIsoCode);
   }
-};
+}

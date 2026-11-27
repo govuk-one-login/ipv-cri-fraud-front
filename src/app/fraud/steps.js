@@ -1,6 +1,6 @@
-const check = require("./controllers/check");
+import { FraudCheckController as check } from "./controllers/check.js";
 
-module.exports = {
+export const steps = {
   "/": {
     resetJourney: true,
     entryPoint: true,

@@ -1,13 +1,13 @@
-const { Given, When, Then, And } = require("@cucumber/cucumber");
-const { expect } = require("@playwright/test");
-const {
+import { Given, When, Then } from "@cucumber/cucumber";
+import { expect } from "@playwright/test";
+import {
   IpvCoreStubCredentialIssuerPage,
   IpvCoreStubUserSearchPage,
   IpvCoreStubUserEditPage,
   FraudCheckPage,
-  IpvCoreStubVerfiyVcPage
-} = require("../../pages/stub-pages");
-const ConfigurationReader = require("../../support/configuration-reader");
+  IpvCoreStubVerifyVcPage
+} from "../../pages/stub-pages/index.js";
+import { ConfigurationReader } from "../../support/configuration-reader.js";
 
 Given("I navigate to the IPV Core Stub", async function () {
   await this.context.clearCookies();
@@ -115,7 +115,7 @@ Then(/^User clicks the fraud continue button$/, async function () {
 Then(
   /^User is navigated to the Verifiable Credential Issuers Page$/,
   async function () {
-    this.ipvCoreStubVerifyVcPage = new IpvCoreStubVerfiyVcPage(this.page);
+    this.ipvCoreStubVerifyVcPage = new IpvCoreStubVerifyVcPage(this.page);
     const expectedSubstring = "callback";
 
     await this.ipvCoreStubVerifyVcPage.verifyCurrentUrlContains(
@@ -132,7 +132,7 @@ Then(
     expectedScore,
     expectedCi
   ) {
-    this.ipvCoreStubVerifyVcPage = new IpvCoreStubVerfiyVcPage(this.page);
+    this.ipvCoreStubVerifyVcPage = new IpvCoreStubVerifyVcPage(this.page);
     await this.ipvCoreStubVerifyVcPage.validateJsonResponseFromFraudCri(
       expectedGivenName,
       expectedFamilyName,

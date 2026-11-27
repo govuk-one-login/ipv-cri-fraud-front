@@ -1,17 +1,19 @@
-const { API, APP, LOG_LEVEL } = require("./lib/config");
+import path from "node:path";
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
+import { config } from "./lib/config.js";
+import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
+const { API, APP, LOG_LEVEL } = config;
+import { setAPIConfig, setOAuthPaths } from "./lib/settings.js";
+import * as sessionConfigService from "./session-config.js";
+import { overloadProtectionConfigService } from "./overload-protection-config.js";
 
-const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
-
-const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
-const sessionConfigService = require("./session-config");
-const overloadProtectionConfigService = require("./overload-protection-config");
-
-const path = require("path");
 const setHeaders = commonExpress.lib.headers;
-// Common express relies on 0/1 strings
-const {
-  frontendVitalSignsInitFromApp
-} = require("@govuk-one-login/frontend-vital-signs");
+import { frontendVitalSignsInitFromApp } from "@govuk-one-login/frontend-vital-signs";
+
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename); // g
 
 const init = (app) => {
   setAPIConfig({
@@ -60,7 +62,7 @@ const create = (setup) => {
   };
 
   const sessionConfig = sessionConfigService.init();
-  const overloadProtectionConfig = overloadProtectionConfigService.init();
+  const overloadProtectionConfig = overloadProtectionConfigService();
 
   const { app, router } = setup({
     config: { APP_ROOT: __dirname },
@@ -121,4 +123,4 @@ const create = (setup) => {
   return { app, router };
 };
 
-module.exports = { init, create };
+export { init, create };

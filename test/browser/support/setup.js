@@ -1,12 +1,12 @@
-const {
+import {
   Before,
   BeforeAll,
   AfterAll,
   After,
   setDefaultTimeout
-} = require("@cucumber/cucumber");
-const { chromium } = require("@playwright/test");
-const ConfigurationReader = require("./configuration-reader");
+} from "@cucumber/cucumber";
+import { chromium } from "@playwright/test";
+import { ConfigurationReader } from "./configuration-reader.js";
 
 setDefaultTimeout(60 * 1000);
 

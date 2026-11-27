@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "User interface for the Identity Proofing and Verification (IPV) system within the GDS digital identity platform, GOV.UK Sign In.",
   "main": "src/app.js",
+  "type": "module",
   "engines": {
     "node": "22.x",
     "npm": "10.x"
@@ -22,7 +23,7 @@
     "format": "prettier --check --no-editorconfig src test",
     "format:fix": "prettier --write --no-editorconfig src test",
     "test": "npm run test:unit && npm run test:infra",
-    "test:unit": "nyc --reporter=lcov --reporter=text-summary mocha",
+    "test:unit": "vitest run --coverage",
     "test:infra": "mocha --config test/infra/.mocharc.yml",
     "test:watch": "mocha --watch",
     "mocks": "wiremock --port 8030 --root-dir test/mocks",
@@ -46,6 +47,7 @@
     "@eslint/eslintrc": "3.3.7",
     "@eslint/js": "10.0.1",
     "@playwright/test": "1.61.0",
+    "@vitest/coverage-v8": "5.1.1",
     "chai": "6.2.2",
     "chai-as-promised": "8.0.2",
     "eslint": "10.14.0",
@@ -62,6 +64,7 @@
     "sinon": "22.0.0",
     "sinon-chai": "4.0.1",
     "uglify-js": "3.19.3",
+    "vitest": "5.1.1",
     "wiremock": "3.13.2"
   },
   "dependencies": {
