@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { expect } from "@playwright/test";
 
 export class CheckPlaywrightDevPage {
   /**
@@ -98,7 +98,7 @@ export class CheckPlaywrightDevPage {
     );
     await expect(
       await this.fraudLandingPageTitleSummary.textContent()
-    ).to.contains(fraudLandingPageTitleSummary);
+    ).toContain(fraudLandingPageTitleSummary);
   }
 
   async assertFraudLandingPageTitleSummaryTextOne(
@@ -110,7 +110,7 @@ export class CheckPlaywrightDevPage {
     );
     await expect(
       await this.fraudLandingPageTitleSummaryTextOne.textContent()
-    ).to.contains(fraudLandingPageTitleSummaryTextOne);
+    ).toContain(fraudLandingPageTitleSummaryTextOne);
   }
 
   async assertFraudLandingPageTitleSummaryTextTwo(
@@ -122,7 +122,7 @@ export class CheckPlaywrightDevPage {
     );
     await expect(
       await this.fraudLandingPageTitleSummaryTextTwo.textContent()
-    ).to.contains(fraudLandingPageTitleSummaryTextTwo);
+    ).toContain(fraudLandingPageTitleSummaryTextTwo);
   }
 
   async getDoNotRefreshPageMessage(fraudLandingPageWarningMessage) {
@@ -132,7 +132,7 @@ export class CheckPlaywrightDevPage {
     );
     await expect(
       await this.fraudLandingPageWarningMessageText.textContent()
-    ).to.contains(fraudLandingPageWarningMessage);
+    ).toContain(fraudLandingPageWarningMessage);
   }
 
   async assertPrivacyTabs(linkName) {
@@ -193,12 +193,12 @@ export class CheckPlaywrightDevPage {
       const pages = this.page.context().pages();
       const newTab = pages[pages.length - 1];
 
-      expect(await newTab.title()).to.not.equal(
+      expect(await newTab.title()).not.toBe(
         "Page not found - GOV.UK One Login"
       );
 
       if (urlAssertions[linkName]) {
-        expect(newTab.url()).to.contain(urlAssertions[linkName]);
+        expect(newTab.url()).toContain(urlAssertions[linkName]);
       } else {
         throw new Error(
           `No URL assertion defined for footer link: ${linkName}`
@@ -212,7 +212,7 @@ export class CheckPlaywrightDevPage {
       ]);
 
       if (urlAssertions[linkName]) {
-        expect(this.page.url()).to.contain(urlAssertions[linkName]);
+        expect(this.page.url()).toContain(urlAssertions[linkName]);
       } else {
         throw new Error(
           `No URL assertion defined for footer link: ${linkName}`
@@ -227,11 +227,11 @@ export class CheckPlaywrightDevPage {
   }
 
   async assertBetaBannerText(betaBannerText) {
-    expect(await this.betaBanner.innerText()).to.equal(betaBannerText);
+    expect(await this.betaBanner.innerText()).toBe(betaBannerText);
   }
 
   async assertBetaBannerWelshText(betaBannerWelshText) {
-    expect(await this.betaBanner.innerText()).to.equal(betaBannerWelshText);
+    expect(await this.betaBanner.innerText()).toBe(betaBannerWelshText);
   }
 
   async assertFeedbackPageIsCorrectAndLive(expectedURL) {
@@ -244,23 +244,19 @@ export class CheckPlaywrightDevPage {
 
     const actualURL = await newPage.url();
 
-    expect(actualURL).to.contain(expectedURL); // Use to.equal for exact URL match
+    expect(actualURL).toContain(expectedURL); // Use toBe for exact URL match
 
     await newPage.close();
   }
 
   async assertRejectCookies(rejectCookiesText) {
     await this.rejectCookiesButton.click();
-    expect(await this.rejectCookiesMessage.innerText()).to.equal(
-      rejectCookiesText
-    );
+    expect(await this.rejectCookiesMessage.innerText()).toBe(rejectCookiesText);
   }
 
   async assertAcceptCookies(acceptCookiesText) {
     await this.acceptCookiesButton.click();
-    expect(await this.acceptCookiesMessage.innerText()).to.equal(
-      acceptCookiesText
-    );
+    expect(await this.acceptCookiesMessage.innerText()).toBe(acceptCookiesText);
   }
 
   async assertAcceptedCookiesSettingLink() {
@@ -268,7 +264,7 @@ export class CheckPlaywrightDevPage {
     await this.page.waitForTimeout(3000); //waitForNavigation and waitForLoadState do not work in this case
     let context = this.page.context();
     let pages = context.pages();
-    expect(pages[0].url()).to.equal("https://signin.account.gov.uk/cookies");
+    expect(pages[0].url()).toBe("https://signin.account.gov.uk/cookies");
   }
 
   async assertRejectedCookiesSettingLink() {
@@ -276,7 +272,7 @@ export class CheckPlaywrightDevPage {
     await this.page.waitForTimeout(3000); //waitForNavigation and waitForLoadState do not work in this case
     let context = await this.page.context();
     let pages = context.pages();
-    expect(pages[0].url()).to.equal("https://signin.account.gov.uk/cookies");
+    expect(pages[0].url()).toBe("https://signin.account.gov.uk/cookies");
   }
 
   async cookieBannerDisplayed() {
@@ -292,7 +288,7 @@ export class CheckPlaywrightDevPage {
   async assertCookiesPolicyPageTitle(cookiesPageTitle) {
     await this.page.waitForLoadState("domcontentloaded");
     await this.cookiesPageTitle.isVisible(cookiesPageTitle);
-    expect(await this.cookiesPageTitle.textContent()).to.contains(
+    expect(await this.cookiesPageTitle.textContent()).toContain(
       cookiesPageTitle
     );
   }
@@ -300,7 +296,7 @@ export class CheckPlaywrightDevPage {
   async assertSkipToMainContent(skipToMainContent) {
     await this.page.waitForLoadState("domcontentloaded");
     await this.skipToMainContent.textContent(skipToMainContent);
-    expect(await this.skipToMainContent.textContent()).to.contains(
+    expect(await this.skipToMainContent.textContent()).toContain(
       skipToMainContent
     );
   }

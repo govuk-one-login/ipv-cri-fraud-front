@@ -1,11 +1,11 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "chai";
+import { expect } from "@playwright/test";
 import { CheckPage } from "../../pages/wiremock-pages/index.js";
 import { AxeBuilder } from "@axe-core/playwright";
 
 Given(/they (?:can )?see? the check page$/, async function () {
   const checkPage = new CheckPage(this.page);
-  expect(checkPage.isCurrentPage()).to.be.true;
+  expect(checkPage.isCurrentPage()).toBe(true);
 });
 
 Given(
@@ -15,21 +15,21 @@ Given(
       .withTags(["wcag22aa", "best-practice"])
       .analyze();
 
-    expect(results.violations).to.be.empty;
+    expect(results.violations).toEqual([]);
   }
 );
 
 When(/^they (?:have )?continued? to fraud check$/, async function () {
   const checkPage = new CheckPage(this.page);
-  expect(checkPage.isCurrentPage()).to.be.true;
+  expect(checkPage.isCurrentPage()).toBe(true);
   await checkPage.continue();
-  expect(checkPage.isCurrentPage()).to.be.false;
+  expect(checkPage.isCurrentPage()).toBe(false);
 });
 
 Given(/^they continue to fraud check page$/, async function () {
   const checkPage = new CheckPage(this.page);
   await checkPage.continue();
-  expect(checkPage.isCurrentPage()).to.be.false;
+  expect(checkPage.isCurrentPage()).toBe(false);
 });
 
 Then(
@@ -44,7 +44,7 @@ Given(
   /^they click (.*) and assert I have been directed correctly$/,
   async function (linkName) {
     const checkPage = new CheckPage(this.page);
-    expect(checkPage.isCurrentPage()).to.be.true;
+    expect(checkPage.isCurrentPage()).toBe(true);
     await checkPage.assertPrivacyTabs(linkName);
   }
 );
@@ -53,7 +53,7 @@ Given(
   /^they click Footer (.*) and assert I have been redirected correctly$/,
   async function (linkName) {
     const checkPage = new CheckPage(this.page);
-    expect(checkPage.isCurrentPage()).to.be.true;
+    expect(checkPage.isCurrentPage()).toBe(true);
     await checkPage.assertFooterLink(linkName);
   }
 );
@@ -67,7 +67,7 @@ When(
   /^they view the Beta banner with the text as (.*)$/,
   async function (betaBannerText) {
     const checkPage = new CheckPage(this.page);
-    expect(checkPage.isCurrentPage()).to.be.true;
+    expect(checkPage.isCurrentPage()).toBe(true);
     await checkPage.assertBetaBannerText(betaBannerText);
   }
 );
